@@ -1,1 +1,0 @@
-Kotlin is now the preferred language for Android development.
