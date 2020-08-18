@@ -1,1 +1,1 @@
-# cmps312-content
+# CMPS 312 Course content
