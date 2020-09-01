@@ -3,6 +3,11 @@ package classes
 /*
     - Each enum constant is an object and each object is separated by a comma
  */
+
+enum class Gender {
+    FEMALE, MALE
+}
+
 enum class Direction {
     LEFT, RIGHT, UP, DOWN
 }
@@ -12,15 +17,17 @@ enum class Direction {
     - If you are interested in accessing the parameter (in this case 'capital'), you must declare it as a 'val' or 'var'
  */
 enum class Country(val capital: String) {
-    PANAMA("Panama"), USA("Washington, D.C"), SWEDEN("Stockholm");
+    PANAMA("Panama"),
+    USA("Washington, D.C"),
+    SWEDEN("Stockholm");
 }
 
-fun main(args: Array<String>) {
+fun main() {
 
     // ----------------------------
     // Useful methods
     // ----------------------------
-    println(Country.SWEDEN.capital) // --> Stockholm
+    println(Country.USA.capital) // --> Stockholm
     println(Country.SWEDEN.name) // --> SWEDEN
     println(Country.SWEDEN.ordinal) // --> 2
     println(Country.SWEDEN.toString()) // --> SWEDEN

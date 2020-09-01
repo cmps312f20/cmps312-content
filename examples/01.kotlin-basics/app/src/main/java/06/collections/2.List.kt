@@ -9,6 +9,8 @@ fun main(args: Array<String>) {
     val result = numsList.reduce { sum, n -> sum + n }
     println("numsList sum = $result")
 
+
+
     val mutableNumsList = mutableListOf(1, 2, 3)
     mutableNumsList.add(4)
 

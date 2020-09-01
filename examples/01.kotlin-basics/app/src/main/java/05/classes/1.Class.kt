@@ -14,6 +14,20 @@ fun String.isPhoneNum() =
     - If a class is 'final' then declaring properties or methods as 'open' has no effect.
  */
 // You can set default values, if necessary
+
+// Static methods =
+/*
+ class Calculator {
+     static int add(int x, int y) { return x + y; }
+ }
+
+ main() {
+   //Calculator calculator = new Calculator();
+   //calculator.add(10, 20);
+   int sum = Calculator.add(10, 20);
+ }
+*/
+
 open class Person(val firstName: String,
              val lastName: String, val age: Int) {
 
@@ -79,7 +93,15 @@ class Student(firstName: String,
     }
 }
 
-fun main(args: Array<String>) {
+fun main() {
+    println(Student.university)
+    println(Student.city)
+    println(Student.getCountry())
+
+
+
+    return
+
     val person = Person("Ali", "Faleh", -25, "1234567")
     println(person)
 

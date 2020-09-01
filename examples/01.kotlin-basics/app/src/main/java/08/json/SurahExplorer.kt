@@ -1,7 +1,6 @@
 package json
 import kotlinx.serialization.*
 import kotlinx.serialization.json.*
-import java.io.BufferedReader
 import java.io.File
 
 @Serializable
@@ -27,8 +26,8 @@ data class Surah (
 fun main() {
     val filePath = "data/surahs.json";
     // Read file content
-    val bufferedReader: BufferedReader = File(filePath).bufferedReader()
-    val fileContent = bufferedReader.use { it.readText() }
+    val bufferedReader = File(filePath).bufferedReader()
+    val fileContent = bufferedReader.readText()
     println(fileContent)
 
     val surahs = Json.decodeFromString<List<Surah>>(fileContent)
@@ -36,6 +35,8 @@ fun main() {
 
     val ayatTotal = surahs.sumBy { it.ayaCount }
     println(ayatTotal)
+
+    return
 
     val project = Project("kotlinx.serialization", "Kotlin")
     val projectJson = Json.encodeToString(project)
