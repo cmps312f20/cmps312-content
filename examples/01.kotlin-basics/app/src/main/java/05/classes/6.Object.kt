@@ -12,6 +12,7 @@ object Util {
 }
 
 fun main() {
+    //val util = Util()
     println(Util.getNumberOfCores())
     println(Util.randomInt)
 }

@@ -98,6 +98,8 @@ fun main() {
     println(Student.city)
     println(Student.getCountry())
 
+    val student2 = Student("Ali", "Ibn Saleh", 30, 3.5)
+    Student.getCountry()
 
 
     return

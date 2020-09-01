@@ -4,17 +4,6 @@ import kotlinx.serialization.json.*
 import java.io.File
 
 @Serializable
-data class Person(
-    val id: Int = 0,
-    val firstname: String,
-    val lastname: String,
-    val phones: List<String> = listOf()
-)
-
-@Serializable
-data class Project(val name: String, val language: String)
-
-@Serializable
 data class Surah (
     val id : Int,
     val name: String,
@@ -28,20 +17,32 @@ fun main() {
     // Read file content
     val bufferedReader = File(filePath).bufferedReader()
     val fileContent = bufferedReader.readText()
-    println(fileContent)
+    //println(fileContent)
 
     val surahs = Json.decodeFromString<List<Surah>>(fileContent)
     println(surahs)
 
     val ayatTotal = surahs.sumBy { it.ayaCount }
-    println(ayatTotal)
+    println("Total number of Ayat: $ayatTotal")
 
-    return
+    val countByType = surahs.groupingBy { it.type }.eachCount()
+    println("Number of Surahs: $countByType")
 
-    val project = Project("kotlinx.serialization", "Kotlin")
-    val projectJson = Json.encodeToString(project)
-    println(projectJson)
+    val ayaCountByType = surahs.groupingBy { it.type }.fold(0) { count, surah -> count + surah.ayaCount }
+    println("Aya count by surah type: $ayaCountByType")
 
-    val project2 = Json.decodeFromString<Project>(projectJson)
-    println(project2)
+    /*
+val fatiha = Surah(1, "الفاتحة", "Al-Fatiha", 7, "Meccan")
+println(fatiha)
+
+val surahJson = Json.encodeToString(fatiha)
+println(surahJson)
+
+val surah = Json.decodeFromString<Surah>(surahJson)
+println(surah)
+*/
+//object to a json string => Serialize/Encode
+//json string to an object string => Deserialize/Decode
+// json = standard data format understoof by all languages: JavaScript, Java, C#, .net
+
 }

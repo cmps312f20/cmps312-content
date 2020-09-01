@@ -23,7 +23,6 @@ enum class Country(val capital: String) {
 }
 
 fun main() {
-
     // ----------------------------
     // Useful methods
     // ----------------------------
