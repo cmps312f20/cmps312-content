@@ -1,16 +1,31 @@
 package controlFlow
 
-fun main(args: Array<String>) {
-    val month = 8
-
+fun greet(language: String = "EN") =
     // when expression
-    val season = when (month) {
+    when (language) {
+        "AR" -> "مرحبا!"
+        "EN" -> "Hello!"
+        "FR" -> "Salut!"
+        "IT" -> "Ciao!"
+        else -> "Sorry, I can't greet you in $language yet"
+    }
+
+fun getSeason(month : Int) =
+    when (month) {
         12, 1,2  -> "Winter"
         in 3..5 -> "Spring"
         in 6..8 -> "Summer"
         in 9..11 -> "Autumn"
         else -> "Invalid Month"
     }
+
+fun main(args: Array<String>) {
+
+    println(greet())
+
+    val month = 8
+
+    val season = getSeason(month)
 
     println("Season for month $month is $season")
 

@@ -1,5 +1,7 @@
 package classes
 
+fun String.isPhoneNum() =
+    length == 7 && all { it.isDigit() }
 /*
     By default, all classes in kotlin are 'final'.
     Therefore, to allow a class from being inherited,
@@ -13,31 +15,33 @@ package classes
  */
 // You can set default values, if necessary
 open class Person(val firstName: String,
-             val lastName: String) {
+             val lastName: String, val age: Int) {
 
-    var age : Int? = null
-       set(value) {
-           if (value!! > 0) field = value
-       }
+    var id : Int = 0
+    var mobile : String = ""
 
     // Secondary constructor must call the primary constructor with "this".
     constructor(firstName: String,
                 lastName: String,
-                age: Int = 18) : this(firstName, lastName) {
-        this.age = age;
+                age: Int, mobile: String) : this(firstName, lastName, age) {
+        this.mobile = mobile;
     }
 
     val fullName: String
         get() = "$firstName $lastName"
 
     // !! means access it as non-null asserting that it is ok to do so
-    fun isUnderAge() = if (age != null) age!! < 18 else false
+    fun isUnderAge() = age < 18
 
     override fun toString() = "$firstName $lastName. Age $age"
 
     // The primary constructor cannot contain code, so use the init block for initialization.
     init {
-        // Initialization code goes here such as auto-setting the id
+            // Initialization code goes here such as auto-setting the id
+            id = (1..100).shuffled().first()
+            //Validation
+            if (age <=0)
+                throw IllegalArgumentException("$age is invalid age")
     }
 }
 
@@ -76,6 +80,9 @@ class Student(firstName: String,
 }
 
 fun main(args: Array<String>) {
+    val person = Person("Ali", "Faleh", -25, "1234567")
+    println(person)
+
     val student1 = Student("Fatima", "Saleh", 23, 3.4);
     println("> Full name: ${student1.fullName}")
     println("> isUnderAge: ${student1.isUnderAge()}")

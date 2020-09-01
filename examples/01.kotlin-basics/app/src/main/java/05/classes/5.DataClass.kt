@@ -11,6 +11,7 @@ package dataclasses
         - toString()
         - copy()
         - componentN()
+    See http://kotlinlang.org/docs/reference/data-classes.html#data-classes
 */
 
 // ----------------------------
