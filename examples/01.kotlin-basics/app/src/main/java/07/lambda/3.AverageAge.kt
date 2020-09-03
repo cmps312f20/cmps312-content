@@ -1,4 +1,4 @@
-package lambdas
+package lambda
 
 data class Employee(
         val name: String, val city: String, val age: Int

@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.a01kotlin_basics"
-        minSdkVersion 22
+        minSdkVersion 25
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"

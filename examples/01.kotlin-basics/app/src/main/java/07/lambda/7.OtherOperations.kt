@@ -1,8 +1,11 @@
-package _8Lambdas.workingWithCollections
+package lambda
 
-data class Person(val name: String, val age: Int)
+fun String.isPhoneNumber() =
+    length == 7 && all { it.isDigit() }
 
-fun main(args: Array<String>) {
+fun main() {
+    println( "2345678 is phone number: ${"2345678".isPhoneNumber()}" )
+
     val people = listOf(
             Person("Ali", 31),
             Person("Sara", 29),
@@ -23,15 +26,19 @@ fun main(args: Array<String>) {
     println(odd)
 
     val students = listOf("Ali", "Sara", "Fatima")
-    val grades = listOf(80, 90, 75)
+    val grades = listOf(80.5, 90, 75.5)
     val result = students.zip(grades)
     println(result)
 
     println(people.groupBy { it.age })
 
-    println(listOf("abc", "123").map {
-        it.toCharArray().toList() })
-
-    println(listOf("abc", "123").flatMap {
-        it.toCharArray().toList() })
+    val listOfList = listOf(
+        listOf("one", "two", "three"),
+        listOf("four", "five", "six"),
+        listOf("seven", "eight")
+    )
+    val singleList = listOfList.flatMap { it }
+    println(singleList)
+    //Tranform a list to a string
+    println(singleList.joinToString())
 }

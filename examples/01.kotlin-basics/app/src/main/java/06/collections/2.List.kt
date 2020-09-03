@@ -9,11 +9,8 @@ fun main(args: Array<String>) {
     val result = numsList.reduce { sum, n -> sum + n }
     println("numsList sum = $result")
 
-
-
     val mutableNumsList = mutableListOf(1, 2, 3)
     mutableNumsList.add(4)
-
 
     listOf("a", "b", "cc").sumBy { it.length } // => 4
 
@@ -30,15 +27,11 @@ fun main(args: Array<String>) {
     // Since the list is not mutable, the following is an error:
     // myEmptyList.add(1)
 
-    // ------------
-
     // CASE 2: Creating a read-only list
     val readOnly = listOf(1, 2, 3)
 
     // Since the list is not mutable, the following is an error:
     // readOnly.add(1)
-
-    // ------------
 
     // CASE 3: Creating a mutable list
     val mutableList = mutableListOf(1, 2, 3)
@@ -49,15 +42,13 @@ fun main(args: Array<String>) {
     // add, delete, and update operation are allowed
     mutableList.add(40)
     mutableList.removeAt(0)
+    //Remove elements from the list having a value > 20
+    mutableList.removeIf { it > 20 }
     mutableList[1] = 70
-
-    // ------------
 
     // CASE 4: Initialize Function
     val triple = List(5, { it * 3 })
     println(triple)
-
-    // ------------
 
     // CASE 5: Ten common 'List' scenarios
     val myList = mutableListOf(1, 2, 3, 4, 5, 6, 7, 8)
