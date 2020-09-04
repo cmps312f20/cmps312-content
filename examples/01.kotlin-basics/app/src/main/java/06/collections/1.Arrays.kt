@@ -1,14 +1,13 @@
 package collections
 
 fun main() {
-    val names: Array<String> = emptyArray()
-    val colors: Array<String> = arrayOf("Red", "Green", "Blue")
+    // Use Lists to be able to easily add/remove elements. Arrays offer limited capabilities.
+    val colors = arrayOf("Red", "Green", "Blue")
     colors[2] = "Pink"
-    val nulls: Array<String?> = arrayOfNulls(10)
-
-    val numbers: Array<Int> = emptyArray()
-    val nums: Array<Int> = arrayOf(2, 3, 4)
-    val nullNums: Array<Int?> = arrayOfNulls(10)
-
+    println("> Colors array size: ${colors.size}")
     colors.forEach { println(it) }
+
+    val nums = arrayOf(2, 3, 4)
+    println("> Nums array size: ${nums.size}")
+    nums.forEach { println(it) }
 }

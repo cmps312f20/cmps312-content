@@ -1,6 +1,6 @@
 package `06`.collections
 
-fun main(args: Array<String>) {
+fun main() {
 
     // immutable list and mutable list
     val numsList = listOf(1, 2, 3)

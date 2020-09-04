@@ -31,15 +31,3 @@ class Student(firstName: String,
         fun getCountry() = "Qatar"
     }
 }
-
-fun main() {
-    val person = Person("Ali", "Faleh", 25, "1234567")
-    println(person)
-
-    val student1 = Student("Fatima", "Saleh", 23, 3.4);
-    println("> Full name: ${student1.fullName}")
-    println("> isUnderAge: ${student1.isUnderAge()}")
-    println("> toString(): $student1")
-
-    println("Studies at ${Student.university} in ${Student.city} ${Student.getCountry()}")
-}

@@ -11,14 +11,14 @@ fun main() {
     var hasEvenNumber = nums.any(isEven)
     //Version 2
     hasEvenNumber = nums.any { n -> n % 2 == 0 }
-    //Version 3 - best
+    //Version 3 - ** Best 👍 **
     hasEvenNumber = nums.any { it % 2 == 0 }
 
     //Version 1
     var evens = nums.filter(isEven)
     //Version 2
     evens = nums.filter { n -> n % 2 == 0 }
-    //Version 3 - best
+    //Version 3 - ** Best 👍 **
     evens = nums.filter { it % 2 == 0 }
 
     println("Has an even number: $hasEvenNumber")

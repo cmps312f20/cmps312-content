@@ -10,6 +10,7 @@ fun main() {
     numbersSequence.map { it.toUpperCase() }
                    .take(2)
                    .joinToString()
+                    //.also execute some processing on the object and returns it
                    .also { println(it) }
 
     // Sequences represent lazily-evaluated collections

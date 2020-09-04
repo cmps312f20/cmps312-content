@@ -19,11 +19,13 @@ fun main() {
     var total = nums.reduce { sum, n -> sum + n }
     //Another way with the ability to set the initial value of sum
     total = nums.fold(0) { sum, n -> sum + n }
+    val product = nums.fold(1) { runningProduct, item -> runningProduct * item }
+
     //Short form
     val sum = nums.sum()
     val count = nums.count()
     val average = nums.average()
     val max = nums.maxOrNull()
     val min = nums.minOrNull()
-    println("\nSum: $sum, Count: $count, Average: $average, Max: $max, Min: $min")
+    println("\nSum: $sum, Count: $count, Average: $average, Max: $max, Min: $min, Product: $product")
 }

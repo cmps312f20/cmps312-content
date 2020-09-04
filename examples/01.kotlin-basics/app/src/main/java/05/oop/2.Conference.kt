@@ -14,6 +14,6 @@ data class Conference(val name: String,
 }
 
 fun main() {
-    val conference = Conference("Kotlin Conf.", "Doha", 200.0)
+    val conference = Conference("Kotlin Conf.", "Istanbul", 300.0)
     println(conference)
 }

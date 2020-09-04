@@ -30,7 +30,7 @@ open class Person(val firstName: String,
 
     fun isUnderAge() = age < 18
 
-    override fun toString() = "$firstName $lastName. Age $age"
+    override fun toString() = "$firstName $lastName. Age: $age"
 
     /* The primary constructor cannot contain code, so use the init block
         for initialization and data validation

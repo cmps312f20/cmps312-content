@@ -19,7 +19,8 @@ fun main() {
 
     println("\n> Population by continent sorted")
     populationByContinent
-        .entries.sortedByDescending { it.value }.associate { it.toPair() }
+        //populationByContinent[it] is the value
+        .toSortedMap(compareByDescending { populationByContinent[it] })
         .forEach {
             println("%-8s: %,15d".format(it.key, it.value))
         }

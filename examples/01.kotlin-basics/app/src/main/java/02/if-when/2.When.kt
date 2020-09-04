@@ -19,7 +19,7 @@ fun getSeason(month : Int) =
         else -> "Invalid Month"
     }
 
-fun main(args: Array<String>) {
+fun main() {
 
     println(greet())
 

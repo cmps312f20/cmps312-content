@@ -1,6 +1,6 @@
 package `03`.loops
 
-fun main(args: Array<String>) {
+fun main() {
 
     // CASE 1: Looping from 1 to 10
     println("CASE 1")
