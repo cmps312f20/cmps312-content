@@ -1,4 +1,4 @@
-package classes
+package oop
 
 /*
     - Each enum constant is an object and each object is separated by a comma

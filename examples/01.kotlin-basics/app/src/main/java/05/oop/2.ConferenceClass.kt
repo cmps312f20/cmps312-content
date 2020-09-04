@@ -1,14 +1,14 @@
-package classes
+package oop
 
 data class Conference(val name: String,
                  val city: String,
-                 val isFree: Boolean = false) {
+                 val isFree: Boolean = true) {
     var fee : Double = 0.0
 
     // Secondary Constructor
     constructor(name: String,
                 city: String,
-                fee: Double) : this(name, city) {
+                fee: Double) : this(name, city, false) {
         this.fee = fee
     }
 }
