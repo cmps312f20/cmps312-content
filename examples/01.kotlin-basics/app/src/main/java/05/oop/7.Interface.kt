@@ -2,7 +2,7 @@ package oop
 
 class Book()
 
-//Interface does not have an implementation (default implementation)
+//Interface does not have an implementation
 //Interface can be implemented by different classes
 interface BookRepository {
     fun getBook(isbn: String) : Book
@@ -26,6 +26,10 @@ class DBBookRepository() : BookRepository {
 }
 
 fun main() {
+    val input = "Test"
+    val num = try { input.toInt() } catch (e: NumberFormatException){ null }
+    println(num)
+
     val bookRepository: BookRepository
     bookRepository = DBBookRepository()
     // Programming more generic - See polymorphism studied in CMPS 251
