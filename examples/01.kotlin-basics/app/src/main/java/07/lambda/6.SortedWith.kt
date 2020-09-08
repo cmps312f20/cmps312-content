@@ -8,9 +8,9 @@ fun main() {
     )
 
     // Sort by age then by name
-    val sorted = employees.sortedWith(
+    val sortedEmpolyees = employees.sortedWith(
           compareBy(Employee::age, Employee::name)
     )
 
-    sorted.forEach { println(it) }
+    sortedEmpolyees.forEachIndexed{ i, employee -> println("${i+1}: " + employee) }
 }

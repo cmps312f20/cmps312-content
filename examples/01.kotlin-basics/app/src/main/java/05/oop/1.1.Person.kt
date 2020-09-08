@@ -10,7 +10,7 @@ fun String.isPhoneNum() = length == 7 && all { it.isDigit() }
     - If a class is 'final' then declaring properties or methods as 'open' has no effect.
  */
 // You can set default values for properties, if necessary
-open class Person(val firstName: String,
+open class Person(var firstName: String,
                   val lastName: String, val age: Int) {
 
     var id : Int = 0
@@ -26,7 +26,7 @@ open class Person(val firstName: String,
     }
 
     val fullName: String
-        get() = "$firstName $lastName"
+         get() = "$firstName $lastName"
 
     fun isUnderAge() = age < 18
 

@@ -23,7 +23,7 @@ fun main() {
 
 
 	println("\n> Surahs having more than 200 Ayat:")
-    SurahRepository.getSurahs(200).forEach(::println)
+    SurahRepository.getSurahs(200).forEachIndexed{ i, surah -> println("${i+1}: " + surah) }
 
 	println("\n> First 5 Medinan Surahs:")
     SurahRepository.getSurahs("Medinan").take(5).forEach(::println)

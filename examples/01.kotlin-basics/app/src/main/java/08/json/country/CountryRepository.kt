@@ -8,11 +8,11 @@ object CountryRepository {
     var countries = listOf<Country>()
     init {
         val filePath = "data/countries.json"
-        val fileContent = getFileContent(filePath)
+        val jsonData = getFileContent(filePath)
         //println(fileContent)
 
         val json = Json { ignoreUnknownKeys = true }
-        countries = json.decodeFromString(fileContent)
+        countries = json.decodeFromString(jsonData)
     }
 
     fun getCountriesByContinent(continent: String) = countries.filter { it.continent.equals(continent, true) }
@@ -44,6 +44,7 @@ object CountryRepository {
           The method takes a lambda expression, executes it and disposes of the resource of (by calling close() on it)
           whenever execution leaves the block, either normally or with an exception.
         */
+        // Better to use bufferedReader for reading a large file
         File(filePath).bufferedReader().use {
             return it.readText()
         }
