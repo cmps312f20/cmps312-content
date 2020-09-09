@@ -1,6 +1,5 @@
 package qa.edu.cmps312.countryexplorer
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import json.country.Country
 import kotlinx.android.synthetic.main.list_item_country.view.*
 
-
+/*
+The adapter marries countries list to the Recycler view
+ */
 class CountryRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()
 {
     lateinit var countries : List<Country>
@@ -19,9 +20,13 @@ class CountryRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()
         )
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-            if (holder is CountryViewHolder)
-                holder.bind(countries[position])
+    /*
+    Runtime calls adapter the onBindViewHolder to bind a list item to a row on the screen
+    Write data from list[position] into viewHolder
+     */
+    override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
+            if (viewHolder is CountryViewHolder)
+                viewHolder.bind(countries[position])
     }
 
     override fun getItemCount() = countries.size
