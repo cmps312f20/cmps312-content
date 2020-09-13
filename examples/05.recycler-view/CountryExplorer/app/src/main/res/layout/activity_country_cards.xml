@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CountryInfoActivity">
+
+    <include
+        android:id="@+id/countryItemView"
+        layout="@layout/list_item_country"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="235dp" />
+
+    <Button
+        android:id="@+id/prevBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="42dp"
+        android:drawableLeft="@drawable/ic_navigate_previous"
+        android:text="Prev"
+        android:textSize="12sp"
+        tools:layout_editor_absoluteX="291dp"
+        tools:layout_editor_absoluteY="91dp" />
+
+    <Button
+        android:id="@+id/nextBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="41dp"
+        android:drawableEnd="@drawable/ic_navigate_next"
+        android:text="Next"
+        android:textSize="12sp"
+        tools:layout_editor_absoluteX="327dp"
+        tools:layout_editor_absoluteY="259dp" />
+
+    <TextView
+        android:id="@+id/currentIndexTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1 of 8"
+        tools:layout_editor_absoluteX="172dp"
+        tools:layout_editor_absoluteY="158dp" />
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="16dp"
+        app:constraint_referenced_ids="prevBtn,currentIndexTv,nextBtn"
+        app:flow_horizontalStyle="spread_inside"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/countryItemView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

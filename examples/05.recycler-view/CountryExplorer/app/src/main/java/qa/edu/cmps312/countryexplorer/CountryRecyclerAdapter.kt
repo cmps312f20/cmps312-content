@@ -34,22 +34,20 @@ class CountryRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()
 
 }
 
-class CountryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-    fun bind(country: Country){
+class CountryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    fun bind(country: Country) {
         itemView.apply {
             nameTv.text = country.name
             capitalTv.text = country.capital
             populationTv.text = country.population.toString()
 
-            flagIv.apply {
-                // context is the root activity in which flagIv component is displayed
-                val imgId = context.resources.getIdentifier(
-                    "drawable/flag_${country.code.toLowerCase()}",
-                    null,
-                    context.packageName
-                )
-                setImageResource(imgId)
-            }
+            // context is the root activity in which flagIv component is displayed
+            val image = resources.getIdentifier(
+                "flag_${country.code.toLowerCase()}",
+                "drawable",
+                context.packageName
+            )
+            flagIv.setImageResource(image)
         }
     }
 }
