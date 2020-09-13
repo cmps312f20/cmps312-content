@@ -1,5 +1,6 @@
 package qa.edu.cmps312.countryexplorer
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -8,7 +9,7 @@ import json.country.CountryRepository
 import kotlinx.android.synthetic.main.activity_country_cards.*
 import kotlinx.android.synthetic.main.list_item_country.view.*
 
-class CountryInfoActivity : AppCompatActivity() {
+class CountryCardsActivity : AppCompatActivity() {
     private var currentIndex = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,14 +18,26 @@ class CountryInfoActivity : AppCompatActivity() {
         displayStadium(currentIndex)
         displayCurrentIndex(currentIndex)
 
-        nextBtn.setOnClickListener { onClick( it )  }
-        prevBtn.setOnClickListener { onClick( it ) }
+        nextBtn.setOnClickListener { onButtonClicked( it ) }
+        prevBtn.setOnClickListener { onButtonClicked( it ) }
+
+        bottomNv.setOnNavigationItemSelectedListener {
+            when(it.itemId) {
+                R.id.countriesListMi -> {
+                    val intent = Intent(this, CountryListActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                else -> { super.onOptionsItemSelected(it) }
+            }
+        }
     }
 
-    fun onClick(view: View) {
+    private fun onButtonClicked(view: View) {
         when (view.id) {
             R.id.nextBtn -> ++currentIndex
             R.id.prevBtn -> --currentIndex
+            else -> return
         }
         //If current index becomes == count then it will be assigned 0
         currentIndex = (currentIndex + CountryRepository.count) % CountryRepository.count

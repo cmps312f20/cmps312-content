@@ -24,6 +24,6 @@ data class Country (
     val capital: String,
     val continent: String,
     val region: String,
-    val population: Int,
+    val population: Long,
     val area: Long = 0
 )

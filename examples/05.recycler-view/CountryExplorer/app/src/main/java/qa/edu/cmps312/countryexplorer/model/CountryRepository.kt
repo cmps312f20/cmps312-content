@@ -25,6 +25,9 @@ object CountryRepository {
     fun getCountriesByRegion(region: String) = countries.filter { it.region.equals(region, true) }
                                                         .sortedBy { it.population }
 
-    val continents = countries.map { it.continent}.distinct()
-    fun getRegions(continent : String) = countries.filter { it.continent.equals(continent, true) }.map { it.region }.distinct()
+    val continents : List<String> get() = countries.map { it.continent}.distinct().sorted()
+
+    fun getRegions(continent : String) =
+            countries.filter { it.continent.equals(continent, true) }
+                     .map { it.region }.distinct().sorted()
 }
