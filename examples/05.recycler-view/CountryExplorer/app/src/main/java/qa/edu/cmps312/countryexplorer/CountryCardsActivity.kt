@@ -14,8 +14,8 @@ class CountryCardsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_country_cards)
-        CountryRepository.getCountries(this)
-        displayStadium(currentIndex)
+        CountryRepository.loadCountries(this)
+        displayCountry(currentIndex)
         displayCurrentIndex(currentIndex)
 
         nextBtn.setOnClickListener { onButtonClicked( it ) }
@@ -25,6 +25,11 @@ class CountryCardsActivity : AppCompatActivity() {
             when(it.itemId) {
                 R.id.countriesListMi -> {
                     val intent = Intent(this, CountryListActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.registerMi -> {
+                    val intent = Intent(this, RegisterActivity::class.java)
                     startActivity(intent)
                     true
                 }
@@ -42,7 +47,7 @@ class CountryCardsActivity : AppCompatActivity() {
         //If current index becomes == count then it will be assigned 0
         currentIndex = (currentIndex + CountryRepository.count) % CountryRepository.count
         Log.i("Main Activity", "currentIndex: $currentIndex")
-        displayStadium(currentIndex)
+        displayCountry(currentIndex)
         displayCurrentIndex(currentIndex)
     }
 
@@ -50,7 +55,7 @@ class CountryCardsActivity : AppCompatActivity() {
           currentIndexTv.text = "${currentIndex + 1} of ${CountryRepository.count}"
     }
 
-    private fun displayStadium(index: Int) {
+    private fun displayCountry(index: Int) {
         val country = CountryRepository.countries[index]
         countryItemView.apply {
             nameTv.text = country.name

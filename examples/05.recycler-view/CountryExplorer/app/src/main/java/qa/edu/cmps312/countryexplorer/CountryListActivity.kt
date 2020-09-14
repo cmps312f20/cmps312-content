@@ -5,7 +5,6 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import json.country.CountryRepository
@@ -41,7 +40,7 @@ class CountryListActivity : AppCompatActivity() {
     }
 
     private fun initRecyclerView() {
-        val countries = CountryRepository.getCountries(this)
+        val countries = CountryRepository.loadCountries(this)
         //println(countries)
 
         countriesRv.apply {
