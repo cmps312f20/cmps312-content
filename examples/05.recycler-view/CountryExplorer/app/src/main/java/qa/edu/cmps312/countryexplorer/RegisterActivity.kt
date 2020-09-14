@@ -13,11 +13,13 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        CountryRepository.loadCountries(this)
+        val universities = listOf("Qatar University", "Carnegie Mellon University in Qatar"
+            , "Texas A&M University at Qatar"
+            , "Hamad Bin Khalifa University (HBKU)")
 
         val adapter = ArrayAdapter<String>(
             this,
-            android.R.layout.simple_dropdown_item_1line, CountryRepository.countryNames
+            android.R.layout.simple_dropdown_item_1line, universities
         )
         countriesSp.adapter = adapter
     }
