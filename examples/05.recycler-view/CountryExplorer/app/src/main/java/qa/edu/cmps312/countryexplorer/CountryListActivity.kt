@@ -1,21 +1,31 @@
 package qa.edu.cmps312.countryexplorer
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import json.country.CountryRepository
 import kotlinx.android.synthetic.main.activity_country_list.*
+import qa.edu.cmps312.countryexplorer.adapter.CountryAdapter
+import qa.edu.cmps312.countryexplorer.adapter.SortBy
 
 
 class CountryListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_country_list)
+
         initRecyclerView()
+
+        // Replace the built legacy action bar with our toolbar
+        // In style.xml you should use a theme with NoActionBar
+        setSupportActionBar(toolbar as Toolbar)
 
         // It tells the AutoCompleteTextView what layout to use individual suggestions
         // android.R.layout.simple_list_item_1 => it a built-in layout. It has 1 TextView
@@ -30,22 +40,22 @@ class CountryListActivity : AppCompatActivity() {
         continentAcTv.setAdapter(adapter)
 
         // When the user clicks a continent
-        continentAcTv.onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, i, l ->
-            val selectedContinent = adapterView?.getItemAtPosition(i) as String
+        continentAcTv.onItemClickListener = AdapterView.OnItemClickListener { adapterView, _, position, _ ->
+            val selectedContinent = adapterView?.getItemAtPosition(position) as String
             //Toast.makeText(applicationContext,"You have select $selectedContinent", Toast.LENGTH_SHORT).show()
             // Set the filter on the recyclerView adapter
-            val countryRecyclerAdapter = countriesRv.adapter as CountryRecyclerAdapter
-            countryRecyclerAdapter.filter(selectedContinent)
+            val countryAdapter = countriesRv.adapter as CountryAdapter
+            countryAdapter.filter(selectedContinent)
         }
     }
 
     private fun initRecyclerView() {
-        val countries = CountryRepository.loadCountries(this)
+        val countries = CountryRepository.initCountries(this)
         //println(countries)
 
         countriesRv.apply {
             layoutManager = LinearLayoutManager(this@CountryListActivity)
-            adapter = CountryRecyclerAdapter(countries)
+            adapter = CountryAdapter(countries)
         }
     }
 
@@ -56,9 +66,9 @@ class CountryListActivity : AppCompatActivity() {
     }
 
     // Handle sort menu
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val countryRecyclerAdapter = countriesRv.adapter as CountryRecyclerAdapter
-        val sortBy = when (item.itemId) {
+    override fun onOptionsItemSelected(menuItem: MenuItem): Boolean {
+        val countryRecyclerAdapter = countriesRv.adapter as CountryAdapter
+        val sortBy = when (menuItem.itemId) {
             R.id.sortByNameMi -> SortBy.NAME
             R.id.sortByNameDescendingMi -> SortBy.NAME_DESC
             R.id.sortByPopulationMi -> SortBy.POPULATION
@@ -66,10 +76,31 @@ class CountryListActivity : AppCompatActivity() {
             else -> null
         }
         return if (sortBy == null) {
-            super.onOptionsItemSelected(item)
+            super.onOptionsItemSelected(menuItem)
         } else {
             countryRecyclerAdapter.sort(sortBy!!)
             true
+        }
+    }
+
+    // For this to work you need to add this to the Manifest
+    /*
+        <activity android:name=".CountryListActivity"
+            android:configChanges="orientation|screenSize" />
+     */
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+
+        // Checks the orientation of the screen
+       countriesRv.layoutManager = when(newConfig.orientation) {
+            Configuration.ORIENTATION_LANDSCAPE -> {
+                //Toast.makeText(this, "Landscape", Toast.LENGTH_SHORT).show()
+                GridLayoutManager(this, 2)
+            }
+            else -> {
+                //Toast.makeText(this, "Portrait", Toast.LENGTH_SHORT).show()
+                LinearLayoutManager(this)
+            }
         }
     }
 }

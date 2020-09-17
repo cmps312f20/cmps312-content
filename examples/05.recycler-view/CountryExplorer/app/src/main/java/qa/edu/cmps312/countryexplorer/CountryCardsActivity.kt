@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.appcompat.widget.Toolbar
 import json.country.CountryRepository
 import kotlinx.android.synthetic.main.activity_country_cards.*
 import kotlinx.android.synthetic.main.list_item_country.view.*
@@ -14,9 +15,9 @@ class CountryCardsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_country_cards)
-        CountryRepository.loadCountries(this)
+
+        CountryRepository.initCountries(this)
         displayCountry(currentIndex)
-        displayCurrentIndex(currentIndex)
 
         nextBtn.setOnClickListener { onButtonClicked( it ) }
         prevBtn.setOnClickListener { onButtonClicked( it ) }
@@ -46,9 +47,7 @@ class CountryCardsActivity : AppCompatActivity() {
         }
         //If current index becomes == count then it will be assigned 0
         currentIndex = (currentIndex + CountryRepository.count) % CountryRepository.count
-        Log.i("Main Activity", "currentIndex: $currentIndex")
         displayCountry(currentIndex)
-        displayCurrentIndex(currentIndex)
     }
 
     private fun displayCurrentIndex(index: Int) {
@@ -70,5 +69,7 @@ class CountryCardsActivity : AppCompatActivity() {
             )
             flagIv.setImageResource(image)
         }
+
+        displayCurrentIndex(currentIndex)
     }
 }

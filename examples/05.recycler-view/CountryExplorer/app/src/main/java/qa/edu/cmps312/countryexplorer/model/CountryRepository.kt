@@ -8,7 +8,7 @@ object CountryRepository {
     var countries = listOf<Country>()
     val count : Int get() = countries.size
 
-    fun loadCountries(context: Context) : List<Country> {
+    fun initCountries(context: Context) : List<Country> {
         if (countries.isEmpty()) {
             val countriesJson = context.assets
                                     .open("countries.json")

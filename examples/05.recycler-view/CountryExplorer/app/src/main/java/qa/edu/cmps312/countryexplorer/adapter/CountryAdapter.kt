@@ -1,13 +1,12 @@
-package qa.edu.cmps312.countryexplorer
+package qa.edu.cmps312.countryexplorer.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Filter
-import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import json.country.Country
 import kotlinx.android.synthetic.main.list_item_country.view.*
+import qa.edu.cmps312.countryexplorer.R
 import kotlin.math.ln
 import kotlin.math.pow
 
@@ -28,13 +27,13 @@ fun withSuffix(count: Long): String? {
 /*
 The adapter marries countries list to the Recycler view
  */
-class CountryRecyclerAdapter(var countries: List<Country>)
+class CountryAdapter(private val countries: List<Country>)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>()
 {
-    lateinit var countryFilterList : List<Country>
+    private lateinit var countryFilteredList : List<Country>
 
     init {
-        countryFilterList = countries
+        countryFilteredList = countries
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -49,13 +48,13 @@ class CountryRecyclerAdapter(var countries: List<Country>)
      */
     override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
             if (viewHolder is CountryViewHolder)
-                viewHolder.bind(countryFilterList[position])
+                viewHolder.bind(countryFilteredList[position])
     }
 
-    override fun getItemCount() = countryFilterList.size
+    override fun getItemCount() = countryFilteredList.size
 
     fun filter(continent: String) {
-        countryFilterList = if (continent.isEmpty()) {
+        countryFilteredList = if (continent.isEmpty()) {
             countries
         } else {
             countries.filter { it.continent.equals(continent, true) }
@@ -64,30 +63,32 @@ class CountryRecyclerAdapter(var countries: List<Country>)
     }
 
    fun sort(sortBy: SortBy) {
-        countryFilterList = when (sortBy) {
-            SortBy.NAME -> countryFilterList.sortedBy { it.name }
-            SortBy.POPULATION -> countryFilterList.sortedBy { it.population }
-            SortBy.NAME_DESC -> countryFilterList.sortedByDescending { it.name }
-            SortBy.POPULATION_DESC -> countryFilterList.sortedByDescending { it.population }
+        countryFilteredList = when (sortBy) {
+            SortBy.NAME -> countryFilteredList.sortedBy { it.name }
+            SortBy.POPULATION -> countryFilteredList.sortedBy { it.population }
+            SortBy.NAME_DESC -> countryFilteredList.sortedByDescending { it.name }
+            SortBy.POPULATION_DESC -> countryFilteredList.sortedByDescending { it.population }
         }
         notifyDataSetChanged()
     }
-}
 
-class CountryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    fun bind(country: Country) {
-        itemView.apply {
-            nameTv.text = country.name
-            capitalTv.text = country.capital
-            populationTv.text = withSuffix(country.population)
+    // Could be a normal separate class but it is common to make it an inner class
+    // As it is only used in this Adapter class and it can access properties and
+    // methods of the outer class if needed
+    inner class CountryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        fun bind(country: Country) {
+            itemView.apply {
+                nameTv.text = country.name
+                capitalTv.text = country.capital
+                populationTv.text = withSuffix(country.population)
 
-            // context is the root activity in which flagIv component is displayed
-            val image = resources.getIdentifier(
-                "flag_${country.code.toLowerCase()}",
-                "drawable",
-                context.packageName
-            )
-            flagIv.setImageResource(image)
+                 val image = resources.getIdentifier(
+                    "flag_${country.code.toLowerCase()}",
+                    "drawable",
+                    context.packageName
+                )
+                flagIv.setImageResource(image)
+            }
         }
     }
 }
