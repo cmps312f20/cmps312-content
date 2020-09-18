@@ -3,9 +3,7 @@ package qa.edu.cmps312.countryexplorer
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import androidx.appcompat.widget.Toolbar
 import json.country.CountryRepository
 import kotlinx.android.synthetic.main.activity_country_cards.*
 import kotlinx.android.synthetic.main.list_item_country.view.*
@@ -31,6 +29,12 @@ class CountryCardsActivity : AppCompatActivity() {
                 }
                 R.id.registerMi -> {
                     val intent = Intent(this, RegisterActivity::class.java)
+                    startActivity(intent)
+
+                    // Pass student ID and student name with Intent so it can be used
+                   // by RegisterActivity when it’s started
+                    intent.putExtra("id", 235789)
+                    intent.putExtra("name", "Peter Pan")
                     startActivity(intent)
                     true
                 }

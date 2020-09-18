@@ -15,7 +15,6 @@ import kotlinx.android.synthetic.main.activity_country_list.*
 import qa.edu.cmps312.countryexplorer.adapter.CountryAdapter
 import qa.edu.cmps312.countryexplorer.adapter.SortBy
 
-
 class CountryListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +41,7 @@ class CountryListActivity : AppCompatActivity() {
         // When the user clicks a continent
         continentAcTv.onItemClickListener = AdapterView.OnItemClickListener { adapterView, _, position, _ ->
             val selectedContinent = adapterView?.getItemAtPosition(position) as String
-            //Toast.makeText(applicationContext,"You have select $selectedContinent", Toast.LENGTH_SHORT).show()
+            toast("You have select $selectedContinent")
             // Set the filter on the recyclerView adapter
             val countryAdapter = countriesRv.adapter as CountryAdapter
             countryAdapter.filter(selectedContinent)
@@ -54,8 +53,8 @@ class CountryListActivity : AppCompatActivity() {
         //println(countries)
 
         countriesRv.apply {
-            layoutManager = LinearLayoutManager(this@CountryListActivity)
             adapter = CountryAdapter(countries)
+            layoutManager = LinearLayoutManager(this@CountryListActivity)
         }
     }
 
@@ -94,11 +93,9 @@ class CountryListActivity : AppCompatActivity() {
         // Checks the orientation of the screen
        countriesRv.layoutManager = when(newConfig.orientation) {
             Configuration.ORIENTATION_LANDSCAPE -> {
-                //Toast.makeText(this, "Landscape", Toast.LENGTH_SHORT).show()
                 GridLayoutManager(this, 2)
             }
             else -> {
-                //Toast.makeText(this, "Portrait", Toast.LENGTH_SHORT).show()
                 LinearLayoutManager(this)
             }
         }
