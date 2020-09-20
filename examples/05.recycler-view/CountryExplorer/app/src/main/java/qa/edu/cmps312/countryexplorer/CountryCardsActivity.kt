@@ -28,6 +28,7 @@ class CountryCardsActivity : AppCompatActivity() {
                     true
                 }
                 R.id.registerMi -> {
+                    //Passing the context object (this) into the intent allows the app to know what activity it’s leaving.
                     val intent = Intent(this, RegisterActivity::class.java)
                     startActivity(intent)
 

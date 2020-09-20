@@ -85,23 +85,46 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
 
     <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
+        android:text="Country of Birth"
+        app:layout_constraintBottom_toBottomOf="@+id/continentAcTv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/continentAcTv" />
+
+    <AutoCompleteTextView
+        android:id="@+id/continentAcTv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:completionThreshold="1"
+        android:hint="country"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/barrier"
+        app:layout_constraintTop_toBottomOf="@id/datePicker1" />
+
+    <TextView
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Graduated From"
-        app:layout_constraintBottom_toBottomOf="@+id/countriesSp"
+        app:layout_constraintBottom_toBottomOf="@+id/universitiesSp"
         app:layout_constraintStart_toStartOf="@+id/textView8"
-        app:layout_constraintTop_toTopOf="@+id/countriesSp" />
+        app:layout_constraintTop_toTopOf="@+id/universitiesSp" />
 
     <Spinner
-        android:id="@+id/countriesSp"
+        android:id="@+id/universitiesSp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/datePicker1"
-        app:layout_constraintTop_toBottomOf="@+id/datePicker1" />
+        app:layout_constraintStart_toStartOf="@+id/continentAcTv"
+        app:layout_constraintTop_toBottomOf="@+id/continentAcTv" />
 
     <Switch
         android:id="@+id/switch1"
@@ -126,8 +149,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="@+id/countriesSp"
-        app:layout_constraintTop_toBottomOf="@+id/countriesSp">
+        app:layout_constraintStart_toStartOf="@+id/universitiesSp"
+        app:layout_constraintTop_toBottomOf="@+id/universitiesSp">
 
         <RadioButton
             android:id="@+id/radioButton3"

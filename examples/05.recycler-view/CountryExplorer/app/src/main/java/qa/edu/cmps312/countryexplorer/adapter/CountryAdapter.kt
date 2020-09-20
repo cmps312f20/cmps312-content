@@ -4,42 +4,33 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import json.country.Country
 import kotlinx.android.synthetic.main.list_item_country.view.*
 import qa.edu.cmps312.countryexplorer.R
-import kotlin.math.ln
-import kotlin.math.pow
+import qa.edu.cmps312.countryexplorer.common.withSuffix
 
 enum class SortBy { NAME, POPULATION, NAME_DESC, POPULATION_DESC }
 
-// Adapted from https://stackoverflow.com/questions/9769554/how-to-convert-number-into-k-thousands-m-million-and-b-billion-suffix-in-jsp
-fun withSuffix(count: Long): String? {
-    if (count < 1000) return "" + count
-    // ln is log
-    val exp = (ln(count.toDouble()) / ln(1000.0)).toInt()
-    return String.format(
-        "%.1f %c",
-        count / 1000.0.pow(exp.toDouble()),
-        "kMBTPE"[exp - 1]
-    )
-}
-
 /*
-The adapter marries countries list to the Recycler view
+   RecyclerView adapter connects list to the Recycler View
  */
-class CountryAdapter(private val countries: List<Country>)
+class CountryAdapter(private val countries: MutableList<Country>,
+                     private val clickListener: (Country) -> Unit)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>()
 {
-    private lateinit var countryFilteredList : List<Country>
+    private lateinit var countryFilteredList : MutableList<Country>
 
     init {
         countryFilteredList = countries
     }
 
+    //region RecyclerView.Adapter methods: onCreateViewHolder, onBindViewHolder, getItemCount
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return CountryViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.list_item_country, parent, false)
-        )
+        // Create an item view from list item layout
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.list_item_country, parent, false)
+        // Place the layout inside a ViewHolder
+        return CountryViewHolder(itemView)
     }
 
     /*
@@ -47,48 +38,87 @@ class CountryAdapter(private val countries: List<Country>)
     Write data from list[position] into viewHolder
      */
     override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
-            if (viewHolder is CountryViewHolder)
-                viewHolder.bind(countryFilteredList[position])
+         (viewHolder as CountryViewHolder).bind(countryFilteredList[position])
     }
 
     override fun getItemCount() = countryFilteredList.size
+    //endregion
 
-    fun filter(continent: String) {
-        countryFilteredList = if (continent.isEmpty()) {
+    //region Interaction handling methods: filter, sort, remove
+    fun filter(searchText: String) {
+        countryFilteredList = if (searchText.isEmpty()) {
             countries
         } else {
-            countries.filter { it.continent.equals(continent, true) }
+            countries.filter { it.continent.contains(searchText, true) or
+                               it.name.contains(searchText, true) or
+                               it.capital.contains(searchText, true) or
+                               it.code.contains(searchText, true)
+            }.toMutableList()
         }
         notifyDataSetChanged()
     }
 
    fun sort(sortBy: SortBy) {
         countryFilteredList = when (sortBy) {
-            SortBy.NAME -> countryFilteredList.sortedBy { it.name }
-            SortBy.POPULATION -> countryFilteredList.sortedBy { it.population }
-            SortBy.NAME_DESC -> countryFilteredList.sortedByDescending { it.name }
-            SortBy.POPULATION_DESC -> countryFilteredList.sortedByDescending { it.population }
+            SortBy.NAME -> countryFilteredList.sortedBy { it.name }.toMutableList()
+            SortBy.POPULATION -> countryFilteredList.sortedBy { it.population }.toMutableList()
+            SortBy.NAME_DESC -> countryFilteredList.sortedByDescending { it.name }.toMutableList()
+            SortBy.POPULATION_DESC -> countryFilteredList.sortedByDescending { it.population }.toMutableList()
         }
+        // Caused a refresh of the RecyclerView
         notifyDataSetChanged()
     }
 
+    fun deleteCountry(viewHolder: RecyclerView.ViewHolder) {
+        // Get the position of the item that was swiped
+        val position = viewHolder.adapterPosition
+        val deletedCountry = countryFilteredList[position]
+
+        //Remove from filtered list
+        countryFilteredList.removeAt(position)
+        //Remove from original list
+        countries.removeIf { it.code == deletedCountry.code }
+
+        // Inform the RecyclerView adapter that an item has been removed at a specific position.
+        notifyItemRemoved(position)
+
+        Snackbar.make(viewHolder.itemView, "${deletedCountry.name} removed", Snackbar.LENGTH_LONG).setAction("UNDO") {
+            countryFilteredList.add(position, deletedCountry)
+            countries.add(deletedCountry)
+            notifyItemInserted(position)
+        }.show()
+    }
+    //endregion
+
+    //region CountryViewHolder class
     // Could be a normal separate class but it is common to make it an inner class
     // As it is only used in this Adapter class and it can access properties and
     // methods of the outer class if needed
     inner class CountryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(country: Country) {
             itemView.apply {
+                // Write data from country object to the Country View
                 nameTv.text = country.name
                 capitalTv.text = country.capital
                 populationTv.text = withSuffix(country.population)
 
-                 val image = resources.getIdentifier(
+                // Get the image having the name flag_country.code (e.g., flag_qa)
+                val image = resources.getIdentifier(
                     "flag_${country.code.toLowerCase()}",
                     "drawable",
                     context.packageName
                 )
                 flagIv.setImageResource(image)
+
+                /* setOnClickListener on the itemView and call the
+                   clickListener supplied by the Activity. Pass the country
+                   object to the clickListener.
+                   As parameter, the listener gets the data list element (i.e, country) that
+                   was clicked, to react accordingly
+                */
+                setOnClickListener { clickListener(country) }
             }
         }
     }
+    //endregion
 }
