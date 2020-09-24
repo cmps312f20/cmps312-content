@@ -6,4 +6,7 @@
     <item android:id="@+id/loginFragment"
         android:title="Login"
         android:icon="@drawable/ic_login"/>
+    <item android:id="@+id/dialogFragment"
+        android:title="Dialogs"
+        android:icon="@drawable/ic_dialog_box"/>
 </menu>

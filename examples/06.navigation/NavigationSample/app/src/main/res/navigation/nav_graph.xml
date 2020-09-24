@@ -43,4 +43,8 @@
             android:name="userName"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/dialogFragment"
+        android:name="qa.edu.cmps312.navigation.DialogFragment"
+        android:label="Dialog Boxes" />
 </navigation>

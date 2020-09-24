@@ -15,6 +15,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             val userName = userNameEt.text.toString()
             val action = LoginFragmentDirections.toWelcome(userName)
             findNavController().navigate(action)
+            // Other way of doing it without using SafeArgs
             //val bundle = bundleOf("userName" to userName)
             //findNavController().navigate(R.id.navigateToWelcome, bundle)
         }
