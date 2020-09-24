@@ -13,7 +13,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         loginBtn.setOnClickListener {
             val userName = userNameEt.text.toString()
-            val action = LoginFragmentDirections.navigateToWelcome(userName)
+            val action = LoginFragmentDirections.toWelcome(userName)
             findNavController().navigate(action)
             //val bundle = bundleOf("userName" to userName)
             //findNavController().navigate(R.id.navigateToWelcome, bundle)

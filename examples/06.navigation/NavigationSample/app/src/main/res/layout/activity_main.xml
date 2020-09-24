@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context="qa.edu.cmps312.navigation.MainActivity">
 
     <fragment
         android:id="@+id/navHostFragment"
@@ -27,5 +27,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/menu_bottom_nav"/>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

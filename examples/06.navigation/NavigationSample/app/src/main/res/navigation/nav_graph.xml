@@ -11,7 +11,7 @@
         android:label="Home"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/navigateToSecondFragment"
+            android:id="@+id/toSecondFragment"
             app:destination="@id/secondFragment" />
     </fragment>
     <fragment
@@ -24,10 +24,10 @@
         android:name="qa.edu.cmps312.navigation.LoginFragment"
         android:label="LoginFragment" >
         <action
-            android:id="@+id/navigateToWelcome"
+            android:id="@+id/toWelcome"
             app:destination="@id/welcomeFragment"
             app:popUpTo="@id/homeFragment"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/welcomeFragment"
@@ -35,7 +35,7 @@
         android:label="Welcome"
         tools:layout="@layout/fragment_welcome" >
         <action
-            android:id="@+id/navigateToHome"
+            android:id="@+id/toHome"
             app:destination="@id/homeFragment"
             app:popUpTo="@id/homeFragment"
             app:popUpToInclusive="true" />

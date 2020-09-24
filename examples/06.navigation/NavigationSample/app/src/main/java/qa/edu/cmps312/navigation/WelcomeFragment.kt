@@ -11,10 +11,10 @@ class WelcomeFragment : Fragment(R.layout.fragment_welcome) {
     private val args: WelcomeFragmentArgs by navArgs()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         // Read data passed from the login fragment
-        val userName = args.userName //arguments?.getString("userName")
+        val userName = args.userName //arguments?.getString("userName")  
         welcomeTv.text = "Welcome $userName"
         okBtn.setOnClickListener {
-            findNavController().navigate(R.id.navigateToHome)
+            findNavController().navigate(R.id.toHome)
         }
     }
 }
