@@ -3,30 +3,34 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/blogPostsFragment">
 
     <fragment
-        android:id="@+id/homeFragment"
-        android:name="qa.edu.cmps312.navigation.HomeFragment"
+        android:id="@+id/blogPostsFragment"
+        android:name="qa.edu.cmps312.navigation.BlogPostsFragment"
         android:label="Home"
-        tools:layout="@layout/fragment_home">
+        tools:layout="@layout/fragment_blog_posts">
         <action
-            android:id="@+id/toSecondFragment"
-            app:destination="@id/secondFragment" />
+            android:id="@+id/toBlogPostDetail"
+            app:destination="@id/blogPostDetailFragment" />
+        <action
+            android:id="@+id/toAddBlogPost"
+            app:destination="@id/blogPostEditorFragment" />
     </fragment>
     <fragment
-        android:id="@+id/secondFragment"
-        android:name="qa.edu.cmps312.navigation.SecondFragment"
+        android:id="@+id/blogPostDetailFragment"
+        android:name="qa.edu.cmps312.navigation.BlogPostDetailFragment"
         android:label="Second Screen"
-        tools:layout="@layout/fragment_second"/>
+        tools:layout="@layout/fragment_blog_post_detail"/>
     <fragment
         android:id="@+id/loginFragment"
         android:name="qa.edu.cmps312.navigation.LoginFragment"
-        android:label="LoginFragment" >
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/toWelcome"
             app:destination="@id/welcomeFragment"
-            app:popUpTo="@id/homeFragment"
+            app:popUpTo="@id/blogPostsFragment"
             app:popUpToInclusive="false" />
     </fragment>
     <fragment
@@ -35,9 +39,9 @@
         android:label="Welcome"
         tools:layout="@layout/fragment_welcome" >
         <action
-            android:id="@+id/toHome"
-            app:destination="@id/homeFragment"
-            app:popUpTo="@id/homeFragment"
+            android:id="@+id/toBlogPosts"
+            app:destination="@id/blogPostsFragment"
+            app:popUpTo="@id/blogPostsFragment"
             app:popUpToInclusive="true" />
         <argument
             android:name="userName"
@@ -46,5 +50,11 @@
     <fragment
         android:id="@+id/dialogFragment"
         android:name="qa.edu.cmps312.navigation.DialogFragment"
-        android:label="Dialog Boxes" />
+        android:label="Dialog Boxes"
+        tools:layout="@layout/fragment_dialog" />
+    <fragment
+        android:id="@+id/blogPostEditorFragment"
+        android:name="qa.edu.cmps312.navigation.BlogPostEditorFragment"
+        android:label="fragment_blog_post_editor"
+        tools:layout="@layout/fragment_blog_post_editor" />
 </navigation>

@@ -30,5 +30,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    // Handle Navigate Up event (triggered when clicking the arrow button on the Top App Bar
     override fun onSupportNavigateUp() =  navController.navigateUp()
 }

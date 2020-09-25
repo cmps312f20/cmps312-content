@@ -4,15 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#039BE5"
-    tools:context=".HomeFragment">
+    android:background="#FDD835"
+    tools:context=".BlogPostDetailFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:id="@+id/firstTv"
+        android:id="@+id/thirdTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="1"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="2 - Blog Post Detail"
         android:textSize="124sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

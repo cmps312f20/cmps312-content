@@ -14,7 +14,7 @@ class WelcomeFragment : Fragment(R.layout.fragment_welcome) {
         val userName = args.userName //arguments?.getString("userName")  
         welcomeTv.text = "Welcome $userName"
         okBtn.setOnClickListener {
-            findNavController().navigate(R.id.toHome)
+            findNavController().navigate(R.id.toBlogPosts)
         }
     }
 }

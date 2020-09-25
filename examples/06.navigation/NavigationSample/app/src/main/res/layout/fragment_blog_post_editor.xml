@@ -5,14 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FDD835"
-    tools:context=".SecondFragment">
+    tools:context=".BlogPostEditorFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:id="@+id/secondTv"
+        android:id="@+id/thirdTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="2"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="3 - Add Blog Post"
         android:textSize="124sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
