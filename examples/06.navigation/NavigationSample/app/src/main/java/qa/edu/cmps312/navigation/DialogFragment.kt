@@ -2,10 +2,10 @@ package qa.edu.cmps312.navigation
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.fragment_dialog.*
+import qa.edu.cmps312.navigation.common.toast
 
 class DialogFragment : Fragment(R.layout.fragment_dialog) {
 
@@ -21,10 +21,12 @@ class DialogFragment : Fragment(R.layout.fragment_dialog) {
             .setTitle("Discard draft?")
             .setMessage("This will permanently delete the current e-mail draft.")
             .setPositiveButton("Discard") { dialog, which ->
-                Toast.makeText(activity, "Clicked discard", Toast.LENGTH_SHORT).show()
+                context.toast("Clicked discard")
+                //or
+                //Toast.makeText(activity, "Clicked discard", Toast.LENGTH_SHORT).show()
             }
             .setNegativeButton("Cancel") { dialog, which ->
-                Toast.makeText(activity, "Clicked cancel", Toast.LENGTH_SHORT).show()
+                context.toast("Clicked cancel")
             }
             .show()
     }
@@ -34,7 +36,7 @@ class DialogFragment : Fragment(R.layout.fragment_dialog) {
         MaterialAlertDialogBuilder(requireActivity())
             .setTitle("Set backup account")
             .setItems(items) { dialog, which ->
-                Toast.makeText(activity, "Clicked ${items[which]}", Toast.LENGTH_SHORT).show()
+                context.toast("Clicked ${items[which]}")
             }
             .show()
     }
@@ -45,13 +47,13 @@ class DialogFragment : Fragment(R.layout.fragment_dialog) {
         MaterialAlertDialogBuilder(requireActivity())
             .setTitle("Phone ringtone")
             .setSingleChoiceItems(items, checkedItem) { dialog, which ->
-                Toast.makeText(activity, "Chose ${items[which]}", Toast.LENGTH_SHORT).show()
+                context.toast( "Chose ${items[which]}")
             }
             .setPositiveButton("Ok") { dialog, which ->
-                Toast.makeText(activity, "Clicked ok", Toast.LENGTH_SHORT).show()
+                context.toast("Clicked ok")
             }
             .setNegativeButton("Cancel") { dialog, which ->
-                Toast.makeText(activity, "Clicked cancel", Toast.LENGTH_SHORT).show()
+                context.toast( "Clicked cancel")
             }
             .show()
     }
@@ -62,13 +64,13 @@ class DialogFragment : Fragment(R.layout.fragment_dialog) {
         MaterialAlertDialogBuilder(requireActivity())
             .setTitle("Label as:")
             .setMultiChoiceItems(items, checkedItems) { dialog, which, checked ->
-                Toast.makeText(activity, "Chose ${items[which]} - $checked", Toast.LENGTH_SHORT).show()
+                context.toast("Chose ${items[which]} - $checked")
             }
             .setPositiveButton("Ok") { dialog, which ->
-                Toast.makeText(activity, "Clicked ok", Toast.LENGTH_SHORT).show()
+                context.toast("Clicked ok")
             }
             .setNegativeButton("Cancel") { dialog, which ->
-                Toast.makeText(activity, "Clicked cancel", Toast.LENGTH_SHORT).show()
+                context.toast("Clicked cancel")
             }
             .setIcon(R.drawable.ic_android_color_control)
             .show()
