@@ -9,10 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <!-- Must add android:configChanges to be able to listen to the activity onConfigurationChanged -->
-        <!-- android:configChanges="orientation|screenSize|locale" -->
-        <activity android:name="MainActivity">
-            <intent-filter>
+        <activity android:name=".ui.MainActivity">
+           <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>

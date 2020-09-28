@@ -1,11 +1,10 @@
-package qa.edu.cmps312.mvvm
+package qa.edu.cmps312.mvvm.viewmodel
 
 import android.util.Log
-import androidx.arch.core.util.Function
 import androidx.lifecycle.*
+import qa.edu.cmps312.mvvm.repository.Repository
 
-
-class MainActivityViewModel : ViewModel() {
+class FootballViewModel : ViewModel() {
     private val _team1Score = MutableLiveData<Int>(0)
     private val _team2Score = MutableLiveData<Int>(0)
 
@@ -14,11 +13,13 @@ class MainActivityViewModel : ViewModel() {
     val team2Score: LiveData<Int> get() = _team2Score
 
     fun incrementTeam1Score() {
-        _team1Score.value = _team1Score.value?.inc()
+        // call postValue to notify Observers
+        _team1Score.postValue((_team1Score.value ?: 0) + 1)
     }
 
     fun incrementTeam2Score() {
-        _team2Score.value = _team2Score.value?.inc()
+        // call postValue to notify Observers
+        _team2Score.postValue( _team2Score.value?.inc())
     }
 
     val currentWeatherFlow: LiveData<String> =
@@ -26,6 +27,7 @@ class MainActivityViewModel : ViewModel() {
 
     val timeRemainingFlow: LiveData<String> =
            Repository.countDownTimer(5).asLiveData() //viewModelScope.coroutineContext
+
 
     /*
     var team1Score = 0

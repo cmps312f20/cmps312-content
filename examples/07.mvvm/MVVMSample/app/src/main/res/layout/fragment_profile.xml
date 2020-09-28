@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="profile"
+            type="qa.edu.cmps312.mvvm.model.Profile"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.ProfileFragment">>
+
+        <!-- A simple binding between a TextView and a string observable in the ViewModel -->
+        <EditText
+            android:id="@+id/firstNameEt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="128dp"
+            android:text="@={profile.firstName}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/name_label" />
+
+        <!-- A simple binding between a TextView and a string observable in the ViewModel -->
+        <EditText
+            android:id="@+id/lastNameEt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="128dp"
+            android:text="@={profile.lastName}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lastNameTv" />
+
+        <!-- A custom Binding Adapter (`app:popularityIcon`) is used passing `viewmodel.popularity`
+        as a parameter. Because it's a @Bindable property, the ImageView is automatically updated.
+        -->
+        <!-- Conversions like Integer to String are expressions simple enough for the layout. An
+        alternative would be to create a getter in the ViewModel to expose likes as Strings. -->
+
+        <ImageView
+            android:id="@+id/seniorityIv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            app:layout_constraintEnd_toStartOf="@+id/yearsExperienceTe"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/yearsExperienceTe"
+            app:popularityIcon="@{profile.seniority}" />
+
+        <!-- Listeners can accept lambdas so in this case the ViewModel deals with the event,
+        bypassing the activity. -->
+        <Button
+            android:id="@+id/incYearsExperienceBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:onClick="@{() -> profile.onIncYearsExperience()}"
+            android:text="+Year"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/yearsExperienceTe"
+            app:layout_constraintTop_toTopOf="@+id/yearsExperienceTe" />
+
+        <TextView
+            android:id="@+id/name_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="Firstname"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/lastNameTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="Lastname"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/firstNameEt" />
+
+        <EditText
+            android:id="@+id/yearsExperienceTe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:ems="10"
+            android:hint="Years of experience"
+            android:inputType="number"
+            android:text="@={`` + profile.yearsExperience}"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toStartOf="@+id/incYearsExperienceBtn"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/seniorityIv"
+            app:layout_constraintTop_toBottomOf="@+id/lastNameEt" />
+
+        <Button
+            android:id="@+id/saveBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:text="Save"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/yearsExperienceTe" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

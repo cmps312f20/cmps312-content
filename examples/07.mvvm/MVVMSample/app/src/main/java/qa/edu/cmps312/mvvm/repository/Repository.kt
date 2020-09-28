@@ -1,4 +1,4 @@
-package qa.edu.cmps312.mvvm
+package qa.edu.cmps312.mvvm.repository
 
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.flow
 
 // https://kotlinlang.org/docs/reference/coroutines/flow.html
 object Repository {
-    private val weatherConditions = listOf("Sunny", "Windy", "Rainy", "Snowy")
+    private val weatherConditions = arrayOf("Sunny", "Windy", "Rainy", "Snowy")
     fun fetchWeatherFlow(): Flow<String> =
         flow {
             var counter = 0
@@ -48,7 +48,7 @@ import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_football.*
 import qa.edu.cmps312.mvvm.databinding.ActivityMainBinding
 import java.util.*
 /*
