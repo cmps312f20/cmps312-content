@@ -1,5 +1,6 @@
 package qa.edu.cmps312.mvvm
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
@@ -7,27 +8,42 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import kotlinx.android.synthetic.main.activity_main.*
 import qa.edu.cmps312.mvvm.databinding.ActivityMainBinding
+import java.util.*
+import java.util.Locale.getDefault
 
 class MainActivity : AppCompatActivity() {
     private val TAG = "MainActivity"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d(TAG, "onCreate")
+
+        // Get current language and screen orientation
+        val language = getDefault().language
+        val orientation = when(resources.configuration.orientation) {
+            Configuration.ORIENTATION_LANDSCAPE -> "Landscape"
+            else -> "Portrait"
+        }
+
+        Log.d(TAG,
+            "*** MainActivity.onCreate. Language = $language - Orientation = $orientation ***"
+        )
+
         //setContentView(R.layout.activity_main)
+        // Inflate the view layout and obtain an instance of the binding class.
         val binding: ActivityMainBinding = DataBindingUtil.setContentView(
             this,
             R.layout.activity_main
         )
+        // Specify the current activity as the lifecycle owner of the binding instance
+        binding.lifecycleOwner = this
 
-        // Connect the binding in the Activity with the  ViewModel
+        // Associate the Activity with the ViewModel
         val viewModel by viewModels<MainActivityViewModel>()
         //Or ViewModelProvider(<this activity>).get(<Your ViewModel>.class)
         //val viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
 
-        // Assign data binding with the viewModel
+        // Connect the binding in the Activity with the  ViewModel
         // Binding to LiveData triggers UI updates when the data changes
         binding.viewModel = viewModel
-        binding.lifecycleOwner = this
 
         closeAppBtn.setOnClickListener {
             // Finish the activity - activity will be destroyed and the app will close
@@ -47,16 +63,26 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        viewModel.team1Score.observe(this, {
-            Log.d("team1Score.observe", it.toString())
+        viewModel.team1Score.observe(this) {
+            Log.d("$TAG.team1Score.observe", it.toString())
             //team1ScoreTv.text = it.toString()
-        })
+        }
 
-        viewModel.team2Score.observe(this, {
+        // Observe team2Score LiveData object exposed by the ViewModel
+        // passing this as parameter allows LiveData to remove this subscription when the activity is destroyed
+        viewModel.team2Score.observe(this) {
             //team2ScoreTv.text = it.toString()
-            Log.d("team2Score.observe", it.toString())
-        })
+            Log.d("$TAG.team2Score.observe", it.toString())
+        }
 
+        viewModel.currentWeatherFlow.observe(this) {
+            //binding.weatherTv.text = it
+            Log.d("$TAG.weatherFlow.observe", it)
+        }
+
+        viewModel.timeRemainingFlow.observe(this) {
+            Log.d("$TAG.timeRemainingFlow", it)
+        }
         /*
         team1ScoreTv.text = team1Score.toString()
         team1IncrementBtn.setOnClickListener { 
@@ -72,6 +98,20 @@ class MainActivity : AppCompatActivity() {
       */
     }
 
+/*    override fun onConfigurationChanged(newConfig: Configuration) {
+        val language = getDefault().language
+        val orientation = when(newConfig.orientation) {
+             Configuration.ORIENTATION_LANDSCAPE -> "Landscape"
+             else -> "Portrait"
+        }
+
+        Log.d(
+            TAG,
+            "*** onConfigurationChanged. Language = $language - Orientation = $orientation ***"
+        )
+        super.onConfigurationChanged(newConfig)
+    }*/
+
     override fun onStart() {
         super.onStart()
         Log.d(TAG, "onStart")
@@ -79,7 +119,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-        Log.d(TAG, "onPause")
+        Log.d(TAG,"--- onPause ---")
     }
 
     override fun onRestart() {
