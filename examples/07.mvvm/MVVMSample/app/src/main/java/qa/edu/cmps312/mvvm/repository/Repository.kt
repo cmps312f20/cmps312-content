@@ -6,14 +6,13 @@ import kotlinx.coroutines.flow.flow
 
 // https://kotlinlang.org/docs/reference/coroutines/flow.html
 object Repository {
-    private val weatherConditions = arrayOf("Sunny", "Windy", "Rainy", "Snowy")
-    fun fetchWeatherFlow(): Flow<String> =
+    fun fetchNewsFlow(): Flow<String> =
         flow {
             var counter = 0
             while (true) {
                 counter++
                 delay(20000)
-                emit(weatherConditions[counter % weatherConditions.size])
+                emit(DummyDb.getNews())
             }
         }
 
@@ -34,64 +33,30 @@ object Repository {
         val seconds = milliSeconds / 1000L
         val s = seconds % 60
         val m = seconds / 60 % 60
-        //val h = seconds / (60 * 60) % 24
         return "$m mins $s secs"
     }
 }
 
-/*
-    val timeRemainingFlow: LiveData<String> =
-           Repository.countDownTimer(5).asLiveData() //viewModelScope.coroutineContext
-import android.content.res.Configuration
-import android.os.Bundle
-import android.util.Log
-import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
-import kotlinx.android.synthetic.main.activity_football.*
-import qa.edu.cmps312.mvvm.databinding.ActivityMainBinding
-import java.util.*
-/*
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+object DummyDb {
+    val weatherConditions = listOf("Sunny", "Windy", "Rainy", "Snowy")
+    val clubs = listOf(
+        "Bayern München",
+        "Liverpool FC",
+        "Paris Saint-Germain",
+        "Barcelona",
+        "Real Madrid",
+        "Manchester City",
+        "Atlético Madrid",
+        "Inter Milan",
+        "Sevilla",
+        "Atalanta",
+        "AC Milan",
+        "Juventus"
+    )
 
-class SharedViewModel : ViewModel() {
-    val selected = MutableLiveData<Item>()
-
-    fun select(item: Item) {
-        selected.value = item
+    fun getNews() : String {
+        val clubs = clubs.shuffled().take(2)
+        val scores = (0..4).shuffled().take(2)
+        return "${clubs[0]}: ${scores[0]} \n${clubs[1]}: ${scores[1]}"
     }
 }
-
-class MasterFragment : Fragment() {
-
-    private lateinit var itemSelector: Selector
-
-    // Use the 'by activityViewModels()' Kotlin property delegate
-    // from the fragment-ktx artifact
-    private val model: SharedViewModel by activityViewModels()
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        itemSelector.setOnClickListener { item ->
-            // Update the UI
-        }
-    }
-}
-
-class DetailFragment : Fragment() {
-
-    // Use the 'by activityViewModels()' Kotlin property delegate
-    // from the fragment-ktx artifact
-    private val model: SharedViewModel by activityViewModels()
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        model.selected.observe(viewLifecycleOwner, Observer<Item> { item ->
-            // Update the UI
-        })
-    }
-}
-*/

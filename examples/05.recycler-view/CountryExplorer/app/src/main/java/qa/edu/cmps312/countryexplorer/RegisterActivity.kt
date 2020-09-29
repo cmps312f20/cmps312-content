@@ -1,10 +1,10 @@
 package qa.edu.cmps312.countryexplorer
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import json.country.CountryRepository
 import kotlinx.android.synthetic.main.activity_register.*
 import qa.edu.cmps312.countryexplorer.common.toast

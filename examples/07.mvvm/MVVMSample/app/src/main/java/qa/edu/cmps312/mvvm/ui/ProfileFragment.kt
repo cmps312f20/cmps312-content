@@ -1,5 +1,6 @@
 package qa.edu.cmps312.mvvm.ui
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,13 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import qa.edu.cmps312.mvvm.R
 import qa.edu.cmps312.mvvm.databinding.FragmentProfileBinding
 import qa.edu.cmps312.mvvm.viewmodel.ProfileViewModel
 
 class ProfileFragment : Fragment() {
+    @SuppressLint("LongLogTag")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -42,11 +43,11 @@ class ProfileFragment : Fragment() {
         binding.profile = viewModel.profile.value
 
         binding.saveBtn.setOnClickListener {
-            Log.d("ProfileActivity.saveBtn", binding.profile.toString())
-            //ToDo: pass it to the view model to save it to DB
-            //viewModel.profile
+            viewModel.save(binding.profile!!)
         }
 
+        //Watch the fragment cycle events
+        val lifeCycleObserver = ActivityFragmentObserver(lifecycle, "ProfileFragment \uD83D\uDE00\uD83D\uDE00\uD83D\uDE00")
         return binding.root
     }
 }

@@ -97,11 +97,11 @@
             app:layout_constraintTop_toBottomOf="@+id/team2IncrementBtn" />
 
         <TextView
-            android:id="@+id/weatherTv"
+            android:id="@+id/newsTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="32dp"
-            android:text="@{viewModel.currentWeatherFlow}"
+            android:text="@{viewModel.newsFlow}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

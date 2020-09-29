@@ -1,10 +1,14 @@
 package qa.edu.cmps312.mvvm.viewmodel
 
 import android.util.Log
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import qa.edu.cmps312.mvvm.repository.Repository
 
 class FootballViewModel : ViewModel() {
+    private val TAG = "LifeCycle->FootballViewModel \uD83D\uDEC2⚽"
     private val _team1Score = MutableLiveData<Int>(0)
     private val _team2Score = MutableLiveData<Int>(0)
 
@@ -22,27 +26,17 @@ class FootballViewModel : ViewModel() {
         _team2Score.postValue( _team2Score.value?.inc())
     }
 
-    val currentWeatherFlow: LiveData<String> =
-            Repository.fetchWeatherFlow().asLiveData()
+    val newsFlow: LiveData<String> = Repository.fetchNewsFlow().asLiveData()
 
     val timeRemainingFlow: LiveData<String> =
            Repository.countDownTimer(5).asLiveData() //viewModelScope.coroutineContext
 
-
-    /*
-    var team1Score = 0
-    var team2Score = 0
-
-    fun incrementTeam1Score() = team1Score++
-    fun incrementTeam2Score() = team2Score++
-   */
-
     init {
-        Log.d("MainActivityViewModel", ">>> MainActivityViewModel - Created <<<")
+        Log.d(TAG, "Created")
     }
 
     override fun onCleared() {
+        Log.d(TAG, "☠️☠️ onCleared ☠️☠️")
         super.onCleared()
-        Log.d("MainActivityViewModel", ">>> MainActivityViewModel - onCleared <<<")
     }
 }

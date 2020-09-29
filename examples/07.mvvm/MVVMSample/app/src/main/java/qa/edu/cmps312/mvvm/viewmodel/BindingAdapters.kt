@@ -2,12 +2,12 @@ package qa.edu.cmps312.mvvm.viewmodel
 
 import android.content.Context
 import android.content.res.ColorStateList
-import androidx.databinding.BindingAdapter
 import android.graphics.drawable.Drawable
-import androidx.core.content.ContextCompat
-import androidx.core.widget.ImageViewCompat
 import android.view.View
 import android.widget.ImageView
+import androidx.core.content.ContextCompat
+import androidx.core.widget.ImageViewCompat
+import androidx.databinding.BindingAdapter
 import qa.edu.cmps312.mvvm.R
 import qa.edu.cmps312.mvvm.model.Seniority
 
