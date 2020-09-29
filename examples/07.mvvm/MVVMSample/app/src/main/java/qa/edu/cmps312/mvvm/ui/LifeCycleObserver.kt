@@ -35,7 +35,7 @@ class ActivityFragmentObserver(val lifecycle: Lifecycle, val tag: String) : Life
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     fun onDestroy() {
-        Log.d(TAG, "☠️☠️ onDestroy ☠️☠️")
+        Log.d(TAG, "☠️☠️ onDestroy ☠️☠️ - ${lifecycle.currentState}")
     }
 
     init {

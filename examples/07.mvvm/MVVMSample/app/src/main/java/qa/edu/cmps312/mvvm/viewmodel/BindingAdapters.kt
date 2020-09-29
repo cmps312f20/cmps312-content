@@ -16,7 +16,7 @@ import qa.edu.cmps312.mvvm.model.Seniority
      * A Binding Adapter that is called whenever the value of the attribute `app:popularityIcon`
      * changes. Receives a popularity level that determines the icon and tint color to use.
      */
-    @BindingAdapter("app:popularityIcon")
+    @BindingAdapter("app:seniorityIcon")
     fun ImageView.popularityIcon(seniority: Seniority) {
         val color = getSeniorityColor(seniority, this.context)
         ImageViewCompat.setImageTintList(this, ColorStateList.valueOf(color))
@@ -27,8 +27,8 @@ import qa.edu.cmps312.mvvm.model.Seniority
      * Binding Adapter that hides a view if the number is zero.
      */
     @BindingAdapter("app:hideIfZero")
-    fun View.hideIfZero(number: Int) {
-        this.visibility = if (number == 0) View.GONE else View.VISIBLE
+    fun View.hideIfZero(value: Int) {
+        this.visibility = if (value == 0) View.GONE else View.VISIBLE
     }
 
     private fun getSeniorityColor(seniority: Seniority, context: Context): Int {

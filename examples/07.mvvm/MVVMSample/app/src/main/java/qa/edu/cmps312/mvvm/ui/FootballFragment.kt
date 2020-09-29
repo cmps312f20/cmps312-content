@@ -15,6 +15,7 @@ import qa.edu.cmps312.mvvm.viewmodel.FootballViewModel
 
 class FootballFragment : Fragment() {
     private val TAG = "App.FootballFragment.Observe->"
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -73,7 +74,7 @@ class FootballFragment : Fragment() {
         }
 
         //Watch the fragment cycle events
-        val lifeCycleObserver = ActivityFragmentObserver(lifecycle, "FootballFragment ⚽⚽⚽")
+        val lifeCycleObserver = ActivityFragmentObserver(lifecycle, "FootballFragment ⚽⚽")
         return binding.root
     }
 }

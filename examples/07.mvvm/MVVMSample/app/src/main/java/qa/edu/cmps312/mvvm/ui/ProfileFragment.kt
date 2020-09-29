@@ -47,7 +47,7 @@ class ProfileFragment : Fragment() {
         }
 
         //Watch the fragment cycle events
-        val lifeCycleObserver = ActivityFragmentObserver(lifecycle, "ProfileFragment \uD83D\uDE00\uD83D\uDE00\uD83D\uDE00")
+        val lifeCycleObserver = ActivityFragmentObserver(lifecycle, "ProfileFragment \uD83D\uDC64\uD83D\uDC64")
         return binding.root
     }
 }

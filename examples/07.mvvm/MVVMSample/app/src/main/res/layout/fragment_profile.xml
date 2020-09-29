@@ -59,7 +59,8 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/yearsExperienceTe"
-            app:popularityIcon="@{profile.seniority}" />
+            app:seniorityIcon="@{profile.seniority}"
+            app:hideIfZero="@{profile.yearsExperience}"/>
 
         <!-- Listeners can accept lambdas so in this case the ViewModel deals with the event,
         bypassing the activity. -->

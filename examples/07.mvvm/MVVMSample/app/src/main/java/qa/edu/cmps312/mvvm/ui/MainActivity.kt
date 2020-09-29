@@ -15,7 +15,7 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
-    private val TAG = "LifeCycle->MainActivity \uD83D\uDE88\uD83D\uDE88\uD83D\uDE88"
+    private val TAG = "LifeCycle->MainActivity \uD83D\uDE88\uD83D\uDE88"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
