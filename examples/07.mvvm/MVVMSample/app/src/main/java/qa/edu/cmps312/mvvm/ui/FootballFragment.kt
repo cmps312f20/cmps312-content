@@ -8,57 +8,57 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import qa.edu.cmps312.mvvm.R
 import qa.edu.cmps312.mvvm.databinding.FragmentFootballBinding
+import qa.edu.cmps312.mvvm.databinding.FragmentProfileBinding
 import qa.edu.cmps312.mvvm.viewmodel.FootballViewModel
+import qa.edu.cmps312.mvvm.viewmodel.ProfileViewModel
 
-class FootballFragment : Fragment() {
+class FootballFragment : Fragment(R.layout.fragment_football) {
     private val TAG = "App.FootballFragment.Observe->"
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the view layout and obtain an instance of the binding class
-        val binding: FragmentFootballBinding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_football, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        // Specify the current fragment as the lifecycle owner of the binding instance
-        binding.lifecycleOwner = this
+        // Obtain an instance of the view binding class.
+        val viewBinding = FragmentFootballBinding.bind(view)
+        // Specify the current fragment as the lifecycle owner
+        viewBinding.lifecycleOwner = this
 
-        // Associate the Activity with the ViewModel
+        // Obtain a ViewModel instance scoped to activity
         val viewModel by activityViewModels<FootballViewModel>() // Scoped to activity
         //val viewModel by viewModels<FootballViewModel>() // Scoped to fragment
-        //Or ViewModelProvider(<this activity>).get(<Your ViewModel>.class)
-        // viewModel scoped to fragment
-        //val viewModel = ViewModelProvider(this).get(FootballViewModel::class.java)
 
-        // Bind layout with ViewModel
+        // Bind the View with the ViewModel
         // Binding to LiveData triggers UI updates when the data changes
-        binding.viewModel = viewModel
+        viewBinding.viewModel = viewModel
 
-        binding.closeAppBtn.setOnClickListener {
+        viewBinding.closeAppBtn.setOnClickListener {
             // Finish the activity - activity will be destroyed and the app will close
+            // We usually do this in an app. This is just for the demo
             requireActivity().finish()
         }
 
-        binding.team1IncrementBtn.setOnClickListener {
+        viewBinding.team1IncrementBtn.setOnClickListener {
             viewModel.incrementTeam1Score()
         }
 
-        binding.team2IncrementBtn.setOnClickListener {
+        viewBinding.team2IncrementBtn.setOnClickListener {
             viewModel.incrementTeam2Score()
         }
 
+        viewModel.team1Score.observe(requireActivity()) {
+            //team1ScoreTv.text = it.toString()
+            Log.d(TAG, it.toString())
+        }
+
+        // Observe team1Score LiveData object exposed by the ViewModel
+        // passing the activity as a parameter allows LiveData to remove this subscription when the activity is destroyed
         viewModel.team1Score.observe(requireActivity()) {
             Log.d("${TAG}team1Score", it.toString())
             //team1ScoreTv.text = it.toString()
         }
 
-        // Observe team2Score LiveData object exposed by the ViewModel
-        // passing the activity as a parameter allows LiveData to remove this subscription when the activity is destroyed
         viewModel.team2Score.observe(requireActivity()) {
             //team2ScoreTv.text = it.toString()
             Log.d("${TAG}team2Score", it.toString())
@@ -75,6 +75,5 @@ class FootballFragment : Fragment() {
 
         //Watch the fragment cycle events
         val lifeCycleObserver = ActivityFragmentObserver(lifecycle, "FootballFragment ⚽⚽")
-        return binding.root
     }
 }

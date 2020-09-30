@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.FootballFragment"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-    <data>
-        <import type="android.view.View"/>
-        <variable
-            name="viewModel"
-            type="qa.edu.cmps312.mvvm.viewmodel.FootballViewModel" />
-    </data>
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.FootballFragment">
-
         <ImageButton
             android:id="@+id/team2IncrementBtn"
             android:layout_width="wrap_content"
@@ -32,25 +25,23 @@
             app:layout_constraintGuide_percent="0.5" />
 
         <ImageView
-            android:id="@+id/team1Iv"
+            android:id="@+id/seniorityIv"
             android:layout_width="0dp"
             android:layout_height="160dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:scaleType="fitCenter"
             app:layout_constraintEnd_toStartOf="@+id/guideline"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/team2Iv"
+            app:layout_constraintTop_toTopOf="@+id/imageView2"
             app:srcCompat="@drawable/img_rayyan" />
 
         <ImageView
-            android:id="@+id/team2Iv"
+            android:id="@+id/imageView2"
             android:layout_width="0dp"
             android:layout_height="160dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="16dp"
-            android:scaleType="fitCenter"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toBottomOf="@+id/timeRemainingTv"
@@ -61,24 +52,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:text="@{String.valueOf(viewModel.team1Score)}"
+            android:text="0"
             android:textSize="50sp"
             app:layout_constraintEnd_toStartOf="@+id/guideline"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/team1Iv"
-            tools:text="0"/>
+            app:layout_constraintTop_toBottomOf="@+id/seniorityIv" />
 
         <TextView
             android:id="@+id/team2ScoreTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:text="@{String.valueOf(viewModel.team2Score)}"
+            android:text="0"
             android:textSize="50sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/team2Iv"
-            tools:text="0"/>
+            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
         <ImageButton
             android:id="@+id/team1IncrementBtn"
@@ -95,47 +84,30 @@
             android:id="@+id/closeAppBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="56dp"
             android:text="Close App"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.511"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/totalScoreTv" />
+            app:layout_constraintTop_toBottomOf="@+id/team2IncrementBtn" />
 
         <TextView
             android:id="@+id/newsTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="32dp"
-            android:text="@{viewModel.newsFlow}"
+            android:text="News"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:text="News Updates"/>
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/timeRemainingTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:text="@{viewModel.timeRemainingFlow}"
+            android:text="5 mins 30 secs remaining"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Remaining Time Update"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/totalScoreTv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            android:text="@{String.valueOf(viewModel.team1Score.intValue() + viewModel.team2Score.intValue())}"
-            android:visibility="@{viewModel.team1Score.intValue() + viewModel.team2Score.intValue() > 0 ? View.VISIBLE : View.GONE}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/team2IncrementBtn"
-            tools:text="Total Score"/>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>
+  </androidx.constraintlayout.widget.ConstraintLayout>

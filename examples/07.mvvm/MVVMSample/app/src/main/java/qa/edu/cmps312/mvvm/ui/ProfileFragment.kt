@@ -1,53 +1,43 @@
 package qa.edu.cmps312.mvvm.ui
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
 import qa.edu.cmps312.mvvm.R
 import qa.edu.cmps312.mvvm.databinding.FragmentProfileBinding
 import qa.edu.cmps312.mvvm.viewmodel.ProfileViewModel
 
-class ProfileFragment : Fragment() {
-    @SuppressLint("LongLogTag")
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        //return super.onCreateView(inflater, container, savedInstanceState)
-        // Inflate the view layout and obtain an instance of the binding class.
-        val binding: FragmentProfileBinding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false)
+class ProfileFragment : Fragment(R.layout.fragment_profile) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
+        // Obtain an instance of the view binding class.
+        val viewBinding = FragmentProfileBinding.bind(view)
         // Specify the current fragment as the lifecycle owner
-        binding.lifecycleOwner = this
+        viewBinding.lifecycleOwner = this
 
-        // Obtain ViewModel scoped with main activity
-        //val viewModel: ProfileViewModel by activityViewModels()
-        val viewModel = ViewModelProvider(requireActivity()).get(ProfileViewModel::class.java)
-        // An alternative ViewModel using Observable fields and @Bindable properties can be used:
-        //val viewModel = ViewModelProviders.of(this).get(ProfileObservableViewModel::class.java)
+        // Obtain a ViewModel instance scoped to activity
+        val viewModel: ProfileViewModel by activityViewModels()
+        // Bind the View with the viewModel.profile
+        viewBinding.profile = viewModel.profile.value
 
         // when viewModel.profile changes, this observer get notified and re-bind
-        // the profile model with the layout.
+        // the profile model with the View
         viewModel.profile.observe(requireActivity()) {
-            binding.profile = it //<- re-binding user
+            viewBinding.profile = it //<- re-binding profile
         }
-        // Bind layout with ViewModel
-        binding.profile = viewModel.profile.value
+        // Listen to saveBtn onClick event
+        viewBinding.saveBtn.setOnClickListener {
+            viewModel.save(viewBinding.profile!!)
+        }
 
-        binding.saveBtn.setOnClickListener {
-            viewModel.save(binding.profile!!)
-        }
+        //.resize(100,100)
+        //Picasso.get().load(viewModel.profile.value?.photoUrl).into(photoIv)
+        //Glide.with(this).load(viewModel.profile.value?.photoUrl).into(photoIv)
 
         //Watch the fragment cycle events
         val lifeCycleObserver = ActivityFragmentObserver(lifecycle, "ProfileFragment \uD83D\uDC64\uD83D\uDC64")
-        return binding.root
     }
 }

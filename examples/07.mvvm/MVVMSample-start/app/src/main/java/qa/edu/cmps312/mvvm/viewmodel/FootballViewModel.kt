@@ -8,7 +8,18 @@ import androidx.lifecycle.asLiveData
 import qa.edu.cmps312.mvvm.repository.Repository
 
 class FootballViewModel : ViewModel() {
-    private val TAG = "LifeCycle->FootballViewModel \uD83D\uDEC2⚽"
+    var team1Score = 0
+    var team2Score = 0
+
+    fun incrementTeam1Score() {
+        team1Score++
+    }
+
+    fun incrementTeam2Score() {
+        team2Score++
+    }
+
+    /*
     private val _team1Score = MutableLiveData<Int>(0)
     private val _team2Score = MutableLiveData<Int>(0)
 
@@ -22,15 +33,16 @@ class FootballViewModel : ViewModel() {
     }
 
     fun incrementTeam2Score() {
+        // call postValue to notify Observers
         _team2Score.postValue( _team2Score.value?.inc())
     }
 
     val newsFlow: LiveData<String> = Repository.fetchNewsFlow().asLiveData()
 
-
     val timeRemainingFlow: LiveData<String> =
            Repository.countDownTimer(5).asLiveData() //viewModelScope.coroutineContext
-
+    */
+    private val TAG = "LifeCycle->FootballViewModel \uD83D\uDEC2⚽"
     init {
         Log.d(TAG, "Created")
     }

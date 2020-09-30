@@ -13,5 +13,5 @@
         android:id="@+id/footballFragment"
         android:name="qa.edu.cmps312.mvvm.ui.FootballFragment"
         android:label="Football Match"
-        tools:layout="@layout/fragment_football" />
+        tools:layout="@layout/activity_main_no_binding" />
 </navigation>
