@@ -2,17 +2,12 @@ package qa.edu.cmps312.mvvm.ui
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import qa.edu.cmps312.mvvm.R
 import qa.edu.cmps312.mvvm.databinding.FragmentFootballBinding
-import qa.edu.cmps312.mvvm.databinding.FragmentProfileBinding
 import qa.edu.cmps312.mvvm.viewmodel.FootballViewModel
-import qa.edu.cmps312.mvvm.viewmodel.ProfileViewModel
 
 class FootballFragment : Fragment(R.layout.fragment_football) {
     private val TAG = "App.FootballFragment.Observe->"

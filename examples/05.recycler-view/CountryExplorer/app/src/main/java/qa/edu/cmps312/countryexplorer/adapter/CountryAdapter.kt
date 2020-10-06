@@ -16,9 +16,10 @@ enum class SortBy { NAME, POPULATION, NAME_DESC, POPULATION_DESC }
    RecyclerView adapter connects list to the Recycler View
  */
 class CountryAdapter(private val countries: MutableList<Country>,
-                     private val clickListener: (Country) -> Unit)
-    : RecyclerView.Adapter<RecyclerView.ViewHolder>()
-{
+                     private val clickListener: (country: Country) -> Unit,
+                     private val deleteListener: (viewHolder: RecyclerView.ViewHolder) -> Unit)
+    : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
     private lateinit var countryFilteredList : MutableList<Country>
 
     init {
@@ -96,6 +97,20 @@ class CountryAdapter(private val countries: MutableList<Country>,
     // methods of the outer class if needed
     inner class CountryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(country: Country) {
+            itemView.deleteBtn.setOnClickListener {
+                deleteListener(this)
+            }
+
+            /* setOnClickListener on the itemView and call the
+               clickListener supplied by the Activity. Pass the country
+               object to the clickListener.
+               As parameter, the listener gets the data list element (i.e, country) that
+               was clicked, to react accordingly
+            */
+            itemView.setOnClickListener {
+                clickListener(country)
+            }
+
             itemView.apply {
                 // Write data from country object to the Country View
                 nameTv.text = country.name
@@ -109,14 +124,6 @@ class CountryAdapter(private val countries: MutableList<Country>,
                     context.packageName
                 )
                 flagIv.setImageResource(image)
-
-                /* setOnClickListener on the itemView and call the
-                   clickListener supplied by the Activity. Pass the country
-                   object to the clickListener.
-                   As parameter, the listener gets the data list element (i.e, country) that
-                   was clicked, to react accordingly
-                */
-                setOnClickListener { clickListener(country) }
             }
         }
     }

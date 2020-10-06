@@ -50,7 +50,7 @@ class CountryListActivity : AppCompatActivity() {
         /* Pass a reference to onCountryClicked function to the adapter
            so that the adapter can call it when a country list item is clicked
         */
-        countryAdapter = CountryAdapter(countries, ::onCountryClicked)
+        countryAdapter = CountryAdapter(countries, ::onCountryClicked, ::onCountryDeleted)
         countriesRv.apply {
             adapter = countryAdapter
             layoutManager = LinearLayoutManager(this@CountryListActivity)
@@ -59,6 +59,10 @@ class CountryListActivity : AppCompatActivity() {
 
     private fun onCountryClicked(country: Country) {
         toast("Clicked: ${country.name}", Toast.LENGTH_LONG)
+    }
+
+    private fun onCountryDeleted(viewHolder: RecyclerView.ViewHolder) {
+        countryAdapter.deleteCountry(viewHolder)
     }
 
     //region Handle search
