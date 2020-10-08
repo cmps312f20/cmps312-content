@@ -1,0 +1,20 @@
+[
+    {
+      "code": "BE",
+      "name": "Belgium",
+      "rating": 3.5,
+      "amount": 5000
+    },
+    {
+      "code": "IT",
+      "name": "Italy",
+      "rating": 4,
+      "amount": 8000
+    },
+    {
+      "code": "FR",
+      "name": "France",
+      "rating": 4.5,
+      "amount": 9000
+    }
+  ]
