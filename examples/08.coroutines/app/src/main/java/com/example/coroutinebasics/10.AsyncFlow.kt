@@ -23,4 +23,9 @@ fun sendPrimes () : Flow<Int> = flow{
         emit(it)
     }
 
+    fun stream(): Flow<String> = flow {
+        emit("🌊") // Emits the value upstream ☝
+        emit("⚽")
+        emit("🎉")
+    }
 }

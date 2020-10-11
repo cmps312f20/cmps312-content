@@ -8,6 +8,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kotlin.concurrent.thread
 
 class MainActivity : AppCompatActivity() {
     private val  TAG = "MainActivity"
@@ -23,12 +24,26 @@ class MainActivity : AppCompatActivity() {
         longRunningBtn.setOnClickListener {
             Log.i(TAG,"${Thread.currentThread()} is the main thread.")
             //fibonacci(1_000_000)
-            /*val thread = Thread {
+            thread {
                 Log.i(TAG,"${Thread.currentThread()} has run.")
                 fibonacci(1_000_000)
-                scoreTv.text = (score++).toString()
+                //scoreTv.text = (score++).toString()
             }
-            thread.start() */
+            /*
+            suspend fun getNews() {
+	            val news = api.fetchNews()	 // Background thread
+                withContext(Dispatchers.Main) {
+	                displayNews(user)	    // UI thread
+                }
+            }
+            */
+           /* var data = api.getData()
+            display(data) */
+            /*var data
+            thread {
+                data = api.getData()
+            }
+            render(data) */
 
             GlobalScope.launch  {
                 Log.i(TAG,"${Thread.currentThread()} has run.")
