@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/homeMi" android:title="Home" android:icon="@drawable/ic_home" />
+    <item android:id="@+id/countriesListMi" android:title="Countries List" android:icon="@drawable/ic_list"/>
+    <item android:id="@+id/registerMi" android:title="Register" android:icon="@drawable/ic_register"/>
+</menu>

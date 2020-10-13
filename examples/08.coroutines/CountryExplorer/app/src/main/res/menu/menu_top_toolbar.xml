@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Setting app:showAsAction="never" will show the menu option
+         under Overflow menu accessible from ellipses ... -->
+    <item
+        android:id="@+id/searchMi"
+        android:icon="@drawable/ic_search"
+        android:title="Search"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/sortByNameMi"
+        android:title="Sort by name"
+        android:icon="@drawable/ic_sort"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/sortByNameDescendingMi"
+        android:title="Sort by name - Descending"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/sortByPopulationMi"
+        android:title="Sort by population"
+        android:icon="@drawable/ic_population"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/sortByPopulationDescendingMi"
+        android:title="Sort by population - Descending"
+        app:showAsAction="never" />
+</menu>
