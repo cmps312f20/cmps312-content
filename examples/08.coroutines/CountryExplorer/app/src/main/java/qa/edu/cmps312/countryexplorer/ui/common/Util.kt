@@ -13,7 +13,7 @@ fun Context.toast(resId: Int, duration: Int = Toast.LENGTH_SHORT) {
 }
 
 // Adapted from https://stackoverflow.com/questions/9769554/how-to-convert-number-into-k-thousands-m-million-and-b-billion-suffix-in-jsp
-fun withSuffix(count: Long): String {
+fun formatLong(count: Long): String {
     if (count < 1000) return count.toString()
     // ln is log
     val exp = (ln(count.toDouble()) / ln(1000.0)).toInt()

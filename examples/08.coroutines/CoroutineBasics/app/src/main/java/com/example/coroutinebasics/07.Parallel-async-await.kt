@@ -6,12 +6,18 @@ import kotlin.system.measureTimeMillis
 
 fun main() {
     runBlocking {
-        val time = measureTimeMillis {
-             val sum = getSum()
-            println(">> received sum: $sum")
-        }
-        println("Execution duration: ${time}ms")
+        //withContext(Dispatchers.Default) {
+            val time = measureTimeMillis {
+                //  val sum = getSum()
+                //  println(">> received sum: $sum")
+
+                val deferred1 = networkCall1()
+                val deferred2 = networkCall2()
+            }
+            println("Execution duration: ${time}ms")
+        //}
     }
+
 }
 
 

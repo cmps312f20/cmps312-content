@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.Coil
 import coil.ImageLoader
 import coil.decode.SvgDecoder
+import com.google.android.material.snackbar.Snackbar
 import json.country.Country
 import kotlinx.android.synthetic.main.activity_country_list.*
 import qa.edu.cmps312.countryexplorer.R
@@ -80,8 +81,14 @@ class CountryListActivity : AppCompatActivity() {
         toast("Clicked: ${country.name}", Toast.LENGTH_LONG)
     }
 
-    private fun onCountryDeleted(viewHolder: RecyclerView.ViewHolder) {
-        countryAdapter.deleteCountry(viewHolder)
+    private fun onCountryDeleted(country: Country) {
+        countryViewModel.deleteCountry(country)
+
+        Snackbar.make(countriesRv, "${country.name} removed", Snackbar.LENGTH_LONG).setAction(
+            "UNDO"
+        ) {
+            countryViewModel.addCountry(country)
+        }.show()
     }
 
     //region Handle search
@@ -130,7 +137,9 @@ class CountryListActivity : AppCompatActivity() {
 
             // 2. onSwiped ask the RecyclerView adapter to delete the swiped item
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, swipeDirection: Int) {
-                countryAdapter.deleteCountry(viewHolder)
+                val position = viewHolder.adapterPosition
+                val country = countryAdapter.countries[position]
+                onCountryDeleted(country)
             }
         }
 

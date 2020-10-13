@@ -6,11 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.google.android.material.snackbar.Snackbar
 import json.country.Country
 import kotlinx.android.synthetic.main.list_item_country.view.*
 import qa.edu.cmps312.countryexplorer.R
-import qa.edu.cmps312.countryexplorer.ui.common.withSuffix
+import qa.edu.cmps312.countryexplorer.ui.common.formatLong
 
 
 enum class SortBy { NAME, POPULATION, NAME_DESC, POPULATION_DESC }
@@ -20,9 +19,8 @@ enum class SortBy { NAME, POPULATION, NAME_DESC, POPULATION_DESC }
  */
 class CountryAdapter(private val activity: Activity,
     private val clickListener: (country: Country) -> Unit,
-    private val deleteListener: (viewHolder: RecyclerView.ViewHolder) -> Unit
-)
-    : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    private val deleteListener: (Country) -> Unit
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var countries = mutableListOf<Country>()
         set(value) {
@@ -81,28 +79,6 @@ class CountryAdapter(private val activity: Activity,
         // Caused a refresh of the RecyclerView
         notifyDataSetChanged()
     }
-
-    fun deleteCountry(viewHolder: RecyclerView.ViewHolder) {
-        // Get the position of the item that was swiped
-        val position = viewHolder.adapterPosition
-        val deletedCountry = countryFilteredList[position]
-
-        //Remove from filtered list
-        countryFilteredList.removeAt(position)
-        //Remove from original list
-        countries.removeIf { it.cioc == deletedCountry.cioc }
-
-        // Inform the RecyclerView adapter that an item has been removed at a specific position.
-        notifyItemRemoved(position)
-
-        Snackbar.make(viewHolder.itemView, "${deletedCountry.name} removed", Snackbar.LENGTH_LONG).setAction(
-            "UNDO"
-        ) {
-            countryFilteredList.add(position, deletedCountry)
-            countries.add(deletedCountry)
-            notifyItemInserted(position)
-        }.show()
-    }
     //endregion
 
     //region CountryViewHolder class
@@ -112,7 +88,7 @@ class CountryAdapter(private val activity: Activity,
     inner class CountryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(country: Country) {
             itemView.deleteBtn.setOnClickListener {
-                deleteListener(this)
+                deleteListener(country)
             }
 
             /* setOnClickListener on the itemView and call the
@@ -129,7 +105,7 @@ class CountryAdapter(private val activity: Activity,
                 // Write data from country object to the Country View
                 nameTv.text = country.name
                 capitalTv.text = country.capital
-                populationTv.text = withSuffix(country.population)
+                populationTv.text = formatLong(country.population)
 
                 flagIv.load(country.flag)
             }

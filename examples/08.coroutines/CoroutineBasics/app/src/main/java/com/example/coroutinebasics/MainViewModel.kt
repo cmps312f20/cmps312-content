@@ -23,7 +23,8 @@ class MainViewModel : ViewModel() {
         }
     }
 
-    suspend fun fibonacci() = withContext(Dispatchers.IO) {
+    // 0, 1, 1, 2, 3, 5, 8
+    suspend fun fibonacci() = withContext(Dispatchers.Default) {
         try {
             var terms = Pair(0L, 1L)
             // this sequence is infinite
@@ -36,7 +37,7 @@ class MainViewModel : ViewModel() {
                     nextValue.value = terms.first
                 }
                 terms = Pair(terms.second, terms.first + terms.second)
-                // Suspend the function for 200ms
+                // Suspend the function for 400ms
                 delay(400)
             }
             println("Job done!")
