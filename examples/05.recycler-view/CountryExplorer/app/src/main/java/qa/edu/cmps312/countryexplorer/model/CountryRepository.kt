@@ -3,6 +3,7 @@ package json.country
 import android.content.Context
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
+import qa.edu.cmps312.countryexplorer.model.Country
 
 object CountryRepository {
     var countries = listOf<Country>()

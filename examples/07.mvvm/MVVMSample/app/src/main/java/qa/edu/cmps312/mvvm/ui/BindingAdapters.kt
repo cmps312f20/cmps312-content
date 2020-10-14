@@ -8,7 +8,7 @@ import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.core.widget.ImageViewCompat
 import androidx.databinding.BindingAdapter
-import com.bumptech.glide.Glide
+import coil.load
 import qa.edu.cmps312.mvvm.R
 import qa.edu.cmps312.mvvm.model.Seniority
 
@@ -34,13 +34,11 @@ import qa.edu.cmps312.mvvm.model.Seniority
     }
 
     // Load an image into an ImageView from a Url
+    // Uses Coil Lib for downloading images https://coil-kt.github.io/coil/
     // This requires adding <uses-permission android:name="android.permission.INTERNET" /> to the manifest
     @BindingAdapter("app:imageUrl")
     fun ImageView.loadImage(url: String) {
-        Glide.with(this)
-             .load(url)
-             .into(this)
-        //Picasso.get().load(url).into(this)
+        this.load(url)
     }
 
     private fun getSeniorityColor(seniority: Seniority, context: Context): Int {

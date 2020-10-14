@@ -3,23 +3,24 @@ package json.country
 import kotlinx.serialization.Serializable
 
 /*
+More info @ https://github.com/Kotlin/kotlinx.serialization/blob/master/docs/serialization-guide.md
 To be able use @Serializable and Json class you need to add these dependencies then sync:
 1) Add to dependencies of the 1st (Project) build.gradle:
-    //Added for Kotlin Serialization
+    // Kotlin Serialization
     classpath "org.jetbrains.kotlin:kotlin-serialization:$kotlin_version"
 
-2) Add to dependencies of the 2nd (Module) build.gradle
-    //Added for Kotlin Serialization
-    implementation "org.jetbrains.kotlinx:kotlinx-serialization-core:1.0.0-RC"
+2) Add this apply plugin to the 2nd build.gradle before line "android {"
+//Kotlin Serialization
+apply plugin: 'kotlinx-serialization'
 
-3) Add this apply plugin to the 2nd build.gradle before line "android {"
-    //Added for Kotlin Serialization
-    apply plugin: 'kotlinx-serialization'
- */
+2) Add to dependencies of the 2nd (Module) build.gradle
+    //Kotlin Serialization
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.0"
+*/
 
 @Serializable
 data class Country (
-    val cioc: String?,
+    val cioc: String = "",
     val name: String,
     val capital: String,
     val region: String,

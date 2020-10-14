@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/whyCoroutinesFragment"
+        android:title="Why Coroutines"
+        android:icon="@drawable/ic_why"/>
+    <item android:id="@+id/cancelCoroutineFragment"
+        android:title="Cancel Coroutines"
+        android:icon="@drawable/ic_cancel"/>
+    <item android:id="@+id/parallelCoroutinesFragment"
+        android:title="Parallel Coroutines"
+        android:icon="@drawable/ic_parallel"/>
+</menu>

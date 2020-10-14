@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import json.country.Country
+import qa.edu.cmps312.countryexplorer.model.Country
 import json.country.CountryRepository
 import kotlinx.android.synthetic.main.activity_country_list.*
 import qa.edu.cmps312.countryexplorer.adapter.CountryAdapter

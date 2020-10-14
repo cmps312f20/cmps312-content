@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_bar"
+    app:startDestination="@id/whyCoroutinesFragment">
+
+    <fragment
+        android:id="@+id/whyCoroutinesFragment"
+        android:name="qu.cmps312.coroutinebasics.ui.WhyCoroutinesFragment"
+        android:label="Why Coroutines?"
+        tools:layout="@layout/fragment_why_coroutines" />
+    <fragment
+        android:id="@+id/cancelCoroutineFragment"
+        android:name="qu.cmps312.coroutinebasics.ui.CancelCoroutineFragment"
+        android:label="Cancel Coroutine"
+        tools:layout="@layout/fragment_cancel_coroutine" />
+    <fragment
+        android:id="@+id/parallelCoroutinesFragment"
+        android:name="qu.cmps312.coroutinebasics.ui.ParallelCoroutinesFragment"
+        android:label="Parallel Coroutines"
+        tools:layout="@layout/fragment_parallel_coroutines" />
+</navigation>

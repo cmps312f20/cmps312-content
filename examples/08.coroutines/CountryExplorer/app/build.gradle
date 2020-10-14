@@ -1,7 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-//Added for Kotlin Serialization
+
+//Kotlin Serialization
 apply plugin: 'kotlinx-serialization'
 
 android {
@@ -46,9 +47,11 @@ dependencies {
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-    //Added for Kotlin Serialization
-    implementation "org.jetbrains.kotlinx:kotlinx-serialization-core:1.0.0-RC"
 
+    //Kotlin Serialization
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.0"
+
+    // Material Design
     implementation 'com.google.android.material:material:1.2.1'
 
     // Coroutines

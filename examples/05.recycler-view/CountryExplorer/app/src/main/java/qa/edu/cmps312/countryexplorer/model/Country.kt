@@ -1,4 +1,4 @@
-package json.country
+package qa.edu.cmps312.countryexplorer.model
 
 import kotlinx.serialization.Serializable
 

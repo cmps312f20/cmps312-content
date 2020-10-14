@@ -47,13 +47,12 @@ class CountryListActivity : AppCompatActivity() {
         // Handle toolbar menu item clicked
         topToolbar.setOnMenuItemClickListener { onToolbarMenuItemClicked(it) }
 
-        // Configure image loader
+        // Configure image loader to support SVG images
         val imageLoader = ImageLoader.Builder(this)
             .componentRegistry {
                 add(SvgDecoder(this@CountryListActivity))
             }
             .build()
-
         Coil.setImageLoader(imageLoader)
 
         //Change color of the searchView EditText

@@ -27,14 +27,11 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         viewModel.profile.observe(requireActivity()) {
             viewBinding.profile = it //<- re-binding profile
         }
+
         // Listen to saveBtn onClick event
         viewBinding.saveBtn.setOnClickListener {
             viewModel.save(viewBinding.profile!!)
         }
-
-        //.resize(100,100)
-        //Picasso.get().load(viewModel.profile.value?.photoUrl).into(photoIv)
-        //Glide.with(this).load(viewModel.profile.value?.photoUrl).into(photoIv)
 
         //Watch the fragment cycle events
         val lifeCycleObserver = ActivityFragmentObserver(lifecycle, "ProfileFragment \uD83D\uDC64\uD83D\uDC64")

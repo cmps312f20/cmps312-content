@@ -1,3 +1,5 @@
+package qu.cmps312.coroutinebasics.console.examples
+
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect

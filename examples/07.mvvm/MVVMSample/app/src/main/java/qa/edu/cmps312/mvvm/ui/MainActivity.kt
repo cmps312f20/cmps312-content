@@ -9,6 +9,9 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import coil.Coil
+import coil.ImageLoader
+import coil.decode.SvgDecoder
 import kotlinx.android.synthetic.main.activity_main.*
 import qa.edu.cmps312.mvvm.R
 import java.util.*
@@ -44,6 +47,14 @@ class MainActivity : AppCompatActivity() {
 
         // Connect the bottomNavBar with the navController to auto-handle OnNavigationItemSelected
         bottomNavBar.setupWithNavController(navController)
+
+        // Configure image loader to support SVG images
+        val imageLoader = ImageLoader.Builder(this)
+            .componentRegistry {
+                add(SvgDecoder(this@MainActivity))
+            }
+            .build()
+        Coil.setImageLoader(imageLoader)
     }
 
     // Handle Navigate Up event (triggered when clicking the arrow button on the Top App Bar

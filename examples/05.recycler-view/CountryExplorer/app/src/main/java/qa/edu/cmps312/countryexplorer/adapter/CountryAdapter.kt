@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
-import json.country.Country
+import qa.edu.cmps312.countryexplorer.model.Country
 import kotlinx.android.synthetic.main.list_item_country.view.*
 import qa.edu.cmps312.countryexplorer.R
 import qa.edu.cmps312.countryexplorer.common.withSuffix

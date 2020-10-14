@@ -61,8 +61,8 @@ class CountryAdapter(private val activity: Activity,
         } else {
             countries.filter { it.region.contains(searchText, true) or
                                it.name.contains(searchText, true) or
-                               it.capital.contains(searchText, true)
-                               // ot it.cioc.contains(searchText, true)
+                               it.capital.contains(searchText, true) or
+                               it.cioc.contains(searchText, true)
             }.toMutableList()
         }
         notifyDataSetChanged()
