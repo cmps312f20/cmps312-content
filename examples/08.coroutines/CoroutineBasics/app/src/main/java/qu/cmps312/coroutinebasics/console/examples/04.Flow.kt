@@ -1,0 +1,45 @@
+package qu.cmps312.coroutinebasics.console.examples
+
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.runBlocking
+import java.math.BigInteger
+import java.util.*
+
+// flow .... emit .... collect
+fun main() = runBlocking {
+    println("Receiving primes")
+    primesFlow().collect { // like observer
+        println("Receiving $it")
+    }
+    println("Receiving end")
+
+    symbolsFlow().collect { // like observer
+        println("Receiving $it")
+    }
+
+    (1..5).asFlow()
+        .filter { it % 2 == 0 }
+        .map { it * it }
+        .collect { println(it.toString()) }
+
+    val result = (1..5).asFlow()
+        .reduce { a, b -> a + b }
+    println("result: $result")
+}
+
+//like observable
+//flow builder
+fun primesFlow() : Flow<Int> = flow {
+    val primes = listOf(2, 3, 5, 7, 11, 13, 17, 19, 23, 29)
+    primes.forEach {
+        delay(it * 100L)
+        emit(it)
+    }
+}
+
+fun symbolsFlow(): Flow<String> = flow {
+    emit("🌊") // Emits the value upstream ☝
+    emit("⚽")
+    emit("🎉")
+}

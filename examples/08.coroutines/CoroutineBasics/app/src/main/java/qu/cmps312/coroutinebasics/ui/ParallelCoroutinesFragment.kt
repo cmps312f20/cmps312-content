@@ -9,12 +9,13 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.liveData
 import com.example.coroutinebasics.R
 import kotlinx.android.synthetic.main.fragment_parallel_coroutines.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import qu.cmps312.coroutinebasics.ui.viewmodel.MainViewModel
-import kotlin.system.measureTimeMillis
+import qu.cmps312.coroutinebasics.ui.viewmodel.StockQuote
 
 class ParallelCoroutinesFragment : Fragment(R.layout.fragment_parallel_coroutines) {
     private val viewModel by activityViewModels<MainViewModel>()
@@ -23,8 +24,7 @@ class ParallelCoroutinesFragment : Fragment(R.layout.fragment_parallel_coroutine
         super.onViewCreated(view, savedInstanceState)
         initCompanySpinner()
         initCompaniesAutoCompleteTv()
-
-        //companiesTv.text = "Apple, Tesla, Microsoft"
+        companiesTv.setText("Apple, Tesla, Microsoft, IBM, ")
 
         var score = 0
         incrementBtn.setOnClickListener {
@@ -35,7 +35,7 @@ class ParallelCoroutinesFragment : Fragment(R.layout.fragment_parallel_coroutine
         getStockPriceBtn.setOnClickListener {
             priceTv.text = "In progress..."
             lifecycleScope.launch {
-                val price = viewModel.getStockPrice(companySp.selectedItem.toString())
+                val price = viewModel.getStockQuote(companySp.selectedItem.toString())
                 priceTv.text = price.toString()
             }
         }
@@ -45,25 +45,53 @@ class ParallelCoroutinesFragment : Fragment(R.layout.fragment_parallel_coroutine
             executionTimeTv.text = "In progress..."
             val companies = companiesTv.text.toString().trim().removeTrailingComma().split(",")
 
-            lifecycleScope.launch {
-                val time = measureTimeMillis {
-                //val prices =
-                    if (parallelSwitch.isChecked)
-                        viewModel.processInParallel(companies).collect {
-                            resultsTv.text = "${resultsTv.text} \n$it"
-                        }
-                    else
-                        viewModel.processSequentially(companies).collect {
-                            resultsTv.text = "${resultsTv.text} \n$it"
-                        }
+            val startTime = System.currentTimeMillis()
+            val parentJob = lifecycleScope.launch(Dispatchers.Default) {
+                println(">>> Debug: parentJob = lifecycleScope.launch Running on ${Thread.currentThread().name} thread.")
+                if (parallelSwitch.isChecked)
+                    processInParallel(companies)
+                else
+                    processSequentially(companies)
+            }
 
-                    //resultsTv.text = toString(companies, prices)
-                }
-                executionTimeTv.text = time.toString()
+            parentJob.invokeOnCompletion {
+                val executionDuration = System.currentTimeMillis() - startTime
+                executionTimeTv.text = executionDuration.toString()
+                println(">>> Debug: Parent job done. Total elapse time $executionDuration")
             }
         }
     }
 
+    suspend fun processInParallel(companies: List<String>) = coroutineScope {
+        println(">>> Debug: processInParallel Running on ${Thread.currentThread().name} thread.")
+        // Get stock quotes in parallel
+        val deferred = mutableListOf<Deferred<StockQuote>>()
+        for(company in companies)
+            deferred.add( async { viewModel.getStockQuote(company) } )
+
+        // Await the results and when ready display them
+        deferred.forEach {
+            //Can be cancelled if needed using it.cancel()
+            val quote = it.await()
+            val result = "${quote.name} (${quote.symbol}) = ${quote.price}"
+            displayResult(result)
+        }
+    }
+
+    suspend fun processSequentially(companies: List<String>) {
+        println("Debug: processSequentially Running on ${Thread.currentThread().name} thread.")
+        companies.forEach {
+            val quote = viewModel.getStockQuote(it)
+            val result = "${quote.name} (${quote.symbol}) = ${quote.price}"
+            displayResult(result)
+        }
+    }
+
+    private suspend fun displayResult (result: String) {
+        withContext(Dispatchers.Main) {
+            resultsTv.text = "${resultsTv.text} \n$result"
+        }
+    }
 
     private fun toString(companies : List<String>, prices : List<Int>) =
         companies.mapIndexed { idx, company -> "$company = ${prices[idx]}" }

@@ -9,9 +9,10 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.flow
 
 private const val TAG = "ViewModel.Coroutines"
+data class StockQuote(val name: String, val symbol: String, val price: Int)
+
 class MainViewModel : ViewModel() {
     var nextValue = MutableLiveData<Long>()
-    var stockPrice = MutableLiveData<Int>()
 
     var job : Job? = null
 
@@ -62,36 +63,59 @@ class MainViewModel : ViewModel() {
     // val sum = add(20, 30)
     fun add(x: Int, y: Int) = x + y
 
-    private suspend fun getStockSymbol(name: String): String {
-        Log.d(TAG, "I am going to to getStockSymbol for $name")
-        //Suspend for 2000ms
-        delay(2000)
-        val symbol = companies[name]
-        Log.d(TAG,"getStockSymbol result: $symbol")
+    suspend fun getStockSymbol(name: String): String {
+        println("getStockSymbol($name) started...")
+        //Suspend for 1500ms
+        delay(1500)
+        val symbol = companies[name.trim()]
+        println("~~getStockSymbol($name) result: $symbol")
         return symbol!!
     }
 
-    private suspend fun getPrice(symbol: String): Int {
-        Log.d(TAG, "I am going to getStrockPrice for $symbol")
-        //Suspend for 3000ms
-        delay(3000)
+    suspend fun getPrice(symbol: String): Int {
+        println("getPrice($symbol) started...")
+        //Suspend for 2000ms
+        delay(2000)
         val price = (50..500).random()
-        Log.d(TAG, "getStockPrice result: $price")
+        println("~~getPrice($symbol) result: $price")
         return price
     }
 
-    suspend fun getStockPrice(name: String) = withContext(Dispatchers.IO) {
-        val symbol = getStockSymbol("Microsoft")
+    suspend fun getStockQuote(name: String) = withContext(Dispatchers.IO) {
+        val symbol = getStockSymbol(name)
         val price = getPrice(symbol)
-        return@withContext price
+        StockQuote(name.trim(), symbol, price)
     }
 
-    suspend fun processInParallel(companies : List<String>) = flow {
-        companies.forEach {
-            coroutineScope {
-                val deferred = async { getStockPrice(it) }
-                val price = deferred.await()
-                emit("$it = $price")
+    val companies = mapOf(
+        "Apple" to "AAPL",
+        "Amazon" to  "AMZN",
+        "Alibaba" to "BABA",
+        "Salesforce"  to "CRM",
+        "Facebook" to "FB",
+        "Google" to "GOOGL",
+        "IBM" to "IBM",
+        "Johnson & Johnson" to "JNJ",
+        "Microsoft" to "MSFT",
+        "Tesla" to "TSLA"
+    )
+}
+
+
+/*
+    suspend fun processInParallel(companies : List<String>) = liveData {
+        println("Debug: processInParallel Running on ${Thread.currentThread()} thread.")
+        //companies.asSequence().forEach {
+        coroutineScope {
+            val deferred = mutableListOf<Deferred<StockQuote>>()
+            for(it in companies)
+                deferred.add( async { getStockQuote(it) } )
+            /*val deferred = companies.asSequence().map {
+                async { getStockQuote(it) }
+            }*/
+            deferred.forEach {
+                val quote = it.await()
+                emit("${quote.name} (${quote.symbol}) = ${quote.price}")
             }
         }
     }
@@ -99,38 +123,9 @@ class MainViewModel : ViewModel() {
     suspend fun processSequentially(companies : List<String>) = flow {
         companies.forEach {
             coroutineScope {
-                val price = getStockPrice(it)
+                val price = getStockQuote(it)
                 emit("$it = $price")
             }
         }
     }
-
-    /*
-    // ToDo convert to a Flow and move to viewModel
-    private suspend fun processInParallel(companies : List<String>) = coroutineScope {
-        companies.map {
-            val deferred = async { viewModel.getStockPrice(it) }
-            deferred.await()
-        }
-    }
-
-    // ToDo convert to a Flow and move to viewModel
-    private suspend fun processSequentially(companies : List<String>) = coroutineScope {
-        companies.map {
-            viewModel.getStockPrice(it)
-        }
-    }
-*/
-
-    val companies = mapOf(
-        "Apple" to "AAPL",
-        "Amazon" to  "AMZN",
-        "Alibaba Group" to "BABA",
-        "Salesforce"  to "CRM",
-        "Facebook" to "FB",
-        "Google" to "GOOGL",
-        "Johnson & Johnson" to "JNJ",
-        "Microsoft" to "MSFT",
-        "Tesla" to "TSLA"
-    )
-}
+ */
