@@ -17,7 +17,7 @@ fun main() = runBlocking<Unit> {
         val symbol = viewModel.getStockSymbol(company)
 
         val quote = StockQuoteRepository.stockQuoteService.getStockQuote(symbol, date)
-        println(">> $company (${quote.symbol}) = ${quote.open}")
+        println(">> $company (${quote.symbol}) = ${quote.price}")
         println(">> MarketStockQuote: $quote")
     }
 

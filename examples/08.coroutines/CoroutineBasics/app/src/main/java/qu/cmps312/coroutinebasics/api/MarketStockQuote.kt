@@ -12,12 +12,10 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class MarketStockQuote (
     val status: String? = null,
-    val from: String? = null,
+    @SerialName("from") val date: String? = null,
     val symbol: String? = null,
-    val open: Double? = null,
+    @SerialName("open") val price: Double? = null,
     val high: Double? = null,
     val low: Double? = null,
     val close: Double? = null,
-    val afterHours: Double? = null,
-    val volume: Long? = null
 )
