@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.flow
 
 private const val TAG = "ViewModel.Coroutines"
 class MainViewModel : ViewModel() {
@@ -84,6 +85,42 @@ class MainViewModel : ViewModel() {
         val price = getPrice(symbol)
         return@withContext price
     }
+
+    suspend fun processInParallel(companies : List<String>) = flow {
+        companies.forEach {
+            coroutineScope {
+                val deferred = async { getStockPrice(it) }
+                val price = deferred.await()
+                emit("$it = $price")
+            }
+        }
+    }
+
+    suspend fun processSequentially(companies : List<String>) = flow {
+        companies.forEach {
+            coroutineScope {
+                val price = getStockPrice(it)
+                emit("$it = $price")
+            }
+        }
+    }
+
+    /*
+    // ToDo convert to a Flow and move to viewModel
+    private suspend fun processInParallel(companies : List<String>) = coroutineScope {
+        companies.map {
+            val deferred = async { viewModel.getStockPrice(it) }
+            deferred.await()
+        }
+    }
+
+    // ToDo convert to a Flow and move to viewModel
+    private suspend fun processSequentially(companies : List<String>) = coroutineScope {
+        companies.map {
+            viewModel.getStockPrice(it)
+        }
+    }
+*/
 
     val companies = mapOf(
         "Apple" to "AAPL",

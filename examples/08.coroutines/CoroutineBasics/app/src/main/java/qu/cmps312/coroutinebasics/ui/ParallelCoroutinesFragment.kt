@@ -12,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.coroutinebasics.R
 import kotlinx.android.synthetic.main.fragment_parallel_coroutines.*
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.*
 import qu.cmps312.coroutinebasics.ui.viewmodel.MainViewModel
 import kotlin.system.measureTimeMillis
 
@@ -22,6 +23,8 @@ class ParallelCoroutinesFragment : Fragment(R.layout.fragment_parallel_coroutine
         super.onViewCreated(view, savedInstanceState)
         initCompanySpinner()
         initCompaniesAutoCompleteTv()
+
+        //companiesTv.text = "Apple, Tesla, Microsoft"
 
         var score = 0
         incrementBtn.setOnClickListener {
@@ -38,39 +41,29 @@ class ParallelCoroutinesFragment : Fragment(R.layout.fragment_parallel_coroutine
         }
 
         getStockPricesBtn.setOnClickListener {
-            resultsTv.text = "In progress..."
+            resultsTv.text = ""
             executionTimeTv.text = "In progress..."
             val companies = companiesTv.text.toString().trim().removeTrailingComma().split(",")
 
             lifecycleScope.launch {
                 val time = measureTimeMillis {
-                val prices =
+                //val prices =
                     if (parallelSwitch.isChecked)
-                        processInParallel(companies)
+                        viewModel.processInParallel(companies).collect {
+                            resultsTv.text = "${resultsTv.text} \n$it"
+                        }
                     else
-                        processSequentially(companies)
+                        viewModel.processSequentially(companies).collect {
+                            resultsTv.text = "${resultsTv.text} \n$it"
+                        }
 
-                    resultsTv.text = toString(companies, prices)
+                    //resultsTv.text = toString(companies, prices)
                 }
                 executionTimeTv.text = time.toString()
             }
         }
     }
 
-    // ToDo convert to a Flow and move to viewModel
-    private suspend fun processInParallel(companies : List<String>) = coroutineScope {
-        companies.map {
-            val deferred = async { viewModel.getStockPrice(it) }
-            deferred.await()
-        }
-    }
-
-    // ToDo convert to a Flow and move to viewModel
-    private suspend fun processSequentially(companies : List<String>) = coroutineScope {
-        companies.map {
-            viewModel.getStockPrice(it)
-        }
-    }
 
     private fun toString(companies : List<String>, prices : List<Int>) =
         companies.mapIndexed { idx, company -> "$company = ${prices[idx]}" }
