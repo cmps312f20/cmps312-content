@@ -23,7 +23,7 @@ fun main() = runBlocking<Unit> {
 
     job.invokeOnCompletion {
         val executionDuration = System.currentTimeMillis() - startTime
-        println(">>> Job done. Total elapse time $executionDuration <<<")
+        println(">>> Job done. Total elapse time ${executionDuration/1000}s <<<")
     }
     // Wait for the job to finish otherwise main will exit
     job.join()

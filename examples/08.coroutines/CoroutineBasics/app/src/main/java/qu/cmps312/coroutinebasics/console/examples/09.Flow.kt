@@ -30,7 +30,7 @@ fun main() = runBlocking {
 
 //like observable
 //flow builder
-fun primesFlow() : Flow<Int> = flow {
+fun primesFlow() = flow {
     val primes = listOf(2, 3, 5, 7, 11, 13, 17, 19, 23, 29)
     primes.forEach {
         delay(it * 100L)
@@ -38,8 +38,10 @@ fun primesFlow() : Flow<Int> = flow {
     }
 }
 
-fun symbolsFlow(): Flow<String> = flow {
+fun symbolsFlow() = flow {
     emit("🌊") // Emits the value upstream ☝
+    delay(500)
     emit("⚽")
+    delay(300)
     emit("🎉")
 }
