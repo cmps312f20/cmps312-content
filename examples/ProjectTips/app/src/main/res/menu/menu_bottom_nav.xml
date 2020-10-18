@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/dynamicTextViewsFragment"
+        android:title="Dynamic TextViews"
+        android:icon="@drawable/ic_dynamic_tv"/>
+    <item android:id="@+id/dragDropFragment"
+        android:title="Drag Drop Example"
+        android:icon="@drawable/ic_drag_drop"/>
+</menu>

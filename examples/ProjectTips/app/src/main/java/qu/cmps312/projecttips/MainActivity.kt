@@ -1,4 +1,4 @@
-package qu.cmps312.coroutinebasics.ui
+package qu.cmps312.projecttips
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,7 +7,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.example.coroutinebasics.R
+import com.example.projecttips.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -23,9 +23,9 @@ class MainActivity : AppCompatActivity() {
            and won't have back button on toolbar.
         */
         navController = findNavController(R.id.navHostFragment)
-        val appBarConfiguration = AppBarConfiguration(setOf(R.id.whyCoroutinesFragment,
-                                      R.id.cancelCoroutineFragment,
-                                      R.id.parallelCoroutinesFragment))
+        val appBarConfiguration = AppBarConfiguration(setOf(
+                R.id.dynamicTextViewsFragment,
+                R.id.dragDropFragment))
         setupActionBarWithNavController(this, navController, appBarConfiguration)
 
         // Connect the bottomNavBar with the navController to auto-handle OnNavigationItemSelected

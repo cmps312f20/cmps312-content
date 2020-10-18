@@ -6,8 +6,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.coroutinebasics.R
 import kotlinx.android.synthetic.main.fragment_cancel_coroutine.*
-import kotlinx.android.synthetic.main.fragment_why_coroutines.*
-import kotlinx.android.synthetic.main.fragment_why_coroutines.fibonacciTv
 import qu.cmps312.coroutinebasics.ui.viewmodel.MainViewModel
 
 class CancelCoroutineFragment : Fragment(R.layout.fragment_cancel_coroutine) {
