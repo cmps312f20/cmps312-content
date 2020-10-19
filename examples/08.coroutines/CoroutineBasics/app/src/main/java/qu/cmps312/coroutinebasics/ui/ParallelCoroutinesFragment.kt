@@ -20,11 +20,18 @@ import qu.cmps312.coroutinebasics.ui.viewmodel.StockQuote
 class ParallelCoroutinesFragment : Fragment(R.layout.fragment_parallel_coroutines) {
     private val viewModel by activityViewModels<MainViewModel>()
 
+    val exceptionHandler = CoroutineExceptionHandler { context, exception ->
+        priceTv.text = "failed"
+        val msg = "Exception thrown somewhere within parent or child: $exception."
+        Toast.makeText(requireContext(), msg, Toast.LENGTH_LONG).show()
+        println("Debug: $msg")
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initCompanySpinner()
         initCompaniesAutoCompleteTv()
-        companiesTv.setText("Apple, Tesla, Microsoft, IBM, ")
+        companiesTv.setText("Tesla, Apple, Microsoft, IBM, ")
 
         var score = 0
         incrementBtn.setOnClickListener {
@@ -34,9 +41,9 @@ class ParallelCoroutinesFragment : Fragment(R.layout.fragment_parallel_coroutine
 
         getStockPriceBtn.setOnClickListener {
             priceTv.text = "In progress..."
-            lifecycleScope.launch {
-                val price = viewModel.getStockQuote(companySp.selectedItem.toString())
-                priceTv.text = price.toString()
+            lifecycleScope.launch(exceptionHandler)  {
+                val quote = viewModel.getStockQuote(companySp.selectedItem.toString())
+                priceTv.text = "${quote.name} (${quote.symbol}) = ${quote.price}"
             }
         }
 
@@ -46,7 +53,7 @@ class ParallelCoroutinesFragment : Fragment(R.layout.fragment_parallel_coroutine
             val companies = companiesTv.text.toString().trim().removeTrailingComma().split(",")
 
             val startTime = System.currentTimeMillis()
-            val parentJob = lifecycleScope.launch(Dispatchers.Default) {
+            val parentJob = lifecycleScope.launch(exceptionHandler) {
                 println(">>> Debug: parentJob = lifecycleScope.launch Running on ${Thread.currentThread().name} thread.")
                 if (parallelSwitch.isChecked)
                     processInParallel(companies)
@@ -62,7 +69,7 @@ class ParallelCoroutinesFragment : Fragment(R.layout.fragment_parallel_coroutine
         }
     }
 
-    suspend fun processInParallel(companies: List<String>) = coroutineScope {
+    suspend fun processInParallel(companies: List<String>) = withContext(Dispatchers.Default) {
         println(">>> Debug: processInParallel Running on ${Thread.currentThread().name} thread.")
         // Get stock quotes in parallel
         val deferred = mutableListOf<Deferred<StockQuote>>()
@@ -78,7 +85,7 @@ class ParallelCoroutinesFragment : Fragment(R.layout.fragment_parallel_coroutine
         }
     }
 
-    suspend fun processSequentially(companies: List<String>) {
+    suspend fun processSequentially(companies: List<String>) = withContext(Dispatchers.Default) {
         println("Debug: processSequentially Running on ${Thread.currentThread().name} thread.")
         companies.forEach {
             val quote = viewModel.getStockQuote(it)

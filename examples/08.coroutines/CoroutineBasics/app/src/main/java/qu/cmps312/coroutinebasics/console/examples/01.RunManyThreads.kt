@@ -7,7 +7,7 @@ fun main() {
     val jobs = List(10_000) {
         thread {
             Thread.sleep(5000)
-            print(".")
+            println(".")
         }
     }
     jobs.forEach { it.join() }

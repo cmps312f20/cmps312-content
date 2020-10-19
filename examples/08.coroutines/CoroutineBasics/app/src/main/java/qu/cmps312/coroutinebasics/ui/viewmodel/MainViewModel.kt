@@ -82,6 +82,7 @@ class MainViewModel : ViewModel() {
     }
 
     suspend fun getStockQuote(name: String) = withContext(Dispatchers.IO) {
+        if (!companies.containsKey(name.trim())) throw Exception("Getting stock quote failed. '$name' does not exit.")
         val symbol = getStockSymbol(name)
         val price = getPrice(symbol)
         StockQuote(name.trim(), symbol, price)

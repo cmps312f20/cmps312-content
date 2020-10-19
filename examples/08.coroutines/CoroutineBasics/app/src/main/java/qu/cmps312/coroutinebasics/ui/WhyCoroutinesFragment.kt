@@ -3,12 +3,9 @@ package qu.cmps312.coroutinebasics.ui
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.coroutinebasics.R
-import qu.cmps312.coroutinebasics.ui.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.fragment_why_coroutines.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -18,14 +15,9 @@ import java.util.*
 import kotlin.concurrent.thread
 
 class WhyCoroutinesFragment : Fragment(R.layout.fragment_why_coroutines) {
-    private val TAG = "Coroutines"
+    private val TAG = "WhyCoroutinesFragment"
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val tv = TextView(requireContext())
-        tv.text = "Qatar"
-        oFlow.addView(tv)
-
 
         var score = 0
         incrementBtn.setOnClickListener {
@@ -33,27 +25,32 @@ class WhyCoroutinesFragment : Fragment(R.layout.fragment_why_coroutines) {
             scoreTv.text = score.toString()
         }
 
-        longRunningTaskBtn.setOnClickListener {
+        // Synchronous blocking call
+        mainThreadBtn.setOnClickListener {
+            resultTv.text = ""
             Log.i(TAG, "Running on ${Thread.currentThread()} thread.")
-            resultSyncTv.text = nextProbablePrime().toString()
+            resultTv.text = nextProbablePrime().toString()
         }
 
-        longRunningTaskOnBackgroudThreadBtn.setOnClickListener {
-            val job = lifecycleScope.launch {
-                val result = longRuning()
-                withContext(Dispatchers.Main) {
-                    resultTv.text = result.toString()
-                }
-            }
-            //job.cancel()
-            // Call the async long running task and pass to it a callback
-            /*longRuningAsync { result ->
+        // Callback version
+        backgroudThreadBtn.setOnClickListener {
+            resultTv.text = ""
+            getPrimeBigInt { result ->
                 requireActivity().runOnUiThread {
                     Log.i(TAG, "Running on ${Thread.currentThread().name} thread.")
                     resultTv.text = result.toString()
                 }
             }
-        }*/
+        }
+
+        // Coroutine version
+        coroutineBtn.setOnClickListener {
+            resultTv.text = ""
+            val job = lifecycleScope.launch {
+                val result = getPrimeBigInt()
+                resultTv.text = result.toString()
+            }
+            // job.cancel() can be used to cancel the job
         }
     }
 
@@ -67,22 +64,20 @@ class WhyCoroutinesFragment : Fragment(R.layout.fragment_why_coroutines) {
         return BigInteger(1500, Random()).nextProbablePrime()
     }
 
-    private suspend fun longRuning() = withContext(Dispatchers.Default) {
-            Log.i(TAG, "Running on ${Thread.currentThread().name} thread.")
-            val result =  nextProbablePrime()
-            return@withContext result
-            //cb(result)
-            // But trying to access the UI from this backgroud thread will cause an error
-            //resultTv.text = result.toString()
-        }
-    //}
+    // Coroutine version
+    private suspend fun getPrimeBigInt() = withContext(Dispatchers.Default) {
+        Log.i(TAG, "Running on ${Thread.currentThread().name} thread.")
+        val result = nextProbablePrime()
+        return@withContext result
+    }
 
-    private fun longRuningAsync(cb: (BigInteger) -> Unit) {
+    // Callback version
+    private fun getPrimeBigInt(callBack: (BigInteger) -> Unit) {
         thread {
             Log.i(TAG, "Running on ${Thread.currentThread().name} thread.")
             val result =  nextProbablePrime()
 
-            cb(result)
+            callBack(result)
             // But trying to access the UI from this backgroud thread will cause an error
             //resultTv.text = result.toString()
         }

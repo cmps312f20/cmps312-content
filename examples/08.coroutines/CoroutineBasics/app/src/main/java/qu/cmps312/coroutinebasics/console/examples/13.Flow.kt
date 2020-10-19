@@ -24,7 +24,7 @@ fun main() = runBlocking {
         .collect { println(it.toString()) }
 
     val result = (1..5).asFlow()
-        .reduce { a, b -> a + b }
+                       .reduce { a, b -> a + b }
     println("result: $result")
 }
 

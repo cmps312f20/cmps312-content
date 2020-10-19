@@ -5,8 +5,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import qu.cmps312.coroutinebasics.ui.viewmodel.MainViewModel
 
-fun main() = runBlocking<Unit> {
-
+fun main() = runBlocking {
     val startTime = System.currentTimeMillis()
     val job = GlobalScope.launch {
         val viewModel = MainViewModel()

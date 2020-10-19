@@ -1,17 +1,20 @@
 package qu.cmps312.coroutinebasics.console.examples
 
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
+// N
 suspend fun main() {
     val startTime = System.currentTimeMillis()
+
+    // Create a coroutine scope to launch coroutines
+    val coroutineScope = CoroutineScope(Dispatchers.IO)
     val jobs = List(10_000) {
-        GlobalScope.launch {
+        coroutineScope.launch {
             delay(5000)
-            print(".")
+            println(".")
         }
     }
+    // Wait for the coroutine jobs to complete
     jobs.forEach { it.join() }
     val executionDuration = System.currentTimeMillis() - startTime
     println("\n>>> Job done. Total elapse time ${executionDuration/1000}s <<<")
