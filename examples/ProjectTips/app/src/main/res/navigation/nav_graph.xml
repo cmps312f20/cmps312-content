@@ -14,4 +14,9 @@
         android:name="qu.cmps312.projecttips.DynamicTextViewsFragment"
         android:label="Dynamic TextViews"
         tools:layout="@layout/fragment_dynamic_textviews" />
+    <fragment
+        android:id="@+id/imagePickerFragment"
+        android:name="qu.cmps312.projecttips.ImagePickerFragment"
+        android:label="Image Picker"
+        tools:layout="@layout/fragment_image_picker" />
 </navigation>

@@ -43,7 +43,7 @@ class DynamicTextViewsFragment : Fragment(R.layout.fragment_dynamic_textviews) {
             textSize = 24F
             typeface = Typeface.DEFAULT_BOLD
             setPadding(25, 25, 25, 25)
-            if (tag != "")
+            if (tag.isNotEmpty())
                 setBackgroundResource(android.R.color.holo_green_light)
             else
                 setBackgroundResource(android.R.color.holo_blue_light)
