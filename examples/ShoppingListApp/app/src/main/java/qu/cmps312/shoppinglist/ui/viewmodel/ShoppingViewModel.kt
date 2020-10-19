@@ -11,7 +11,7 @@ import qu.cmps312.shoppinglist.repository.ShoppingRepository
 class ShoppingViewModel(appContext: Application) : AndroidViewModel(appContext) {
     private val shoppingRepository = ShoppingRepository(appContext)
 
-    private var _shoppingList = liveData {
+    private val _shoppingList = liveData {
         val items = shoppingRepository.shoppingList
         emit(items)
     } as MutableLiveData
@@ -21,7 +21,7 @@ class ShoppingViewModel(appContext: Application) : AndroidViewModel(appContext) 
     fun addItem(item: Item) {
         _shoppingList.value?.let {
             // If item exists just increase the quantity
-            var foundAt = it.indexOfFirst { li -> li.name == item.name }
+            val foundAt = it.indexOfFirst { li -> li.name == item.name }
             if (foundAt >= 0)
             {
                 it[foundAt].quantity += item.quantity
