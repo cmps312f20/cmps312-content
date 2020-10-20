@@ -14,12 +14,12 @@ class CountryViewModel : ViewModel() {
 
     val countries = _countries as LiveData<List<Country>>
 
-    val continents: List<String> get() = _countries.value!!.map { it.region }.distinct().sorted()
+    val continents: List<String> get() = _countries.value!!.map { it.continent }.distinct().sorted()
     val countryNames: List<String> get() = _countries.value!!.map { it.name }.sorted()
 
     fun getRegions(continent: String) =
-        _countries.value!!.filter { it.region.equals(continent, true) }
-            .map { it.subregion }.distinct().sorted()
+        _countries.value!!.filter { it.continent.equals(continent, true) }
+            .map { it.region }.distinct().sorted()
 
 
     fun addCountry(country: Country) {

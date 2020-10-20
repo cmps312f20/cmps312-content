@@ -59,10 +59,10 @@ class CountryAdapter(private val activity: Activity,
         countryFilteredList = if (searchText.isEmpty()) {
             countries
         } else {
-            countries.filter { it.region.contains(searchText, true) or
+            countries.filter { it.continent.contains(searchText, true) or
                                it.name.contains(searchText, true) or
                                it.capital.contains(searchText, true) or
-                               it.cioc.contains(searchText, true)
+                               it.code.contains(searchText, true)
             }.toMutableList()
         }
         notifyDataSetChanged()

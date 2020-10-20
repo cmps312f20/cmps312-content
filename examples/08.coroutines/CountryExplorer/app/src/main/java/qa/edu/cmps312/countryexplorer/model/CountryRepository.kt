@@ -10,8 +10,9 @@ object CountryRepository {
     private val contentType = "application/json".toMediaType()
 
     private val jsonConverterFactory = Json { ignoreUnknownKeys = true
-                        coerceInputValues = true }.asConverterFactory(contentType)
+                   coerceInputValues = true }.asConverterFactory(contentType)
 
+    // Generate a class to enable calling the service methods
     val countryService: CountryService by lazy {
         Retrofit.Builder()
             .baseUrl(BASE_URL)

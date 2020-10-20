@@ -1,5 +1,6 @@
 package json.country
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /*
@@ -20,12 +21,17 @@ apply plugin: 'kotlinx-serialization'
 
 @Serializable
 data class Country (
-    val cioc: String = "",
+    // Map alpha3Code property in the json file
+    // to the code property
+    @SerialName("alpha3Code")
+    val code: String = "",
     val name: String,
     val capital: String,
+    @SerialName("region")
+    val continent: String,
+    @SerialName("subregion")
     val region: String,
-    val subregion: String,
     val population: Long,
     val area: Double = 0.0,
-    val flag: String
+    val flag: String,
 )
