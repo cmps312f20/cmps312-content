@@ -28,6 +28,7 @@ fun main() = runBlocking {
     job.join()
 }
 
+// 0, 1, 1, 2, 3, 5,
 fun fibonacci() = flow {
     var terms = Pair(0L, 1L)
     // this sequence is infinite

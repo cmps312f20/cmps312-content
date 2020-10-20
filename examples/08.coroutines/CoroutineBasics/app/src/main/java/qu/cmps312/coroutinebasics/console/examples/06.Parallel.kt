@@ -1,6 +1,5 @@
 package qu.cmps312.coroutinebasics.console.examples
 
-import kotlinx.android.synthetic.main.fragment_parallel_coroutines.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
@@ -10,7 +9,7 @@ import qu.cmps312.coroutinebasics.ui.viewmodel.MainViewModel
 fun main() = runBlocking<Unit> {
 
     val startTime = System.currentTimeMillis()
-    val job = GlobalScope.launch {
+    val parentJob = GlobalScope.launch {
         val viewModel = MainViewModel()
         val deferred = async { viewModel.getStockQuote("Apple") }
         val deferred2 = async { viewModel.getStockQuote("Tesla") }
@@ -26,10 +25,10 @@ fun main() = runBlocking<Unit> {
         println(">> ${quote3.name} (${quote3.symbol}) = ${quote3.price}")
     }
 
-    job.invokeOnCompletion {
+    parentJob.invokeOnCompletion {
         val executionDuration = System.currentTimeMillis() - startTime
         println(">>> Job done. Total elapse time ${executionDuration/1000}s <<<")
     }
     // Wait for the job to finish otherwise main will exit
-    job.join()
+    parentJob.join()
 }

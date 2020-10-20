@@ -14,7 +14,7 @@ fun main() = runBlocking {
     }
 
     val startTime = System.currentTimeMillis()
-    val job = GlobalScope.launch(exceptionHandler) {
+    val parentJob = GlobalScope.launch(exceptionHandler) {
         val viewModel = MainViewModel()
         val deferred1 = async() { viewModel.getStockQuote("Tesla") }
         try {
@@ -41,8 +41,8 @@ fun main() = runBlocking {
         }
     }
 
-    job.invokeOnCompletion {
-        if (job.isCancelled) {
+    parentJob.invokeOnCompletion {
+        if (parentJob.isCancelled) {
             println(">>> Job cancelled. ${it?.message}<<<")
         }
         else {
@@ -51,5 +51,5 @@ fun main() = runBlocking {
         }
     }
     // Wait for the job to finish otherwise main will exit
-    job.join()
+    parentJob.join()
 }

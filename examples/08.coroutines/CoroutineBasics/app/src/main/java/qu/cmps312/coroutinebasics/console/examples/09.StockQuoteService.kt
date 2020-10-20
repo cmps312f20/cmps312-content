@@ -7,7 +7,6 @@ import qu.cmps312.coroutinebasics.api.StockQuoteRepository
 import qu.cmps312.coroutinebasics.ui.viewmodel.MainViewModel
 
 fun main() = runBlocking<Unit> {
-
     val startTime = System.currentTimeMillis()
     val job = GlobalScope.launch {
         val company = "Apple"

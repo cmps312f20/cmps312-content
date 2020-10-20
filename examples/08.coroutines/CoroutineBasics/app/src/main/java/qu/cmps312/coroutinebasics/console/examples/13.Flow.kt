@@ -8,6 +8,8 @@ import java.util.*
 
 // flow .... emit .... collect
 fun main() = runBlocking {
+    val nums = listOf(1, 2, 4, 10)
+
     println("Receiving primes")
     primesFlow().collect { // like observer
         println("Receiving $it")
