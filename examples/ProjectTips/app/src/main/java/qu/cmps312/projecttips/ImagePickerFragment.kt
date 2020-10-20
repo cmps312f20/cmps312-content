@@ -55,8 +55,9 @@ class ImagePickerFragment : Fragment(R.layout.fragment_image_picker) {
         In Manifest you need to add <provider> ... </provider>. See Manifest of this project
         Also, need to add file_paths.xml user res/xml (see example in this project)
         More info @ https://developer.android.com/reference/androidx/core/content/FileProvider
+        Interesting discussion @ https://stackoverflow.com/questions/21931169/fileprovider-throws-exception-on-geturiforfile/48103567#48103567
         I do not understand it fully but ok for now.
-        Bit more complicated than expected! Android people what is!
+        Bit more complicated than expected 😱 Android people what is! Why complicating it 😲?
         */
         takeMediaBtn.setOnClickListener {
             try {
