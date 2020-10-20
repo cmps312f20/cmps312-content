@@ -7,13 +7,28 @@
     tools:context="qu.cmps312.projecttips.ImagePickerFragment">
 
     <!-- TODO: Update blank fragment layout -->
+
     <Button
-        android:id="@+id/selectImageBtn"
+        android:id="@+id/takeMediaBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Select Image"
+        android:text="Media"
+        app:icon="@drawable/ic_camera"
+        app:layout_constraintBottom_toBottomOf="@+id/attachMediaBtn"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/attachMediaBtn"
+        app:layout_constraintTop_toTopOf="@+id/attachMediaBtn" />
+
+    <Button
+        android:id="@+id/attachMediaBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Media"
+        app:icon="@drawable/ic_attach"
+        app:layout_constraintEnd_toStartOf="@+id/takeMediaBtn"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,11 +40,31 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:scaleType="fitCenter"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/attachMediaBtn"
+        tools:src="@tools:sample/avatars" />
+
+    <VideoView
+        android:id="@+id/videoView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/selectImageBtn"
-        tools:src="@tools:sample/avatars" />
+        app:layout_constraintTop_toTopOf="@+id/guideline2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.51" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--paths>
+    <files-path name="my_images" path="images/"/>
+</paths-->
+<!--
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <external-cache-path name="name" path="rnlegitstoryshare" />
+</paths>
+-->
+
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <files-path name="images" path="images/"/>
+</paths>
