@@ -40,8 +40,7 @@ class AddItemFragment : DialogFragment() {
             return
         }
 
-        val item = Item(name = itemSp.selectedItem.toString(),
-                        quantity = quantityEt.text.toString().toInt())
+        val item = Item( name= itemSp.selectedItem.toString(), quantity = quantityEt.text.toString().toInt())
         shoppingViewModel.addItem(item)
 
         // Clear the views to allow another entry

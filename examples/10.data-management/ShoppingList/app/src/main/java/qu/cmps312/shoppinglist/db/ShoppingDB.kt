@@ -24,7 +24,8 @@ abstract class ShoppingDB : RoomDatabase() {
                     ShoppingDB::class.java, "shopping.db"
                 ).build()
             }
-            println("Debug: dbInstance = $dbInstance")
+            // After the DB instance is created load the data from json file
+            // into the Item table if the table is empty
             GlobalScope.launch {
                 initDB(dbInstance!!, context)
             }

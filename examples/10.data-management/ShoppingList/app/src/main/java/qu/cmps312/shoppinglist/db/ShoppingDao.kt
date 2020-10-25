@@ -8,7 +8,9 @@ import qu.cmps312.shoppinglist.entity.Item
 @Dao
 interface ShoppingDao {
     @Query("select * from Item")
-    //suspend fun getAll() : List<Item>
+    // suspend fun getAll() : List<Item>
+    // App will be notified of any changes of the Item table data
+    // No need for suspend function as LiveData is already asynchronous
     fun getAll() : LiveData<List<Item>>
 
     @Query("select * from Item where id = :id")

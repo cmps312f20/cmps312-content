@@ -1,55 +1,28 @@
 package qu.cmps312.shoppinglist.ui.viewmodel
 
 import android.app.Application
-import androidx.lifecycle.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
-import qu.cmps312.shoppinglist.db.ShoppingDB
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import qu.cmps312.shoppinglist.entity.Item
 import qu.cmps312.shoppinglist.repository.ShoppingRepository
 
 class ShoppingViewModel(appContext: Application) : AndroidViewModel(appContext) {
     private val shoppingRepository = ShoppingRepository(appContext)
-    val shoppingList = shoppingRepository.getItems()
 
-    fun addItem(item: Item) = viewModelScope.launch(Dispatchers.IO) {
-        shoppingRepository.addItem(item)
-    }
-
-    fun updateItem(item: Item) = viewModelScope.launch(Dispatchers.IO) {
-        shoppingRepository.updateItem(item)
-    }
-
-    fun deleteItem(item: Item) = viewModelScope.launch(Dispatchers.IO) {
-        shoppingRepository.deleteItem(item)
-    }
-}
-
-/*
-class ShoppingViewModel(appContext: Application) : AndroidViewModel(appContext) {
-    private val shoppingRepository = ShoppingRepository(appContext)
-
-    private var _shoppingList = MutableLiveData(listOf<Item>()) //shoppingRepository.getItems()
-
+    private var _shoppingList = MutableLiveData<List<Item>>()
     val shoppingList = _shoppingList as LiveData<List<Item>>
 
-   init {
-       //_shoppingList = shoppingRepository.getItems() as MutableLiveData
-       //viewModelScope.launch {
-           //shoppingRepository.initDB()
-           getItems()
-       //}
+    init {
+        getItems()
     }
 
-    fun getItems() = viewModelScope.launch {
-        val items = shoppingRepository.getItems() //as MutableLiveData
-        _shoppingList.value?.let {
-            _shoppingList.value = items as MutableList<Item>
-        }
+    fun getItems() {
+        val items = shoppingRepository.getItems()
+        _shoppingList.value = items as MutableList<Item>
     }
 
-    fun addItem(item: Item) = viewModelScope.launch {
+    fun addItem(item: Item) {
         // Add/update the in-memory list used by UI
         // Alternatively update the data source then reset the the whole list using getItems()
         _shoppingList.value?.let {
@@ -66,18 +39,15 @@ class ShoppingViewModel(appContext: Application) : AndroidViewModel(appContext) 
                 _shoppingList.value = it
             } else {
                 // Add item to the data source
-                val itemId = shoppingRepository.addItem(item)
-                item.id = itemId
-
+                shoppingRepository.addItem(item)
                 // Add item to the in-memory list used by UI
-                //it.add(item)
                 // This is needed to notify the observers
                 _shoppingList.value = it + item
             }
         }
     }
 
-    fun updateItem(index: Int, item: Item) = viewModelScope.launch {
+    fun updateItem(index: Int, item: Item) {
         // Update the data source
         shoppingRepository.updateItem(item)
 
@@ -90,7 +60,7 @@ class ShoppingViewModel(appContext: Application) : AndroidViewModel(appContext) 
         }
     }
 
-    fun deleteItem(item: Item) = viewModelScope.launch {
+    fun deleteItem(item: Item) {
         // Delete from data source
         shoppingRepository.deleteItem(item)
 
@@ -101,4 +71,4 @@ class ShoppingViewModel(appContext: Application) : AndroidViewModel(appContext) 
             _shoppingList.value = it - item
         }
     }
-} */
+}

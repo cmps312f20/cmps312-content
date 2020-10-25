@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="20dp"
     android:elevation="20dp"
-    tools:context="qu.cmps312.shoppinglist.ui.fragments.AddItemFragment">
+    tools:context="qu.cmps312.shoppinglist.ui.AddItemFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

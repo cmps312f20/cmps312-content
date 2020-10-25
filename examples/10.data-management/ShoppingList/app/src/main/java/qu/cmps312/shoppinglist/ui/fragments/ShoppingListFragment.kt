@@ -1,4 +1,4 @@
-package qu.cmps312.shoppinglist.ui
+package qu.cmps312.shoppinglist.ui.fragments
 
 import android.os.Bundle
 import android.view.View
@@ -50,6 +50,6 @@ class ShoppingListFragment : Fragment(R.layout.fragment_shopping_list) {
     }
 
     private fun onQuantityChanged(index: Int, item: Item) {
-        shoppingViewModel.updateItem(index, item)
+        shoppingViewModel.updateItem(item)
     }
 }
