@@ -56,6 +56,7 @@ class ImagePickerFragment : Fragment(R.layout.fragment_image_picker) {
         Also, need to add file_paths.xml user res/xml (see example in this project)
         More info @ https://developer.android.com/reference/androidx/core/content/FileProvider
         Interesting discussion @ https://stackoverflow.com/questions/21931169/fileprovider-throws-exception-on-geturiforfile/48103567#48103567
+        https://stackoverflow.com/questions/42516126/fileprovider-illegalargumentexception-failed-to-find-configured-root
         I do not understand it fully but ok for now.
         Bit more complicated than expected 😱 Android people what is! Why complicating it 😲?
         */
