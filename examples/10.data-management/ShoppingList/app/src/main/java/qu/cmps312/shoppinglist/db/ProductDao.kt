@@ -1,5 +1,6 @@
 package qu.cmps312.shoppinglist.db
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
@@ -10,14 +11,14 @@ import qu.cmps312.shoppinglist.entity.Product
 interface ProductDao {
     // Product related methods
     @Query("select p.*, c.name category from Product p join Category c on p.categoryId = c.id where p.categoryId = :categoryId order by p.name")
-    suspend fun getProducts(categoryId: Int): List<Product>
+    suspend fun getProducts(categoryId: Long): List<Product>
 
     @Insert
     suspend fun insertProducts(products: List<Product>) : List<Long>
 
     // Category related methods
     @Query("select * from Category order by name")
-    suspend fun getCategories() : List<Category>
+    fun getCategories() : LiveData<List<Category>>
 
     @Query("select * from Category where name = :name")
     suspend fun getCategory(name: String) : Category?

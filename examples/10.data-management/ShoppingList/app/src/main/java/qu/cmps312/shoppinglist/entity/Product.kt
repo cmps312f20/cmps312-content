@@ -1,12 +1,15 @@
 package qu.cmps312.shoppinglist.entity
 
-import androidx.room.Entity
-import androidx.room.Ignore
-import androidx.room.PrimaryKey
+import androidx.room.*
 import kotlinx.serialization.Serializable
 
 @Serializable
-@Entity
+@Entity(foreignKeys = [ForeignKey(entity = Category::class,
+    parentColumns = ["id"],
+    childColumns = ["categoryId"],
+    onDelete = ForeignKey.CASCADE)],
+    // Create an index on the categoryId column to speed-up query execution
+    indices = [Index(value = ["categoryId"])])
 data class Product(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,

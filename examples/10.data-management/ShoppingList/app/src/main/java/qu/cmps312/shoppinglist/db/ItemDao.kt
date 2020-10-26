@@ -21,9 +21,6 @@ interface ItemDao {
     @Query("select i.*, (p.name || ' ' || p.image) as productName from Item i join Product p on i.productId = p.id where i.id = :id")
     suspend fun getItem(id: Long) : Item?
 
-    @Query("select i.*, (p.name || ' ' || p.image) as productName from Item i join Product p on i.productId = p.id where p.name = :productName")
-    suspend fun getItem(productName: String) : Item?
-
     @Query("select count(*) from Item")
     fun getCount() : Long
 

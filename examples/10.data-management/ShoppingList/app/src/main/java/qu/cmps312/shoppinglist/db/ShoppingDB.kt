@@ -12,7 +12,7 @@ import qu.cmps312.shoppinglist.entity.Item
 import qu.cmps312.shoppinglist.entity.Product
 
 // If you change the version the DB will be dropped and recreated
-@Database(entities = [Product::class, Category::class, Item::class], version = 2)
+@Database(entities = [Product::class, Category::class, Item::class], version = 2, exportSchema = false)
 abstract class ShoppingDB : RoomDatabase() {
     abstract fun getShoppingDao(): ItemDao
     abstract fun getProductDao(): ProductDao

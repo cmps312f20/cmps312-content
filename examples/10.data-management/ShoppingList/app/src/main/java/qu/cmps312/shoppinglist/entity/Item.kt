@@ -5,7 +5,9 @@ import androidx.room.*
 @Entity(foreignKeys = [ForeignKey(entity = Product::class,
     parentColumns = ["id"],
     childColumns = ["productId"],
-    onDelete = ForeignKey.CASCADE)])
+    onDelete = ForeignKey.CASCADE)],
+    // Create an index on the productId column to speed-up query execution
+    indices = [Index(value = ["productId"])])
 data class Item(
     @PrimaryKey(autoGenerate = true)
     val id: Long,

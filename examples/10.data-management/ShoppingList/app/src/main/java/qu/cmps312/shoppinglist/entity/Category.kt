@@ -10,4 +10,8 @@ data class Category(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
     val name: String
-)
+) {
+    override fun toString(): String {
+        return name
+    }
+}

@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Add new shopping item"
+            android:text="Add shopping item"
             android:textSize="22sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -37,44 +37,41 @@
             android:id="@+id/productSp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/titleTv" />
+            app:layout_constraintStart_toEndOf="@+id/barrier"
+            app:layout_constraintTop_toBottomOf="@+id/categorySp" />
 
         <EditText
             android:id="@+id/quantityEt"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:ems="10"
             android:hint="Quantity"
             android:inputType="number"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@id/barrier"
             app:layout_constraintTop_toBottomOf="@+id/productSp" />
 
         <Button
             android:id="@+id/addButton"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="4dp"
-            android:layout_marginRight="4dp"
             android:layout_marginBottom="24dp"
             android:text="Add"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/quantityEt"
-            style="@style/Widget.MaterialComponents.Button.TextButton"/>
+            app:layout_constraintTop_toBottomOf="@+id/quantityEt" />
 
         <Button
             android:id="@+id/cancelButton"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -82,8 +79,57 @@
             android:text="Cancel"
             app:layout_constraintBottom_toBottomOf="@+id/addButton"
             app:layout_constraintEnd_toStartOf="@+id/addButton"
-            app:layout_constraintTop_toTopOf="@+id/addButton"
-            style="@style/Widget.MaterialComponents.Button.TextButton"/>
+            app:layout_constraintTop_toTopOf="@+id/addButton" />
+
+        <TextView
+            android:id="@+id/productLabelTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="5dp"
+            android:text="Product"
+            app:layout_constraintBottom_toBottomOf="@+id/productSp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/productSp" />
+
+        <TextView
+            android:id="@+id/categoryLabelTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Category"
+            app:layout_constraintBottom_toBottomOf="@+id/categorySp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/categorySp" />
+
+        <Spinner
+            android:id="@+id/categorySp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/barrier"
+            app:layout_constraintTop_toBottomOf="@+id/titleTv" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="right"
+            app:constraint_referenced_ids="productLabelTv,categoryLabelTv"
+            tools:layout_editor_absoluteX="351dp" />
+
+        <TextView
+            android:id="@+id/quantityLabelTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Quantity"
+            app:layout_constraintBottom_toBottomOf="@+id/quantityEt"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/quantityEt" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
