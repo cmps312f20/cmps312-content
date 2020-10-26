@@ -9,7 +9,7 @@ import qu.cmps312.shoppinglist.R
 import qu.cmps312.shoppinglist.entity.Item
 
 class ShoppingListAdapter(private val deleteListener: (Item) -> Unit,
-                          private val quantityChangedListener: (index: Int, item: Item) -> Unit)
+                          private val quantityChangedListener: (Item) -> Unit)
     : RecyclerView.Adapter<ShoppingListAdapter.ItemViewHolder>(){
 
     var items = listOf<Item>()
@@ -19,9 +19,9 @@ class ShoppingListAdapter(private val deleteListener: (Item) -> Unit,
         }
 
     inner class ItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        fun bind(position: Int, item: Item){
+        fun bind(item: Item){
             itemView.apply {
-                nameTv.text = item.name
+                nameTv.text = item.productName
                 quantityTv.text = item.quantity.toString()
             }
 
@@ -30,11 +30,13 @@ class ShoppingListAdapter(private val deleteListener: (Item) -> Unit,
             }
 
             itemView.increaseBtn.setOnClickListener {
-                quantityChangedListener(position, item.copy(quantity = item.quantity + 1))
+                item.quantity++
+                quantityChangedListener(item)
             }
 
             itemView.decreaseBtn.setOnClickListener {
-                quantityChangedListener(position, item.copy(quantity = item.quantity - 1))
+                item.quantity--
+                quantityChangedListener(item)
             }
         }
     }
@@ -45,7 +47,7 @@ class ShoppingListAdapter(private val deleteListener: (Item) -> Unit,
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        holder.bind(position, items[position])
+        holder.bind(items[position])
     }
 
     override fun getItemCount() = items.size

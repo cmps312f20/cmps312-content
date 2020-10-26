@@ -17,6 +17,6 @@
     <dialog
         android:id="@+id/addItemFragment"
         android:name="qu.cmps312.shoppinglist.ui.fragments.AddItemFragment"
-        android:label="fragment_add_item"
+        android:label="Add Item"
         tools:layout="@layout/fragment_add_item" />
 </navigation>

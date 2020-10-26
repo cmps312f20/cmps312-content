@@ -65,4 +65,4 @@
         app:layout_constraintEnd_toStartOf="@+id/deleteBtn"
         app:layout_constraintTop_toTopOf="@+id/quantityTv"
         app:srcCompat="@drawable/ic_down" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

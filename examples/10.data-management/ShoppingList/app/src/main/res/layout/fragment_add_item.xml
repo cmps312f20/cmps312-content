@@ -34,7 +34,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Spinner
-            android:id="@+id/itemSp"
+            android:id="@+id/productSp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -42,7 +42,6 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:entries="@array/fruits"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/titleTv" />
@@ -58,7 +57,7 @@
             android:hint="Quantity"
             android:inputType="number"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/itemSp" />
+            app:layout_constraintTop_toBottomOf="@+id/productSp" />
 
         <Button
             android:id="@+id/addButton"

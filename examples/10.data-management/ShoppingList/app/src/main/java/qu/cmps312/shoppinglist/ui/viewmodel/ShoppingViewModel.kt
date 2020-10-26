@@ -24,6 +24,8 @@ class ShoppingViewModel(appContext: Application) : AndroidViewModel(appContext) 
     fun deleteItem(item: Item) = viewModelScope.launch(Dispatchers.IO) {
         shoppingRepository.deleteItem(item)
     }
+
+    suspend fun getProducts(categoryId: Int) = shoppingRepository.getProducts(categoryId)
 }
 
 /*

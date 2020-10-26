@@ -44,12 +44,12 @@ class ShoppingListFragment : Fragment(R.layout.fragment_shopping_list) {
     private fun onItemDeleted(item: Item) {
         shoppingViewModel.deleteItem(item)
 
-        Snackbar.make(requireView(), "${item.name} removed", Snackbar.LENGTH_LONG).setAction("UNDO") {
+        Snackbar.make(requireView(), "${item.productName} removed", Snackbar.LENGTH_LONG).setAction("UNDO") {
             shoppingViewModel.addItem(item)
         }.show()
     }
 
-    private fun onQuantityChanged(index: Int, item: Item) {
+    private fun onQuantityChanged(item: Item) {
         shoppingViewModel.updateItem(item)
     }
 }

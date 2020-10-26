@@ -6,6 +6,7 @@ import qu.cmps312.shoppinglist.db.ShoppingDB
 import qu.cmps312.shoppinglist.entity.Item
 import java.math.BigDecimal
 
+// Repository, abstracts access to multiple data sources
 class ShoppingRepository(private val context: Context) {
     private val shoppingDB by lazy {
         ShoppingDB.getInstance(context)
@@ -15,12 +16,16 @@ class ShoppingRepository(private val context: Context) {
         shoppingDB.getShoppingDao()
     }
 
+    private val productDao by lazy {
+        shoppingDB.getProductDao()
+    }
+
     //suspend fun getItems() = shoppingDao.getAll()
     fun getItems() = shoppingDao.getAll()
 
     // If item already exists just increase the quantity otherwise insert a new Item
     suspend fun addItem(item: Item) : Long {
-        val dbItem = shoppingDao.getItem(item.name)
+        val dbItem = shoppingDao.getItem(item.productName!!)
         return if (dbItem == null) {
             shoppingDao.insert(item)
         } else {
@@ -32,7 +37,7 @@ class ShoppingRepository(private val context: Context) {
     suspend fun updateItem(item: Item) = shoppingDao.update(item)
     suspend fun deleteItem(item: Item) = shoppingDao.delete(item)
 
-
+    suspend fun getProducts(categoryId: Int) = productDao.getProducts(categoryId)
 }
 
 /*
@@ -40,7 +45,8 @@ class ShoppingRepository(private val context: Context) {
 @Entity(foreignKeys = [
         ForeignKey(entity = Owner::class,
                 parentColumns = ["userId"],
-                childColumns = ["owner"])
+                childColumns = ["owner"],
+                onDelete = ForeignKey.CASCADE)
         ])
 data class Pet(@PrimaryKey val catId: Long,
                val name: String, val ownerId: Long)
@@ -70,4 +76,22 @@ class Converter{
         }
     }
 }
+
+@JvmField val birthday: LocalDateTime
+
+object DateConverter {
+@TypeConverter @JvmStatic
+fun toDate(value: Long): Date {
+return Date(value)
+}
+@TypeConverter @JvmStatic
+fun toLong(value: Date): Long {
+return value.time
+}
+}
+
+@TypeConverters(DateConverter::class)
+abstract class ContactsDatabase: RoomDatabase() {
+
+
 */
