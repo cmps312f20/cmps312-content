@@ -17,8 +17,8 @@ class ShoppingViewModel(appContext: Application) : AndroidViewModel(appContext) 
         shoppingRepository.addItem(item)
     }
 
-    fun updateItem(item: Item) = viewModelScope.launch(Dispatchers.IO) {
-        shoppingRepository.updateItem(item)
+    fun updateQuantity(item: Item) = viewModelScope.launch(Dispatchers.IO) {
+        shoppingRepository.updateQuantity(item.id, item.quantity)
     }
 
     fun deleteItem(item: Item) = viewModelScope.launch(Dispatchers.IO) {

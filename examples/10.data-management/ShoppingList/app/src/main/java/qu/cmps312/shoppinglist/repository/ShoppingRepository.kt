@@ -1,10 +1,8 @@
 package qu.cmps312.shoppinglist.repository
 
 import android.content.Context
-import androidx.room.*
 import qu.cmps312.shoppinglist.db.ShoppingDB
 import qu.cmps312.shoppinglist.entity.Item
-import java.math.BigDecimal
 
 // Repository, abstracts access to multiple data sources
 class ShoppingRepository(private val context: Context) {
@@ -12,87 +10,33 @@ class ShoppingRepository(private val context: Context) {
         ShoppingDB.getInstance(context)
     }
 
-    private val shoppingDao by lazy {
-        shoppingDB.getShoppingDao()
+    private val itemDao by lazy {
+        shoppingDB.getItemDao()
     }
 
     private val productDao by lazy {
         shoppingDB.getProductDao()
     }
 
-    //suspend fun getItems() = shoppingDao.getAll()
-    fun getItems() = shoppingDao.getAll()
+    fun getItems() = itemDao.getAll()
 
     // If item already exists just increase the quantity otherwise insert a new Item
     suspend fun addItem(item: Item) : Long {
-        val dbItem = shoppingDao.getItem(item.productId)
+        val dbItem = itemDao.getItem(item.productId)
         return if (dbItem == null) {
-            shoppingDao.insert(item)
+            // Ensure that the productName is always null
+            item.productName = null
+            itemDao.insert(item)
         } else {
-            dbItem.quantity += item.quantity
-            shoppingDao.update(dbItem)
+            val quantity = dbItem.quantity + item.quantity
+            itemDao.updateQuantity(dbItem.id, quantity)
             dbItem.id
         }
     }
-    suspend fun updateItem(item: Item) = shoppingDao.update(item)
-    suspend fun deleteItem(item: Item) = shoppingDao.delete(item)
+
+    suspend fun updateQuantity(id: Long, quantity: Int) = itemDao.updateQuantity(id,quantity)
+    suspend fun deleteItem(item: Item) = itemDao.delete(item)
 
     suspend fun getProducts(categoryId: Long) = productDao.getProducts(categoryId)
     fun getCategories() = productDao.getCategories()
 }
-
-/*
-// Entity and its relations are  fetched by Room
-@Entity(foreignKeys = [
-        ForeignKey(entity = Owner::class,
-                parentColumns = ["userId"],
-                childColumns = ["owner"],
-                onDelete = ForeignKey.CASCADE)
-        ])
-data class Pet(@PrimaryKey val catId: Long,
-               val name: String, val ownerId: Long)
-
-@Entity
-data class Owner(@PrimaryKey val id: Long, val name: String) {
-    @Relation(parentColumn = "id", entityColumn = "ownerId")
-    val pets = listOf<Pet>()
-}
-
-@Dao
-public interface OwnerDao {
-    @Query("SELECT id, name FROM Owner")
-    suspend fun getAll() : List<Owner>
-}
-
-class Converter{
-    companion object{
-        @TypeConverter
-        fun fromBigDecimal(value: BigDecimal):String{
-            return value.toString()
-        }
-
-        @TypeConverter
-        fun toBigDecimal(value:String):BigDecimal{
-            return value.toBigDecimal()
-        }
-    }
-}
-
-@JvmField val birthday: LocalDateTime
-
-object DateConverter {
-@TypeConverter @JvmStatic
-fun toDate(value: Long): Date {
-return Date(value)
-}
-@TypeConverter @JvmStatic
-fun toLong(value: Date): Long {
-return value.time
-}
-}
-
-@TypeConverters(DateConverter::class)
-abstract class ContactsDatabase: RoomDatabase() {
-
-
-*/

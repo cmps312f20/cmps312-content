@@ -2,7 +2,6 @@ package qu.cmps312.shoppinglist.db
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import kotlinx.coroutines.flow.Flow
 import qu.cmps312.shoppinglist.entity.Item
 
 @Dao
@@ -14,7 +13,6 @@ interface ItemDao {
     */
     // suspend fun getAll() : List<Item>
     // p.name || ' ' || p.image : means concatenate name and image
-    @Transaction
     @Query("select i.*, (p.name || ' ' || p.image) as productName from Item i join Product p on i.productId = p.id")
     fun getAll() : LiveData<List<Item>>
 
@@ -23,6 +21,9 @@ interface ItemDao {
 
     @Query("select count(*) from Item")
     fun getCount() : Long
+
+    @Query("update Item set quantity = :quantity where id = :id")
+    fun updateQuantity(id: Long, quantity: Int)
 
     // Returns id of newly added item
     @Insert

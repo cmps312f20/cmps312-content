@@ -24,6 +24,9 @@ class ShoppingListFragment : Fragment(R.layout.fragment_shopping_list) {
 
         shoppingViewModel.shoppingList.observe(viewLifecycleOwner) {
             shoppingListAdapter.items = it
+            it.forEach {
+               println(">> Debug: ${it.productName} -> ${it.updatedDate}")
+            }
         }
 
         swipeToRefresh.setOnRefreshListener {
@@ -50,6 +53,6 @@ class ShoppingListFragment : Fragment(R.layout.fragment_shopping_list) {
     }
 
     private fun onQuantityChanged(item: Item) {
-        shoppingViewModel.updateItem(item)
+        shoppingViewModel.updateQuantity(item)
     }
 }

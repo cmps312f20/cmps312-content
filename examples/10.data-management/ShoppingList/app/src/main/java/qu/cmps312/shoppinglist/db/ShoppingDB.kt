@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import kotlinx.coroutines.*
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
@@ -12,9 +13,10 @@ import qu.cmps312.shoppinglist.entity.Item
 import qu.cmps312.shoppinglist.entity.Product
 
 // If you change the version the DB will be dropped and recreated
-@Database(entities = [Product::class, Category::class, Item::class], version = 2, exportSchema = false)
+@Database(entities = [Product::class, Category::class, Item::class], version = 1, exportSchema = false)
+@TypeConverters(DateConverter::class)
 abstract class ShoppingDB : RoomDatabase() {
-    abstract fun getShoppingDao(): ItemDao
+    abstract fun getItemDao(): ItemDao
     abstract fun getProductDao(): ProductDao
 
     // Create a singleton dbInstance
