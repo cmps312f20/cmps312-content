@@ -11,9 +11,13 @@ import kotlinx.serialization.json.Json
 import qu.cmps312.shoppinglist.entity.Category
 import qu.cmps312.shoppinglist.entity.Item
 import qu.cmps312.shoppinglist.entity.Product
+import qu.cmps312.shoppinglist.entity.User
 
-// If you change the version the DB will be dropped and recreated
-@Database(entities = [Product::class, Category::class, Item::class], version = 1, exportSchema = false)
+/* Every time you change your entity classes, you must change the DB version
+   otherwise you will get an exception.
+   When the version changes the DB will be dropped and recreated
+ */
+@Database(entities = [Product::class, Category::class, Item::class, User::class], version = 2, exportSchema = false)
 @TypeConverters(DateConverter::class)
 abstract class ShoppingDB : RoomDatabase() {
     abstract fun getItemDao(): ItemDao
