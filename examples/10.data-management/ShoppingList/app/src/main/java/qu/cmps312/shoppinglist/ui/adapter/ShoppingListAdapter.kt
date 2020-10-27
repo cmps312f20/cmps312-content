@@ -6,20 +6,20 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.list_item.view.*
 import qu.cmps312.shoppinglist.R
-import qu.cmps312.shoppinglist.entity.Item
+import qu.cmps312.shoppinglist.entity.ShoppingItem
 
-class ShoppingListAdapter(private val deleteListener: (Item) -> Unit,
-                          private val quantityChangedListener: (Item) -> Unit)
+class ShoppingListAdapter(private val deleteListener: (ShoppingItem) -> Unit,
+                          private val quantityChangedListener: (ShoppingItem) -> Unit)
     : RecyclerView.Adapter<ShoppingListAdapter.ItemViewHolder>(){
 
-    var items = listOf<Item>()
+    var items = listOf<ShoppingItem>()
         set(value) {
             field = value
             notifyDataSetChanged()
         }
 
     inner class ItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        fun bind(item: Item){
+        fun bind(item: ShoppingItem){
             itemView.apply {
                 nameTv.text = item.productName
                 quantityTv.text = item.quantity.toString()

@@ -10,7 +10,7 @@ import com.google.android.material.snackbar.Snackbar
 import qu.cmps312.shoppinglist.R
 import qu.cmps312.shoppinglist.ui.adapter.ShoppingListAdapter
 import kotlinx.android.synthetic.main.fragment_shopping_list.*
-import qu.cmps312.shoppinglist.entity.Item
+import qu.cmps312.shoppinglist.entity.ShoppingItem
 import qu.cmps312.shoppinglist.ui.viewmodel.ShoppingViewModel
 
 class ShoppingListFragment : Fragment(R.layout.fragment_shopping_list) {
@@ -25,7 +25,7 @@ class ShoppingListFragment : Fragment(R.layout.fragment_shopping_list) {
         shoppingViewModel.shoppingList.observe(viewLifecycleOwner) {
             shoppingListAdapter.items = it
             it.forEach {
-               println(">> Debug: ${it.productName} -> ${it.updatedDate}")
+            //   println(">> Debug: ${it.productName} -> ${it.updatedDate}")
             }
         }
 
@@ -44,7 +44,7 @@ class ShoppingListFragment : Fragment(R.layout.fragment_shopping_list) {
         }
     }
 
-    private fun onItemDeleted(item: Item) {
+    private fun onItemDeleted(item: ShoppingItem) {
         shoppingViewModel.deleteItem(item)
 
         Snackbar.make(requireView(), "${item.productName} removed", Snackbar.LENGTH_LONG).setAction("UNDO") {
@@ -52,7 +52,7 @@ class ShoppingListFragment : Fragment(R.layout.fragment_shopping_list) {
         }.show()
     }
 
-    private fun onQuantityChanged(item: Item) {
+    private fun onQuantityChanged(item: ShoppingItem) {
         shoppingViewModel.updateQuantity(item)
     }
 }

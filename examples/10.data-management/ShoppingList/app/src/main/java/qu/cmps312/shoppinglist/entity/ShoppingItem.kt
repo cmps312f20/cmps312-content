@@ -10,7 +10,7 @@ import java.util.*
     onDelete = ForeignKey.CASCADE)],
     // Create an index on the productId column to speed-up query execution
     indices = [Index(value = ["productId"])])
-data class Item(
+data class ShoppingItem(
     @PrimaryKey(autoGenerate = true)
     val id: Long,
     val productId: Long,
@@ -28,7 +28,7 @@ data class Item(
     /* Need to add TypeConverter otherwise you get compile time error
         Cannot figure out how to read/save this field into database
      */
-    val updatedDate: Date = java.util.Calendar.getInstance().time
+     val updatedDate: Date = java.util.Calendar.getInstance().time
 ) {
     constructor(productId: Long, quantity: Int) : this(0, productId, quantity)
 }

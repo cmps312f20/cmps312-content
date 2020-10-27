@@ -10,7 +10,7 @@ import qu.cmps312.shoppinglist.entity.Product
 @Dao
 interface ProductDao {
     // Product related methods
-    @Query("select p.*, c.name category from Product p join Category c on p.categoryId = c.id where p.categoryId = :categoryId order by p.name")
+    @Query("select p.id, p.name, p.image, p.categoryId, c.name category from Product p join Category c on p.categoryId = c.id where p.categoryId = :categoryId order by p.name")
     suspend fun getProducts(categoryId: Long): List<Product>
 
     @Insert

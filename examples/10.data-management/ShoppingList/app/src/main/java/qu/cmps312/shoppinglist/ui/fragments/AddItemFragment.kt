@@ -12,7 +12,7 @@ import androidx.fragment.app.activityViewModels
 import kotlinx.android.synthetic.main.fragment_add_item.*
 import qu.cmps312.shoppinglist.R
 import qu.cmps312.shoppinglist.entity.Category
-import qu.cmps312.shoppinglist.entity.Item
+import qu.cmps312.shoppinglist.entity.ShoppingItem
 import qu.cmps312.shoppinglist.entity.Product
 import qu.cmps312.shoppinglist.ui.viewmodel.ItemViewModel
 
@@ -89,7 +89,7 @@ class AddItemFragment : DialogFragment() {
 
         val quantity =  quantityEt.text.toString().toInt()
 
-        val item = Item(selectedProduct.id, quantity)
+        val item = ShoppingItem(selectedProduct.id, quantity)
         itemViewModel.addItem(item)
 
         // Clear the views to allow another entry

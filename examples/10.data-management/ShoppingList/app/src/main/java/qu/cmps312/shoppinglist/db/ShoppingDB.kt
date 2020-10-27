@@ -9,7 +9,7 @@ import kotlinx.coroutines.*
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import qu.cmps312.shoppinglist.entity.Category
-import qu.cmps312.shoppinglist.entity.Item
+import qu.cmps312.shoppinglist.entity.ShoppingItem
 import qu.cmps312.shoppinglist.entity.Product
 import qu.cmps312.shoppinglist.entity.User
 
@@ -17,10 +17,10 @@ import qu.cmps312.shoppinglist.entity.User
    otherwise you will get an exception.
    When the version changes the DB will be dropped and recreated
  */
-@Database(entities = [Product::class, Category::class, Item::class, User::class], version = 2, exportSchema = false)
+@Database(entities = [Product::class, Category::class, ShoppingItem::class, User::class], version = 1, exportSchema = false)
 @TypeConverters(DateConverter::class)
 abstract class ShoppingDB : RoomDatabase() {
-    abstract fun getItemDao(): ItemDao
+    abstract fun getShoppingItemDao(): ShoppingItemDao
     abstract fun getProductDao(): ProductDao
 
     // Create a singleton dbInstance
