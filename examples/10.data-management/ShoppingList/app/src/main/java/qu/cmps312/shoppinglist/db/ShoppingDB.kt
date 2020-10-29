@@ -25,8 +25,11 @@ abstract class ShoppingDB : RoomDatabase() {
 
     // Create a singleton dbInstance
     companion object {
+        @Volatile // meaning that writes to this field are immediately made visible to other threads
         private var dbInstance: ShoppingDB? = null
 
+        /* Protected from concurrent execution by multiple threads */
+        @Synchronized
         fun getInstance(context: Context): ShoppingDB {
             if (dbInstance == null) {
                 // Use Room.databaseBuilder to open( or create) the database
