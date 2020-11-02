@@ -1,7 +1,10 @@
 package qu.cmps312.shoppinglist.repository
 
+import android.net.Uri
 import com.google.firebase.auth.AuthResult
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
@@ -19,8 +22,18 @@ class AuthRepository {
     suspend fun signUp(user: User) : User? = withContext(Dispatchers.IO) {
         val authResult = Firebase.auth.createUserWithEmailAndPassword(user.email, user.password).await()
 
-        // Add the user details to Firestore
         authResult?.user?.let {
+            val userProfileChangeRequest = userProfileChangeRequest {
+                displayName = "${user.firstName} ${user.lastName}"
+                photoUri = Uri.parse("http://pngimg.com/uploads/spongebob/spongebob_PNG61.png")
+            }
+            // Add displayName and photoUri to the user
+            // Unfortunately it does not allow adding custom attribute such as role
+            it.updateProfile(userProfileChangeRequest).await()
+
+            it.sendEmailVerification().await()
+
+            // If needed, add further user details to Firestore
             user.uid = it.uid
             println(">> Debug: signUp.user.uid : ${user.uid}")
             userCollectionRef.document(user.uid).set(user).await()

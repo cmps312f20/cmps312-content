@@ -15,11 +15,14 @@
         android:title="Sign in" />
 
     <item
+        android:id="@+id/mi_sign_in_with_firebase_auth_ui"
+        android:title="Sign in with Firebase Auth UI" />
+
+    <item
         android:id="@+id/mi_sign_out"
         android:title="Sign out" />
 
     <item
-        android:id="@+id/mi_init_db"
+        android:id="@+id/mi_init_firebase_db"
         android:title="Initialize Firebase database" />
-
 </menu>

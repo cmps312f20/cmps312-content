@@ -14,6 +14,7 @@ import qu.cmps312.shoppinglist.R
 import qu.cmps312.shoppinglist.ui.adapter.ShoppingListAdapter
 import kotlinx.android.synthetic.main.fragment_shopping_list.*
 import qu.cmps312.shoppinglist.entity.ShoppingItem
+import qu.cmps312.shoppinglist.ui.viewmodel.AuthViewModel
 import qu.cmps312.shoppinglist.ui.viewmodel.ShoppingListViewModel
 
 class ShoppingListFragment : Fragment(R.layout.fragment_shopping_list) {
@@ -29,10 +30,18 @@ class ShoppingListFragment : Fragment(R.layout.fragment_shopping_list) {
             shoppingListAdapter.items = it
         }
 
-        shoppingListViewModel.currentUser.observe(requireActivity()) {
-            println(">> Debug:  shoppingListViewModel.currentUser change $it")
-            shoppingListViewModel.getShoppingItems()
+
+        // Every time the user changes, refresh the shopping list from Firestore
+        Firebase.auth.addAuthStateListener {
+            println(">> Debug: Firebase.auth.addAuthStateListener: ${it.currentUser?.email}")
+            shoppingListViewModel.getShoppingListItems()
         }
+        /*
+        // Another way of doing so
+        authViewModel.currentUser.observe(requireActivity()) {
+            println(">> Debug:  authViewModel.currentUser change $it")
+            shoppingListViewModel.getShoppingListItems()
+        }*/
 
         swipeToRefresh.setOnRefreshListener {
             //shoppingViewModel.getItems()

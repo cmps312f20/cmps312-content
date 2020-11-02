@@ -26,4 +26,9 @@ data class User(
 {
     // Required by Firebase deserializer other you get exception 'does not define a no-argument constructor'
     constructor(): this("", "", "", "",  "", "",null)
+    constructor(uid: String, displayName: String, email: String): this(uid, displayName, "", email,  "", "",null)
+
+    override fun toString()
+             = "${firstName.trim()} - ${email.trim()}".trim()
+
 }
