@@ -11,7 +11,7 @@ class ShoppingViewModel(appContext: Application) : AndroidViewModel(appContext) 
     private val shoppingRepository = ShoppingRepository(appContext)
     val shoppingList = shoppingRepository.getItems()
 
-    fun addItem(item: ShoppingItem) = viewModelScope.launch(Dispatchers.IO) {
+    fun addItem(item: ShoppingItem) =  viewModelScope.launch(Dispatchers.IO) {
         shoppingRepository.addItem(item)
     }
 

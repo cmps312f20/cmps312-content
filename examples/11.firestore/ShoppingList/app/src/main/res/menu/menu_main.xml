@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/mi_welcome"
+        android:title="Welcome..." />
+
+    <item
+        android:id="@+id/mi_sign_up"
+        android:title="Sign up" />
+
+    <item
+        android:id="@+id/mi_sign_in"
+        android:title="Sign in" />
+
+    <item
+        android:id="@+id/mi_sign_out"
+        android:title="Sign out" />
+
+    <item
+        android:id="@+id/mi_init_db"
+        android:title="Initialize Firebase database" />
+
+</menu>

@@ -1,10 +1,10 @@
 package qu.cmps312.shoppinglist.entity
 
 import androidx.room.*
+import com.google.firebase.firestore.DocumentId
 import kotlinx.serialization.Serializable
 
 @Serializable
-
 @Entity(foreignKeys = [ForeignKey(entity = Category::class,
     parentColumns = ["id"],
     childColumns = ["categoryId"],
@@ -12,11 +12,12 @@ import kotlinx.serialization.Serializable
     // Create an index on the categoryId column to speed-up query execution
     indices = [Index(value = ["categoryId"])])
 data class Product(
-    @PrimaryKey(autoGenerate = true)
-    val id: Long = 0,
+    @PrimaryKey
+    @DocumentId
+    val id: String = "",
     val name: String,
-    val image: String,
-    val categoryId: Long = 0,
+    val icon: String,
+    val categoryId: String = "",
     /*
     Unfortunate limitation in Room:
       If category is annotated with @Ignore Room will ignore when writing 👍 but
@@ -27,10 +28,13 @@ data class Product(
     //@Ignore
     val category: String? = null
 ) {
-    constructor(name: String, image: String, categoryId: Long)
-            : this(0, name, image, categoryId)
+    // Required by Firebase deserializer other you get exception 'does not define a no-argument constructor'
+    constructor(): this("", "", "")
+
+    constructor(name: String, image: String, categoryId: String)
+            : this("", name, image, categoryId)
 
     override fun toString(): String {
-        return "$name $image"
+        return "$name $icon"
     }
 }
