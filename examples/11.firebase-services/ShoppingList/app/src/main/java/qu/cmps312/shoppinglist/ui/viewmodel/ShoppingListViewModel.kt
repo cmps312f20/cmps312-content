@@ -2,7 +2,10 @@ package qu.cmps312.shoppinglist.ui.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.*
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ListenerRegistration
+import com.google.firebase.firestore.Query
+import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import qu.cmps312.shoppinglist.entity.ShoppingItem

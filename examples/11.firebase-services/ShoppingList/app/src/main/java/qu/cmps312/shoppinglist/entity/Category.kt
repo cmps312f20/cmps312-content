@@ -11,8 +11,7 @@ data class Category(
     @PrimaryKey
     @DocumentId
     val id: String = "",
-    val name: String
-) {
+    val name: String) {
 
     // Required by Firebase deserializer other you get exception 'does not define a no-argument constructor'
     constructor(): this("", "")

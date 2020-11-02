@@ -31,20 +31,26 @@ class AuthRepository {
             // Unfortunately it does not allow adding custom attribute such as role
             it.updateProfile(userProfileChangeRequest).await()
 
-            it.sendEmailVerification().await()
+            // You may send the user a link to confirm their email address
+            // it.sendEmailVerification().await()
 
             // If needed, add further user details to Firestore
             user.uid = it.uid
             println(">> Debug: signUp.user.uid : ${user.uid}")
-            userCollectionRef.document(user.uid).set(user).await()
+            addUser(user)
             return@withContext user
         }
         return@withContext null
     }
 
+    private suspend fun addUser(user: User) {
+        userCollectionRef.document(user.email).set(user).await()
+    }
+
     suspend fun signIn(email: String, password: String) : User? = withContext(Dispatchers.IO) {
         val authResult = Firebase.auth.signInWithEmailAndPassword(email, password).await()
         println(">> Debug: signIn.authResult : ${authResult.user?.uid}")
+
         var user : User? = null
         // Get the user details from Firestore
         authResult?.user?.let {

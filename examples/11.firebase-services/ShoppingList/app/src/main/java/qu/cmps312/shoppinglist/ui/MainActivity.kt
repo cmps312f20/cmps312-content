@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         // Get further details from Firestore about current user
         authViewModel.setCurrentUser()
 
-        // Every time the user changes, refresh the shopping list from Firestore
+        // Every time the Auth state changes display a message
         Firebase.auth.addAuthStateListener {
             println(">> Debug: Firebase.auth.addAuthStateListener: ${it.currentUser?.email}")
             val message = if (it.currentUser != null)

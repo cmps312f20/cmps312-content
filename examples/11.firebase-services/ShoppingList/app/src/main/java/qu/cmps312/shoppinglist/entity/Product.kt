@@ -26,8 +26,7 @@ data class Product(
       So, as a workaround we store it as a null value but never read it
     */
     //@Ignore
-    val category: String? = null
-) {
+    val category: String? = null) {
     // Required by Firebase deserializer other you get exception 'does not define a no-argument constructor'
     constructor(): this("", "", "")
 

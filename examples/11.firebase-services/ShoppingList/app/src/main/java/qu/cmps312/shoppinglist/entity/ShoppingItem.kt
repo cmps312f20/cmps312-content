@@ -33,8 +33,7 @@ data class ShoppingItem(
      */
     @ServerTimestamp
      val updatedDate: Date = java.util.Calendar.getInstance().time,
-     var uid : String? = null
-) {
+     var uid : String? = null) {
     // Required by Firebase deserializer other you get exception 'does not define a no-argument constructor'
     constructor(): this("", "", 0)
 

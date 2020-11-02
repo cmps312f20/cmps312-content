@@ -22,8 +22,7 @@ data class User(
     // Marks property as excluded from saving to Firestore
     @get:Exclude val password: String,
     val role: String,
-    @Embedded val address: Address?)
-{
+    @Embedded val address: Address?) {
     // Required by Firebase deserializer other you get exception 'does not define a no-argument constructor'
     constructor(): this("", "", "", "",  "", "",null)
     constructor(uid: String, displayName: String, email: String): this(uid, displayName, "", email,  "", "",null)

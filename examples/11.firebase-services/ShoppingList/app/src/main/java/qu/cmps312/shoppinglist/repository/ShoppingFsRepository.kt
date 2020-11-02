@@ -1,10 +1,6 @@
 package qu.cmps312.shoppinglist.repository
 
-import android.app.DownloadManager
 import android.content.Context
-import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.Query
@@ -34,13 +30,9 @@ class ShoppingFsRepository(private val context: Context) {
 
     suspend fun getShoppingItem(uid: String, productId: String) : ShoppingItem? {
         val queryResult = shoppingItemCollectionRef
-                                .whereEqualTo("uid", uid).whereEqualTo("productId", productId)
-                                .get().await()
-        val docs = queryResult.documents
-        return if (docs.isNotEmpty())
-            docs[0].toObject(ShoppingItem::class.java)
-        else
-            null
+            .whereEqualTo("uid", uid).whereEqualTo("productId", productId)
+            .get().await()
+        return queryResult.firstOrNull()?.toObject(ShoppingItem::class.java)
     }
 
     // If item already exists just increase the quantity otherwise insert a new Item
@@ -68,34 +60,30 @@ class ShoppingFsRepository(private val context: Context) {
         shoppingItemCollectionRef.document(item.id).delete().await()
     }
 
-    suspend fun getProducts(categoryId: String) : List<Product?> {
-        val queryResult = categoryCollectionRef.document(categoryId).collection("products").orderBy("name").get().await()
-        return queryResult.toObjects(Product::class.java)
-    }
-
     fun getCategories() = liveData<List<Category?>> {
-        val queryResult = categoryCollectionRef.orderBy("name").get().await()
+        val queryResult = categoryCollectionRef.orderBy("name", Query.Direction.DESCENDING).get().await()
         val categories = queryResult.toObjects(Category::class.java)
         emit(categories)
     }
 
-    private suspend fun isCategoryCollectionEmpty() : Boolean {
-        val queryResult = categoryCollectionRef.limit(1).get().await()
-        return queryResult.isEmpty
+    private suspend fun getCategory(category: String) : Category? {
+        val queryResult = categoryCollectionRef.whereEqualTo("category", category).get().await()
+        return queryResult.firstOrNull()?.toObject(Category::class.java)
     }
 
-    private suspend fun getCategoryId(category: Category) : String? {
-        val queryResult = categoryCollectionRef.whereEqualTo("category", category).get().await()
-        val docs = queryResult.documents
-        return if (docs.isNotEmpty())
-            docs[0].toObject(Category::class.java)?.id
-        else
-            null
+    private suspend fun isThereCategoryCollection() : Boolean {
+        val queryResult = categoryCollectionRef.limit(1).get().await()
+        return queryResult.isEmpty
     }
 
     private suspend fun addCategory(category: Category) : String {
         val queryResult = categoryCollectionRef.add(category).await()
         return queryResult.id
+    }
+
+    suspend fun getProducts(categoryId: String) : List<Product?> {
+        val queryResult = categoryCollectionRef.document(categoryId).collection("products").orderBy("name").get().await()
+        return queryResult.toObjects(Product::class.java)
     }
 
     private suspend fun addProduct(categoryId: String, product: Product) : String {
@@ -104,7 +92,7 @@ class ShoppingFsRepository(private val context: Context) {
     }
 
     suspend fun initDB() : String {
-        if (!isCategoryCollectionEmpty()) {
+        if (!isThereCategoryCollection()) {
             return "Firebase database is already initialized"
         }
 
