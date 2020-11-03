@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".ui.StorageActivity">
+
+    <ImageView
+        android:id="@+id/ivImage"
+        android:layout_width="135dp"
+        android:layout_height="0dp"
+        android:background="#B1B1B1"
+        app:layout_constraintBottom_toBottomOf="@+id/btnDeleteImage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnUploadImage"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Upload Image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivImage"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnDownloadImage"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Download Image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivImage"
+        app:layout_constraintTop_toBottomOf="@+id/btnUploadImage" />
+
+    <Button
+        android:id="@+id/btnDeleteImage"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Delete Image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivImage"
+        app:layout_constraintTop_toBottomOf="@+id/btnDownloadImage" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvImages"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivImage" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

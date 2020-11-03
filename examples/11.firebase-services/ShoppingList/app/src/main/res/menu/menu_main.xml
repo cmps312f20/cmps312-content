@@ -25,4 +25,8 @@
     <item
         android:id="@+id/mi_init_firebase_db"
         android:title="Initialize Firebase database" />
+
+    <item
+        android:id="@+id/mi_cloud_storage"
+        android:title="Cloud Storage" />
 </menu>

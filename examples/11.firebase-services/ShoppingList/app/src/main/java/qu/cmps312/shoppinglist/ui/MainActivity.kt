@@ -152,6 +152,11 @@ class MainActivity : AppCompatActivity() {
                 authViewModel.signOut()
                 //AuthUI.getInstance().signOut(this)
             }
+
+            R.id.mi_cloud_storage -> {
+                val intent = Intent(this, StorageActivity::class.java)
+                startActivity(intent)
+            }
         }
         return super.onOptionsItemSelected(item)
     }
