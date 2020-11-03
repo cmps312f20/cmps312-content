@@ -2,8 +2,8 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-android-extensions'
-    id 'kotlinx-serialization'
     id 'kotlin-kapt'
+    id 'kotlinx-serialization'
     id 'com.google.gms.google-services'
 }
 

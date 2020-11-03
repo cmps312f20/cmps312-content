@@ -67,7 +67,7 @@ class ShoppingFsRepository(private val context: Context) {
     }
 
     private suspend fun getCategory(category: String) : Category? {
-        val queryResult = categoryCollectionRef.whereEqualTo("category", category).get().await()
+        val queryResult = categoryCollectionRef.whereEqualTo("name", category).get().await()
         return queryResult.firstOrNull()?.toObject(Category::class.java)
     }
 
@@ -84,6 +84,14 @@ class ShoppingFsRepository(private val context: Context) {
     suspend fun getProducts(categoryId: String) : List<Product?> {
         val queryResult = categoryCollectionRef.document(categoryId).collection("products").orderBy("name").get().await()
         return queryResult.toObjects(Product::class.java)
+    }
+
+    suspend fun getProduct(categoryId: String, productName: String) : Product? {
+        val queryResult = categoryCollectionRef.document(categoryId)
+                                               .collection("products")
+                                               .whereEqualTo("name", productName)
+                                               .get().await()
+        return queryResult.firstOrNull()?.toObject(Product::class.java)
     }
 
     private suspend fun addProduct(categoryId: String, product: Product) : String {
