@@ -66,8 +66,8 @@ class ShoppingFsRepository(private val context: Context) {
         emit(categories)
     }
 
-    private suspend fun getCategory(category: String) : Category? {
-        val queryResult = categoryCollectionRef.whereEqualTo("name", category).get().await()
+    private suspend fun getCategory(categoryName: String) : Category? {
+        val queryResult = categoryCollectionRef.whereEqualTo("name", categoryName).get().await()
         return queryResult.firstOrNull()?.toObject(Category::class.java)
     }
 

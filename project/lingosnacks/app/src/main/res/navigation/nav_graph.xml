@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/packagesFragment">
+
+    <fragment
+        android:id="@+id/packagesFragment"
+        android:name="qu.cmps312.lingosnacks.ui.fragment.PackagesFragment"
+        android:label="Learning Packages" >
+        <action
+            android:id="@+id/toPackageRatings"
+            app:destination="@id/ratingsFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/signInFragment"
+        android:name="qu.cmps312.lingosnacks.ui.fragment.SignInFragment"
+        android:label="fragment_signin"
+        tools:layout="@layout/fragment_signin" />
+    <dialog
+        android:id="@+id/signUpFragment"
+        android:name="qu.cmps312.lingosnacks.ui.fragment.SignUpFragment"
+        android:label="fragment_signup"
+        tools:layout="@layout/fragment_signup" />
+    <fragment
+        android:id="@+id/ratingsFragment"
+        android:name="qu.cmps312.lingosnacks.ui.fragment.RatingsFragment"
+        android:label="Package Reviews"
+        tools:layout="@layout/fragment_ratings" />
+</navigation>

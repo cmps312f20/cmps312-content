@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">LingoSnacks</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+
+    <string-array name="roles">
+        <item>Teacher</item>
+        <item>Student</item>
+    </string-array>
+</resources>

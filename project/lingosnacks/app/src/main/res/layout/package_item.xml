@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+   <data>
+        <variable
+            name="learningPackage"
+            type="qu.cmps312.lingosnacks.model.LearningPackage" />
+
+        <variable
+           name="currentUserEmail"
+           type="String" />
+   </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="20dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/backgroundIv"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="4dp"
+                android:background="@drawable/ic_background"
+                app:layout_constraintBottom_toTopOf="@+id/horizontalGuideline"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/packageIv"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="8dp"
+                app:imageUrl="@{learningPackage.iconUrl}"
+                app:layout_constraintBottom_toTopOf="@+id/horizontalGuideline"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/verticalGuideline"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@drawable/img_default_package_img" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/horizontalGuideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.32" />
+
+            <TextView
+                android:id="@+id/packageTitleTv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:hint="Learning Package Title"
+                android:text="@{learningPackage.title}"
+                android:textColor="@color/dark_blue"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@+id/verticalGuideline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/packageCatTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:hint="Category"
+                android:text="@{learningPackage.category}"
+                android:textColor="@color/dark_blue"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textView8"
+                app:layout_constraintStart_toEndOf="@+id/textView8" />
+
+            <TextView
+                android:id="@+id/packageDescTv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:hint="Description"
+                android:text="@{learningPackage.description}"
+                android:textColor="@color/dark_blue"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/horizontalGuideline" />
+
+            <TextView
+                android:id="@+id/packageAuthorTv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:hint="Author"
+                android:text="@{learningPackage.author}"
+                android:textColor="@color/dark_blue"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textView2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textView2" />
+
+            <TextView
+                android:id="@+id/keywordsTv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:hint="Keywords"
+                android:text="@{String.valueOf(learningPackage.keywords)}"
+                app:layout_constraintBaseline_toBaselineOf="@+id/keywordsLabel"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/keywordsLabel" />
+
+            <ImageButton
+                android:id="@+id/rateBtn"
+                app:hideIfFalse="@{learningPackage.isSignedIn(currentUserEmail)}"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:background="#FFFFFF"
+                app:layout_constraintStart_toEndOf="@+id/ratingsBtn"
+                app:layout_constraintTop_toTopOf="@+id/ratingsBtn"
+                app:srcCompat="@drawable/ic_rate" />
+
+            <ImageButton
+                android:id="@+id/viewBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:background="#FFFFFF"
+                app:layout_constraintEnd_toStartOf="@+id/updateBtn"
+                app:layout_constraintTop_toTopOf="@+id/updateBtn"
+                app:srcCompat="@drawable/ic_view" />
+
+            <ImageButton
+                android:id="@+id/updateBtn"
+                app:hideIfFalse="@{learningPackage.isOwner(currentUserEmail)}"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginEnd="16dp"
+                android:background="#FCFAED"
+                app:layout_constraintEnd_toStartOf="@+id/deleteBtn"
+                app:layout_constraintTop_toTopOf="@+id/deleteBtn"
+                app:srcCompat="@drawable/ic_update" />
+
+            <ImageView
+                android:id="@+id/deleteBtn"
+                app:hideIfFalse="@{learningPackage.isOwner(currentUserEmail)}"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ratingBar"
+                app:srcCompat="@drawable/ic_delete" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Category:"
+                android:textColor="@color/dark_blue"
+                app:layout_constraintStart_toStartOf="@+id/packageTitleTv"
+                app:layout_constraintTop_toBottomOf="@+id/packageTitleTv" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Author: "
+                android:textColor="@color/dark_blue"
+                app:layout_constraintStart_toStartOf="@+id/packageDescTv"
+                app:layout_constraintTop_toBottomOf="@+id/packageDescTv" />
+
+            <TextView
+                android:id="@+id/keywordsLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Keywords: "
+                android:textColor="@color/dark_blue"
+                app:layout_constraintStart_toStartOf="@+id/textView2"
+                app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/verticalGuideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.75" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:hint="0 Words Inside!"
+                android:text="@{learningPackage.words.size() +` Words Inside!`}"
+                android:textColor="@color/dark_blue"
+                app:layout_constraintBottom_toBottomOf="@+id/packageCatTv"
+                app:layout_constraintEnd_toStartOf="@+id/verticalGuideline"
+                app:layout_constraintTop_toTopOf="@+id/packageCatTv" />
+
+            <RatingBar
+                android:id="@+id/ratingBar"
+                style="?android:attr/ratingBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:isIndicator="true"
+                android:numStars="5"
+                android:rating="@{(float)learningPackage.avgRating}"
+                app:layout_constraintStart_toStartOf="@+id/keywordsLabel"
+                app:layout_constraintTop_toBottomOf="@+id/keywordsLabel" />
+
+            <ImageButton
+                android:id="@+id/ratingsBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:background="#FFFFFF"
+                app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
+                app:layout_constraintStart_toEndOf="@+id/ratingBar"
+                app:layout_constraintTop_toTopOf="@+id/ratingBar"
+                app:srcCompat="@drawable/ic_rating_details" />
+
+            <ImageButton
+                android:id="@+id/downLoadBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:background="#FFFFFF"
+                app:layout_constraintEnd_toStartOf="@+id/viewBtn"
+                app:layout_constraintTop_toTopOf="@+id/viewBtn"
+                app:srcCompat="@drawable/ic_download" />
+
+            <ImageButton
+                android:id="@+id/matchW2DBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:background="#FFFFFF"
+                app:layout_constraintEnd_toStartOf="@+id/downLoadBtn"
+                app:layout_constraintTop_toTopOf="@+id/downLoadBtn"
+                app:srcCompat="@drawable/ic_match" />
+
+            <ImageButton
+                android:id="@+id/arrangeSentenceBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:background="#FFFFFF"
+                app:layout_constraintEnd_toStartOf="@+id/matchW2DBtn"
+                app:layout_constraintTop_toTopOf="@+id/matchW2DBtn"
+                app:srcCompat="@drawable/ic_arrange" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>
