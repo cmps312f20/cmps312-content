@@ -1,4 +1,4 @@
-package qu.cmps312.lingosnacks.ui.fragment
+package qu.cmps312.lingosnacks.ui.auth
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -48,7 +48,7 @@ class SignUpFragment : DialogFragment() {
         if (
             firstName.isNotEmpty() &&
             lastName.isNotEmpty() &&
-            email.isNotEmpty() &&
+            email.isValidEmail() &&
             password.isNotEmpty() &&
             photoUri.isNotEmpty() &&
             role.isNotEmpty()

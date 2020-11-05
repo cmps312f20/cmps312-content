@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import qu.cmps312.lingosnacks.model.LearningPackage
+import qu.cmps312.lingosnacks.model.Rating
 import qu.cmps312.lingosnacks.model.Sentence
 import qu.cmps312.lingosnacks.model.Word
 import qu.cmps312.lingosnacks.repositories.PackageRepository
@@ -31,6 +32,7 @@ class PackageViewModel(application: Application) : AndroidViewModel(application)
         _packages.value?.let {
             it.remove(learningPackage)
             _packages.value = it
+            selectedPackage = null
         }
     }
 
@@ -53,6 +55,7 @@ class PackageViewModel(application: Application) : AndroidViewModel(application)
     }
 
     fun getRatings() = packageRepository.getRatings(selectedPackage?.packageId!!)
+    fun addRating(rating: Rating) = packageRepository.addRating(rating)
 
      /*fun findItem(learningPackage: LearningPackage): Int {
       _packages.value?.let {

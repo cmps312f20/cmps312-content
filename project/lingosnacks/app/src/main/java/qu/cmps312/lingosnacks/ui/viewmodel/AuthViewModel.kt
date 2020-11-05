@@ -7,6 +7,8 @@ import androidx.lifecycle.MutableLiveData
 import qu.cmps312.lingosnacks.model.User
 import qu.cmps312.lingosnacks.repositories.AuthRepository
 
+data class UserInfo(val email: String = "", val role: String = "")
+
 class AuthViewModel(appContext: Application) : AndroidViewModel(appContext) {
     private val authRepository = AuthRepository(appContext)
 
@@ -35,4 +37,13 @@ class AuthViewModel(appContext: Application) : AndroidViewModel(appContext) {
         authRepository.signOut()
         _currentUser.value = null
     }
+
+    fun getCurrentUserInfo() : UserInfo {
+        var userInfo = UserInfo()
+        currentUser.value?.let {
+                userInfo = UserInfo(currentUser.value!!.email, currentUser.value!!.role)
+        }
+        return userInfo
+    }
+
 }

@@ -7,25 +7,38 @@
 
     <fragment
         android:id="@+id/packagesFragment"
-        android:name="qu.cmps312.lingosnacks.ui.fragment.PackagesFragment"
+        android:name="qu.cmps312.lingosnacks.ui.packages.PackagesFragment"
         android:label="Learning Packages" >
         <action
             android:id="@+id/toPackageRatings"
             app:destination="@id/ratingsFragment" />
+        <action
+            android:id="@+id/toFlashCards"
+            app:destination="@id/flashCardsFragment" />
     </fragment>
     <dialog
         android:id="@+id/signInFragment"
-        android:name="qu.cmps312.lingosnacks.ui.fragment.SignInFragment"
+        android:name="qu.cmps312.lingosnacks.ui.auth.SignInFragment"
         android:label="fragment_signin"
         tools:layout="@layout/fragment_signin" />
     <dialog
         android:id="@+id/signUpFragment"
-        android:name="qu.cmps312.lingosnacks.ui.fragment.SignUpFragment"
+        android:name="qu.cmps312.lingosnacks.ui.auth.SignUpFragment"
         android:label="fragment_signup"
         tools:layout="@layout/fragment_signup" />
     <fragment
         android:id="@+id/ratingsFragment"
-        android:name="qu.cmps312.lingosnacks.ui.fragment.RatingsFragment"
+        android:name="qu.cmps312.lingosnacks.ui.packages.RatingsFragment"
         android:label="Package Reviews"
         tools:layout="@layout/fragment_ratings" />
+    <dialog
+        android:id="@+id/ratePackageFragment"
+        android:name="qu.cmps312.lingosnacks.ui.packages.RatePackageFragment"
+        android:label="Rate Package"
+        tools:layout="@layout/fragment_rate_package" />
+    <fragment
+        android:id="@+id/flashCardsFragment"
+        android:name="qu.cmps312.lingosnacks.ui.flashcard.FlashCardsFragment"
+        android:label="Flash Cards"
+        tools:layout="@layout/fragment_flash_cards" />
 </navigation>

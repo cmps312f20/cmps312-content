@@ -38,7 +38,7 @@ class PackageRepository(val context: Context) {
         return ratings.filter { it.packageId == packageId }
     }
 
-    // ToDO: Whenever a new rating is added then recompute the package rating
+    // ToDO: Whenever a new rating is added then recompute & update the package avgRating and numRatings
     // this is typically done to improve performance and avoid computing the rating upon request
     /*
         // Compute new number of ratings
@@ -48,5 +48,7 @@ class PackageRepository(val context: Context) {
         val oldRatingTotal = avgRating * numRatings
         val newAvgRating = (oldRatingTotal + rating) / newNumRatings
      */
-    fun addRating(rating: Rating) {}
+    fun addRating(rating: Rating) {
+        println(">> Debug: PackageRepository.addRating: $rating")
+    }
 }

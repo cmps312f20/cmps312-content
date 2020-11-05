@@ -1,4 +1,4 @@
-package qu.cmps312.lingosnacks.ui.fragment
+package qu.cmps312.lingosnacks.ui.auth
 
 import android.os.Bundle
 import android.text.TextUtils

@@ -13,7 +13,7 @@
     android:layout_marginBottom="10dp"
     app:cardCornerRadius="40dp"
     app:cardElevation="10dp"
-    tools:context=".ui.fragment.RatingsFragment">
+    tools:context=".ui.packages.RatingsFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvRatings"
