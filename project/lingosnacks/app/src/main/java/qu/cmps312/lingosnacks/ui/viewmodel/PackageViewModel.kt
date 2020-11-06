@@ -68,27 +68,7 @@ class PackageViewModel(application: Application) : AndroidViewModel(application)
     fun getScores(uid: String) = packageRepository.getScores(uid)
     fun addScore(score: Score) = packageRepository.addScore(score)
     fun getLeaderBoard() = packageRepository.getLeaderBoard()
-    
-     /*fun findItem(learningPackage: LearningPackage): Int {
-      _packages.value?.let {
-            var foundAt = it.indexOfFirst { pack -> pack.packageID == learningPackage.packageID }
-            if (foundAt >= 0) {
-                return foundAt
-            }
-        }
-    }*/
 
-//    fun addWord(word: Word) {
-//        _packages.value?.let {
-//            // If item exists just increase the quantity
-//            var foundAt = it.indexOfFirst { pack -> pack.packageID == selectedPackage?.packageID ?: 0 }
-//            if (foundAt >= 0) {
-//                it[foundAt].words.let {
-//
-//                }
-//                _packages.value = it
-//            }
-//        }
-//    }
-
+    // ToDo initialize Firestore db with data from packages.json and users.json
+    fun initFirestoreDB() {}
 }

@@ -69,5 +69,14 @@
         android:id="@+id/packageEditorFragment"
         android:name="qu.cmps312.lingosnacks.ui.editor.PackageEditorFragment"
         android:label="Package Editor"
-        tools:layout="@layout/fragment_package_editor" />
+        tools:layout="@layout/fragment_package_editor" >
+        <action
+            android:id="@+id/toWordEditor"
+            app:destination="@id/wordEditorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/wordEditorFragment"
+        android:name="qu.cmps312.lingosnacks.ui.editor.WordEditorFragment"
+        android:label="Word Editor"
+        tools:layout="@layout/fragment_word_editor" />
 </navigation>

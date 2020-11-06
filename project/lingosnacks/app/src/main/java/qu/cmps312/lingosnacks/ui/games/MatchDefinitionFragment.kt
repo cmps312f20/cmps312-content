@@ -87,7 +87,7 @@ class MatchDefinitionFragment : Fragment(R.layout.fragment_match_definition) {
                 "Try again!",
                 Toast.LENGTH_SHORT
             ).show()
-            if (score >= 1) score--
+            //if (score >= 1) score--
         }
         scoreView.text = "Score: $score / $outOf"
     }

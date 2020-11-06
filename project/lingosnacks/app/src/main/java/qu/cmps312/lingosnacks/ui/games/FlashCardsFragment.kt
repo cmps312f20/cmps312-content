@@ -61,7 +61,7 @@ class FlashCardsFragment : Fragment(R.layout.fragment_flash_cards) {
 
     private fun displaySentence(index: Int) {
         currentIndexTv.text = "${index + 1} of ${sentences.size}"
-        wordTv.text = sentences[index].word
+        wordEt.text = sentences[index].word
         val sentence =
             if (sentences[index].type == "D") "Definition: ${sentences[index].sentence.text}" else sentences[index].sentence.text
         sentenceTv.text = sentence

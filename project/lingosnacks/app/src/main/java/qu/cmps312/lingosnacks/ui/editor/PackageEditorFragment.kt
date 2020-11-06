@@ -6,6 +6,7 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_package_editor.*
 import qu.cmps312.lingosnacks.R
 import qu.cmps312.lingosnacks.ui.viewmodel.PackageViewModel
@@ -29,6 +30,10 @@ class PackageEditorFragment : Fragment(R.layout.fragment_package_editor) {
 
             iconUrlEt.setText(it.iconUrl)
             //= it.keywords: MutableList<String>,
+        }
+
+        nextBtn.setOnClickListener {
+            findNavController().navigate(R.id.toWordEditor)
         }
     }
 }

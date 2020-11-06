@@ -166,7 +166,8 @@ class MainActivity : AppCompatActivity() {
             .show()
     }
 
-    // ToDo: Implement onInitFirestoreDBClicked
-    private fun onInitFirestoreDBClicked() {}
+    private fun onInitFirestoreDBClicked() {
+        packageViewModel.initFirestoreDB()
+    }
 
 }
