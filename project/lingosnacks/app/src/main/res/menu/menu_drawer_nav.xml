@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <group >
+    <group android:id="@+id/menu_auth">
         <item
             android:id="@+id/mi_sign_in"
             android:icon="@drawable/ic_signin"
@@ -17,8 +17,23 @@
             android:title="Sign out" />
 
         <item
-            android:icon="@drawable/ic_init_db"
+            android:id="@+id/mi_my_scores"
+            android:icon="@drawable/ic_score"
+            android:title="My scores" />
+
+    </group>
+
+    <group android:id="@+id/menu_leader">
+        <item
+            android:id="@+id/mi_leader_board"
+            android:icon="@drawable/ic_leader_board"
+            android:title="Leader Board" />
+    </group>
+
+    <group android:id="@+id/menu_db">
+        <item
             android:id="@+id/mi_init_firebase_db"
+            android:icon="@drawable/ic_init_db"
             android:title="Initialize Firebase database" />
     </group>
 </menu>

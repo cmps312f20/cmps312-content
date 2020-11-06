@@ -36,7 +36,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/packageIv"
+                android:id="@+id/photoIv"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_margin="8dp"
@@ -55,7 +55,7 @@
                 app:layout_constraintGuide_percent="0.32" />
 
             <TextView
-                android:id="@+id/packageTitleTv"
+                android:id="@+id/userNameTv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -69,7 +69,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/packageCatTv"
+                android:id="@+id/scoreTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -77,8 +77,8 @@
                 android:hint="Category"
                 android:text="@{learningPackage.category}"
                 android:textColor="@color/dark_blue"
-                app:layout_constraintBaseline_toBaselineOf="@+id/textView8"
-                app:layout_constraintStart_toEndOf="@+id/textView8" />
+                app:layout_constraintBaseline_toBaselineOf="@+id/scoreLabel"
+                app:layout_constraintStart_toEndOf="@+id/scoreLabel" />
 
             <TextView
                 android:id="@+id/packageDescTv"
@@ -164,14 +164,14 @@
                 app:srcCompat="@drawable/ic_delete" />
 
             <TextView
-                android:id="@+id/textView8"
+                android:id="@+id/scoreLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="Category:"
                 android:textColor="@color/dark_blue"
-                app:layout_constraintStart_toStartOf="@+id/packageTitleTv"
-                app:layout_constraintTop_toBottomOf="@+id/packageTitleTv" />
+                app:layout_constraintStart_toStartOf="@+id/userNameTv"
+                app:layout_constraintTop_toBottomOf="@+id/userNameTv" />
 
             <TextView
                 android:id="@+id/textView2"
@@ -201,15 +201,15 @@
                 app:layout_constraintGuide_percent="0.75" />
 
             <TextView
-                android:id="@+id/textView10"
+                android:id="@+id/gameNameTv"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:hint="0 Words Inside!"
                 android:text="@{learningPackage.words.size() +` Words Inside!`}"
                 android:textColor="@color/dark_blue"
-                app:layout_constraintBottom_toBottomOf="@+id/packageCatTv"
+                app:layout_constraintBottom_toBottomOf="@+id/scoreTv"
                 app:layout_constraintEnd_toStartOf="@+id/verticalGuideline"
-                app:layout_constraintTop_toTopOf="@+id/packageCatTv" />
+                app:layout_constraintTop_toTopOf="@+id/scoreTv" />
 
             <RatingBar
                 android:id="@+id/ratingBar"

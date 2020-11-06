@@ -49,4 +49,9 @@
         android:name="qu.cmps312.lingosnacks.ui.games.UnscrambleSentenceFragment"
         android:label="Unscramble Sentence"
         tools:layout="@layout/fragment_unscramble_sentence" />
+    <fragment
+        android:id="@+id/leaderBoardFragment"
+        android:name="qu.cmps312.lingosnacks.ui.games.LeaderBoardFragment"
+        android:label="Leader Board"
+        tools:layout="@layout/fragment_leader_board" />
 </navigation>

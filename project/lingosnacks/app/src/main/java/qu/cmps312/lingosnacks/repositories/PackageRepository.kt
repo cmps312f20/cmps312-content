@@ -7,6 +7,18 @@ import kotlinx.serialization.json.Json
 import qu.cmps312.lingosnacks.model.Rating
 import qu.cmps312.lingosnacks.model.Score
 
+fun Double.round(decimals: Int = 2): Double = "%.${decimals}f".format(this).toDouble()
+
+data class ScoreSummary(val gameName: String, val score: Int, val outOf: Int) {
+    override fun toString() : String {
+        val scorePercentage = (score.toDouble() / outOf * 100.0).round(2)
+        return "$gameName -> $score / $outOf ($scorePercentage%)"
+    }
+}
+data class LeaderBoardMember(val rank: Int, val uid: String, val displayName: String,
+                             val photoUri : String,
+                             val gameName: String, val score: Int, val outOf: Int)
+
 class PackageRepository(val context: Context) {
     // ToDo: Implement all PackageRepository methods to read/write from the online/local database
     fun getPackages() : List<LearningPackage> {
@@ -53,8 +65,42 @@ class PackageRepository(val context: Context) {
         println(">> Debug: PackageRepository.addRating: $rating")
     }
 
-    fun getScores(uid: String): List<Score> { return emptyList() }
+    // ToDo: replace this example data with database query to get scores summary by uid
+    fun getScores(uid: String): List<ScoreSummary> =
+        listOf(
+            ScoreSummary("Unscramble Sentence", 90, 120),
+            ScoreSummary("Match Definition", 55, 80)
+        )
+
     fun addScore(score: Score) {
         println(">> Debug: PackageRepository.addScore: $score")
     }
+
+    // ToDo: replace this example data with database query to get leader board members
+    fun getLeaderBoard(): List<LeaderBoardMember> =
+        listOf(
+            LeaderBoardMember(1, "123", "Sponge Bob",
+                "https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/SpongeBob_SquarePants_character.svg/440px-SpongeBob_SquarePants_character.svg.png",
+                "Unscramble Sentence", 90, 120),
+
+            LeaderBoardMember(2, "234", "Bart Simpson",
+                "https://upload.wikimedia.org/wikipedia/en/a/aa/Bart_Simpson_200px.png",
+                "Unscramble Sentence", 60, 100),
+
+            LeaderBoardMember(3, "345", "Bugs Bunny",
+                "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/Bugs_Bunny.svg/360px-Bugs_Bunny.svg.png",
+                "Unscramble Sentence", 50, 120),
+
+            LeaderBoardMember(1, "123", "Sponge Bob",
+                "https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/SpongeBob_SquarePants_character.svg/440px-SpongeBob_SquarePants_character.svg.png",
+                "Match Definition", 100, 120),
+
+            LeaderBoardMember(2, "234", "Bart Simpson",
+                "https://upload.wikimedia.org/wikipedia/en/a/aa/Bart_Simpson_200px.png",
+                "Match Definition", 70, 100),
+
+            LeaderBoardMember(3, "345", "Bugs Bunny",
+                "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/Bugs_Bunny.svg/360px-Bugs_Bunny.svg.png",
+                "Match Definition", 60, 120)
+        )
 }

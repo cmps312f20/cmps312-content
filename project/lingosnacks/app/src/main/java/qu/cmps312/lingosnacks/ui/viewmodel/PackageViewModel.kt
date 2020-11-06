@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import qu.cmps312.lingosnacks.model.*
+import qu.cmps312.lingosnacks.repositories.LeaderBoardMember
 import qu.cmps312.lingosnacks.repositories.PackageRepository
 
 class PackageViewModel(application: Application) : AndroidViewModel(application) {
@@ -56,6 +57,7 @@ class PackageViewModel(application: Application) : AndroidViewModel(application)
 
     fun getScores(uid: String) = packageRepository.getScores(uid)
     fun addScore(score: Score) = packageRepository.addScore(score)
+    fun getLeaderBoard() = packageRepository.getLeaderBoard()
     
      /*fun findItem(learningPackage: LearningPackage): Int {
       _packages.value?.let {

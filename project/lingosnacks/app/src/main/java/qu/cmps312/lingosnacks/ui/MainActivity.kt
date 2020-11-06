@@ -20,14 +20,17 @@ import coil.ImageLoader
 import coil.clear
 import coil.decode.SvgDecoder
 import coil.load
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.activity_main.*
 import qu.cmps312.lingosnacks.R
 import qu.cmps312.lingosnacks.model.User
 import qu.cmps312.lingosnacks.ui.viewmodel.AuthViewModel
+import qu.cmps312.lingosnacks.ui.viewmodel.PackageViewModel
 
 
 class MainActivity : AppCompatActivity() {
     private val authViewModel by viewModels<AuthViewModel>()
+    private val packageViewModel by viewModels<PackageViewModel>()
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var navController: NavController
 
@@ -114,7 +117,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Workaround to refresh the menu
-        drawerNavView.menu.removeGroup(0)
+        drawerNavView.menu.clear()
+        //drawerNavView.menu.removeGroup(0)
         drawerNavView.inflateMenu(R.menu.menu_drawer_nav)
         val menu = drawerNavView.menu
 
@@ -126,6 +130,9 @@ class MainActivity : AppCompatActivity() {
 
         menuItem = menu.findItem(R.id.mi_sign_up)
         menuItem.isVisible = !isSignedIn
+
+        menuItem = menu.findItem(R.id.mi_my_scores)
+        menuItem.isVisible = isSignedIn
 
         drawerNavView.invalidate()
     }
@@ -139,9 +146,24 @@ class MainActivity : AppCompatActivity() {
             R.id.mi_sign_in -> navController.navigate(R.id.signInFragment)
 
             R.id.mi_sign_out -> authViewModel.signOut()
+
+            R.id.mi_my_scores -> showScores()
+
+            R.id.mi_leader_board -> navController.navigate(R.id.leaderBoardFragment)
         }
         drawerlayout.closeDrawer(GravityCompat.START) //Closing the drawer
         return true // because you handled the clicks
+    }
+
+    // Too lazy to create a fragment for this!
+    private fun showScores() {
+        val uid = authViewModel.getCurrentUserInfo().uid
+        val scores = packageViewModel.getScores(uid)
+        val items = scores.map { it.toString() }.toTypedArray()
+        MaterialAlertDialogBuilder(this)
+            .setTitle("Your scores")
+            .setItems(items) { _, _ -> }
+            .show()
     }
 
     // ToDo: Implement onInitFirestoreDBClicked
