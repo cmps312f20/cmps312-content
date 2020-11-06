@@ -52,7 +52,7 @@ class MatchDefinitionFragment : Fragment(R.layout.fragment_match_definition) {
         currentIndexTv.text = "${index + 1} of ${definitions.size}"
 
         val currentDefinition = definitions[index]
-        var shuffledDefs = definitions.filter { it.word != currentDefinition.word }.shuffled().take(5)
+        var shuffledDefs = definitions.filter { it.word !=currentDefinition.word }.distinctBy { it.word }.shuffled().take(5)
         shuffledDefs = (shuffledDefs + currentDefinition).shuffled()
 
        definitionTv.text = currentDefinition.definition
