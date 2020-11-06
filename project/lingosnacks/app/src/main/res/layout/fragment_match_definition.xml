@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/design_default_color_background"
-        tools:context=".ui.games.UnscrambleSentenceFragment">
+        tools:context=".ui.games.MatchDefinitionFragment">
 
     <TextView
         android:id="@+id/scoreView"
@@ -27,24 +27,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.47195622" />
+        app:layout_constraintGuide_percent="0.18" />
 
-    <androidx.constraintlayout.helper.widget.Flow
+    <TextView
         android:id="@+id/definitionTv"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:orientation="horizontal"
-        app:flow_horizontalGap="16dp"
-        app:flow_horizontalStyle="spread"
-        app:flow_verticalGap="16dp"
-        app:flow_verticalStyle="packed"
-        app:flow_wrapMode="chain"
+        android:text="Definition"
+        android:textSize="22sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scoreView" />
 

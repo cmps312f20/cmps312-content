@@ -63,7 +63,7 @@ class UnscrambleSentenceFragment : Fragment(R.layout.fragment_unscramble_sentenc
             previousTextViews.add(tv)
             tv.setOnTouchListener(::touchListener)
             mainLayout.addView(tv)
-            wordsFlow.addView(tv)
+            definitionTv.addView(tv)
         }
         words = sentence.split(" ")
         words.forEachIndexed { i, word ->
@@ -71,7 +71,7 @@ class UnscrambleSentenceFragment : Fragment(R.layout.fragment_unscramble_sentenc
             previousTextViews.add(tv)
             tv.setOnDragListener(dragListen)
             mainLayout.addView(tv)
-            sentenceFlow.addView(tv)
+            wordsFlow.addView(tv)
         }
     }
 
@@ -105,12 +105,12 @@ class UnscrambleSentenceFragment : Fragment(R.layout.fragment_unscramble_sentenc
 
             DragEvent.ACTION_DROP -> {
                 val dragData = event.clipData.getItemAt(0).text
+                outOf++
                 //to check if the user put the word in the correct place - background changes
                 if (answerView.tag == dragData) {
                     answerView.setBackgroundColor(Color.parseColor("#618FE0F4"))
                     Toast.makeText(requireContext(), "Well Done!", Toast.LENGTH_SHORT).show()
                     answerView.text = dragData
-                    outOf++
                     score++
                     scoreView.text = "Score: $score / $outOf"
 
@@ -126,11 +126,10 @@ class UnscrambleSentenceFragment : Fragment(R.layout.fragment_unscramble_sentenc
                     answerView.setBackgroundColor(Color.RED)
                     Toast.makeText(
                         requireContext(),
-                        "Please Try again!",
+                        "Try again!",
                         Toast.LENGTH_SHORT
                     ).show()
-                    if (score >= 1)   score -= 1
-                    outOf++
+                    if (score >= 1) score--
                     scoreView.text = "Score: $score / $outOf"
                     false
                 }
@@ -157,7 +156,7 @@ class UnscrambleSentenceFragment : Fragment(R.layout.fragment_unscramble_sentenc
 
     override fun onDestroy() {
         super.onDestroy()
-        val uid = "me" //authViewModel.getCurrentUserInfo().uid
+        val uid = authViewModel.getCurrentUserInfo().uid
         if (uid.isNotEmpty() && outOf > 0) {
             val scoreId = ""
             val gameName = "Unscramble Sentence"

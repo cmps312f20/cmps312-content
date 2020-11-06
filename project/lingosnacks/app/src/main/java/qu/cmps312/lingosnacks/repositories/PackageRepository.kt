@@ -42,7 +42,15 @@ class PackageRepository(val context: Context) {
 
     fun addPackage(learningPackage: LearningPackage) {}
     fun updatePackage(learningPackage: LearningPackage) {}
-    fun deletePackage(learningPackage: LearningPackage) {}
+
+    // ToDo: Delete package from Firestore and its associated resources from Cloud Storage
+    fun deleteOnlinePackage(learningPackage: LearningPackage) {}
+
+    // ToDo: Download package from Firestore and its associated resources from Cloud Storage so that the package can be used offline
+    fun downloadPackage(packageId: String) {}
+
+    // ToDo: Delete package from local database and its associated resource files
+    fun deleteLocalPackage(learningPackage: LearningPackage) {}
 
     fun getRatings(packageId: String) : List<Rating> {
         val data = context.assets.open("ratings.json")

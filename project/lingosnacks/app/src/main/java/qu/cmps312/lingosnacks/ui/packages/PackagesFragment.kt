@@ -66,17 +66,25 @@ class PackagesFragment : Fragment(R.layout.fragment_packages) {
     }
 
     private fun onPackageAction(learningPackage: LearningPackage, packageAction: PackageAction) {
-        if (packageAction == PackageAction.Delete) {
-            packageViewModel.deletePackage(learningPackage)
-            return
-        }
-
         packageViewModel.selectedPackage = learningPackage
         val navAction = when (packageAction) {
             PackageAction.Rate -> R.id.ratePackageFragment
             PackageAction.Ratings -> R.id.toPackageRatings
             PackageAction.View -> R.id.toFlashCards
             PackageAction.UnscrambleSentence -> R.id.toUnscrambleSentence
+            PackageAction.MatchDefinition -> R.id.toMatchDefinition
+            PackageAction.Download -> {
+                packageViewModel.downloadPackage()
+                0
+            }
+            PackageAction.DeleteOnlinePackage -> {
+                packageViewModel.deleteOnlinePackage()
+                0
+            }
+            PackageAction.DeleteLocalPackage -> {
+                packageViewModel.deleteLocalPackage()
+                0
+            }
             else -> 0
         }
         if (navAction != 0)

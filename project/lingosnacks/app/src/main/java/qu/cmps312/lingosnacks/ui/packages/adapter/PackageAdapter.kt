@@ -4,13 +4,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.package_item.view.*
 import qu.cmps312.lingosnacks.R
 import qu.cmps312.lingosnacks.databinding.PackageItemBinding
 import qu.cmps312.lingosnacks.model.LearningPackage
 import qu.cmps312.lingosnacks.ui.viewmodel.UserInfo
 
 enum class PackageAction {
-    View, Update, Delete, Download, Ratings, Rate, MatchDefinition, UnscrambleSentence
+    View, Update, DeleteOnlinePackage, DeleteLocalPackage, Download, Ratings, Rate, MatchDefinition, UnscrambleSentence
 }
 
 class PackageAdapter(
@@ -43,8 +44,8 @@ class PackageAdapter(
                 packageActionListener(learningPackage, PackageAction.Update)
             }
 
-            viewBinding.root.deleteBtn.setOnClickListener {
-                packageActionListener(learningPackage, PackageAction.Delete)
+            viewBinding.root.deleteOnlinePackageBtn.setOnClickListener {
+                packageActionListener(learningPackage, PackageAction.DeleteOnlinePackage)
             }
 
             viewBinding.root.rateBtn.setOnClickListener {
@@ -73,6 +74,10 @@ class PackageAdapter(
 
             viewBinding.root.downLoadBtn.setOnClickListener {
                 packageActionListener(learningPackage, PackageAction.Download)
+            }
+
+            viewBinding.root.deleteLocalPackageBtn.setOnClickListener {
+                packageActionListener(learningPackage, PackageAction.DeleteLocalPackage)
             }
         }
     }

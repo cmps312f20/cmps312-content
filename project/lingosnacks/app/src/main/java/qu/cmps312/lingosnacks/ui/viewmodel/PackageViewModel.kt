@@ -5,7 +5,6 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import qu.cmps312.lingosnacks.model.*
-import qu.cmps312.lingosnacks.repositories.LeaderBoardMember
 import qu.cmps312.lingosnacks.repositories.PackageRepository
 
 class PackageViewModel(application: Application) : AndroidViewModel(application) {
@@ -25,10 +24,19 @@ class PackageViewModel(application: Application) : AndroidViewModel(application)
         _packages.value = packageRepository.getPackages(searchText).toMutableList()
     }
 
-    fun deletePackage(learningPackage: LearningPackage) {
-        packageRepository.deletePackage(learningPackage)
+    fun deleteOnlinePackage() {
+        packageRepository.deleteOnlinePackage(selectedPackage!!)
         _packages.value?.let {
-            it.remove(learningPackage)
+            it.remove(selectedPackage!!)
+            _packages.value = it
+            selectedPackage = null
+        }
+    }
+
+    fun deleteLocalPackage() {
+        packageRepository.deleteLocalPackage(selectedPackage!!)
+        _packages.value?.let {
+            it.remove(selectedPackage!!)
             _packages.value = it
             selectedPackage = null
         }
@@ -51,6 +59,8 @@ class PackageViewModel(application: Application) : AndroidViewModel(application)
             }
         }
     }
+
+    fun downloadPackage() = packageRepository.downloadPackage(selectedPackage?.packageId!!)
 
     fun getRatings() = packageRepository.getRatings(selectedPackage?.packageId!!)
     fun addRating(rating: Rating) = packageRepository.addRating(rating)

@@ -18,6 +18,9 @@
         <action
             android:id="@+id/toUnscrambleSentence"
             app:destination="@id/unscrambleSentenceFragment" />
+        <action
+            android:id="@+id/toMatchDefinition"
+            app:destination="@id/matchDefinitionFragment" />
     </fragment>
     <dialog
         android:id="@+id/signInFragment"
@@ -54,4 +57,9 @@
         android:name="qu.cmps312.lingosnacks.ui.games.LeaderBoardFragment"
         android:label="Leader Board"
         tools:layout="@layout/fragment_leader_board" />
+    <fragment
+        android:id="@+id/matchDefinitionFragment"
+        android:name="qu.cmps312.lingosnacks.ui.games.MatchDefinitionFragment"
+        android:label="Match Word with Definition"
+        tools:layout="@layout/fragment_match_definition" />
 </navigation>
