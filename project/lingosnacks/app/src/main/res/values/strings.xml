@@ -3,6 +3,36 @@
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
 
+    <string name="title">Title</string>
+    <string name="icon">Icon Url</string>
+    <string name="keywords">Keywords:</string>
+    <string name="category">Category</string>
+    <string name="language">Language</string>
+    <string name="level">Level</string>
+    <string name="description">Description</string>
+
+    <string-array name="levels">
+        <item>Beginner</item>
+        <item>Intermediate</item>
+        <item>Advanced</item>
+    </string-array>
+    <string-array name="languages">
+        <item>English</item>
+        <item>Arabic</item>
+        <item>Spanish</item>
+        <item>French</item>
+        <item>Urdu</item>
+    </string-array>
+
+    <string-array name="categories">
+        <item>Art</item>
+        <item>Food</item>
+        <item>Health</item>
+        <item>Travel</item>
+        <item>Places</item>
+        <item>News</item>
+    </string-array>
+
     <string-array name="roles">
         <item>Teacher</item>
         <item>Student</item>

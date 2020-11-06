@@ -36,12 +36,12 @@ class MatchDefinitionFragment : Fragment(R.layout.fragment_match_definition) {
         }
 
         displayDefinition(currentIndex)
-        nextBtn.setOnClickListener { onMoveNext(it) }
-        prevBtn.setOnClickListener { onMoveNext(it) }
+        nextBtn.setOnClickListener { onMoveNext(it, 1) }
+        prevBtn.setOnClickListener { onMoveNext(it, -1) }
     }
 
-    private fun onMoveNext(view: View) {
-        currentIndex++
+    private fun onMoveNext(view: View, step: Int) {
+        currentIndex += step
         currentIndex = (currentIndex + definitions.count()) % definitions.count()
         previousTextViews.forEach { mainLayout.removeView(it) }
         previousTextViews.clear()

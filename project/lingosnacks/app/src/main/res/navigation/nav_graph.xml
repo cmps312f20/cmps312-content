@@ -21,6 +21,9 @@
         <action
             android:id="@+id/toMatchDefinition"
             app:destination="@id/matchDefinitionFragment" />
+        <action
+            android:id="@+id/toPackageEditor"
+            app:destination="@id/packageEditorFragment" />
     </fragment>
     <dialog
         android:id="@+id/signInFragment"
@@ -62,4 +65,9 @@
         android:name="qu.cmps312.lingosnacks.ui.games.MatchDefinitionFragment"
         android:label="Match Word with Definition"
         tools:layout="@layout/fragment_match_definition" />
+    <fragment
+        android:id="@+id/packageEditorFragment"
+        android:name="qu.cmps312.lingosnacks.ui.editor.PackageEditorFragment"
+        android:label="Package Editor"
+        tools:layout="@layout/fragment_package_editor" />
 </navigation>

@@ -38,14 +38,12 @@ class UnscrambleSentenceFragment : Fragment(R.layout.fragment_unscramble_sentenc
         }
 
         displaySentence(currentIndex)
-
-        displaySentence(currentIndex)
-        nextBtn.setOnClickListener { onMoveNext(it) }
-        prevBtn.setOnClickListener { onMoveNext(it) }
+        nextBtn.setOnClickListener { onMoveNext(it, 1) }
+        prevBtn.setOnClickListener { onMoveNext(it, -1) }
     }
 
-    private fun onMoveNext(view: View) {
-        currentIndex++
+    private fun onMoveNext(view: View, step: Int) {
+        currentIndex += step
         currentIndex = (currentIndex + sentences.count()) % sentences.count()
         previousTextViews.forEach { mainLayout.removeView(it) }
         previousTextViews.clear()

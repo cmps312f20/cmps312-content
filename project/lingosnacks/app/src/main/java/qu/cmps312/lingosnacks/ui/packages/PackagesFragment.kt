@@ -68,6 +68,7 @@ class PackagesFragment : Fragment(R.layout.fragment_packages) {
     private fun onPackageAction(learningPackage: LearningPackage, packageAction: PackageAction) {
         packageViewModel.selectedPackage = learningPackage
         val navAction = when (packageAction) {
+            PackageAction.Update -> R.id.toPackageEditor
             PackageAction.Rate -> R.id.ratePackageFragment
             PackageAction.Ratings -> R.id.toPackageRatings
             PackageAction.View -> R.id.toFlashCards
