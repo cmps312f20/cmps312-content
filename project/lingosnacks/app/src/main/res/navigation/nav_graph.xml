@@ -15,6 +15,9 @@
         <action
             android:id="@+id/toFlashCards"
             app:destination="@id/flashCardsFragment" />
+        <action
+            android:id="@+id/toUnscrambleSentence"
+            app:destination="@id/unscrambleSentenceFragment" />
     </fragment>
     <dialog
         android:id="@+id/signInFragment"
@@ -38,7 +41,12 @@
         tools:layout="@layout/fragment_rate_package" />
     <fragment
         android:id="@+id/flashCardsFragment"
-        android:name="qu.cmps312.lingosnacks.ui.flashcard.FlashCardsFragment"
+        android:name="qu.cmps312.lingosnacks.ui.games.FlashCardsFragment"
         android:label="Flash Cards"
         tools:layout="@layout/fragment_flash_cards" />
+    <fragment
+        android:id="@+id/unscrambleSentenceFragment"
+        android:name="qu.cmps312.lingosnacks.ui.games.UnscrambleSentenceFragment"
+        android:label="Unscramble Sentence"
+        tools:layout="@layout/fragment_unscramble_sentence" />
 </navigation>

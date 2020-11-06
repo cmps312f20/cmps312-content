@@ -1,4 +1,4 @@
-package qu.cmps312.lingosnacks.ui.flashcard
+package qu.cmps312.lingosnacks.ui.games
 
 import android.os.Bundle
 import android.view.View
@@ -25,11 +25,10 @@ class FlashCardsFragment : Fragment(R.layout.fragment_flash_cards) {
     private val packageViewModel by activityViewModels<PackageViewModel>()
     private var currentIndex = 0
     private lateinit var sentences: List<WordInfo>
-    private var previousButtons = mutableListOf<ImageButton>()
+    private val previousButtons = mutableListOf<ImageButton>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         val selectedPackage = packageViewModel.selectedPackage!!
 
         // Merge all into 1 list of sentences
@@ -41,11 +40,11 @@ class FlashCardsFragment : Fragment(R.layout.fragment_flash_cards) {
             }
 
         displaySentence(currentIndex)
-        nextBtn.setOnClickListener { onButtonClicked(it) }
-        prevBtn.setOnClickListener { onButtonClicked(it) }
+        nextBtn.setOnClickListener { onMoveNext(it) }
+        prevBtn.setOnClickListener { onMoveNext(it) }
     }
 
-    private fun onButtonClicked(view: View) {
+    private fun onMoveNext(view: View) {
         imageView.isVisible = false
         videoView.isVisible = false
         webView.isVisible = false
@@ -61,7 +60,7 @@ class FlashCardsFragment : Fragment(R.layout.fragment_flash_cards) {
     }
 
     private fun displaySentence(index: Int) {
-        currentIndexTv.text = "${currentIndex + 1} of ${sentences.size}"
+        currentIndexTv.text = "${index + 1} of ${sentences.size}"
         wordTv.text = sentences[index].word
         val sentence =
             if (sentences[index].type == "D") "Definition: ${sentences[index].sentence.text}" else sentences[index].sentence.text

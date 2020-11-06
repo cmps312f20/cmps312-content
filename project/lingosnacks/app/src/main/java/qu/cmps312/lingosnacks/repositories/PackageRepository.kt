@@ -5,6 +5,7 @@ import qu.cmps312.lingosnacks.model.LearningPackage
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import qu.cmps312.lingosnacks.model.Rating
+import qu.cmps312.lingosnacks.model.Score
 
 class PackageRepository(val context: Context) {
     // ToDo: Implement all PackageRepository methods to read/write from the online/local database
@@ -50,5 +51,10 @@ class PackageRepository(val context: Context) {
      */
     fun addRating(rating: Rating) {
         println(">> Debug: PackageRepository.addRating: $rating")
+    }
+
+    fun getScores(uid: String): List<Score> { return emptyList() }
+    fun addScore(score: Score) {
+        println(">> Debug: PackageRepository.addScore: $score")
     }
 }
