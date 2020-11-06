@@ -24,7 +24,7 @@ class WordInfo(val word:String, val sentence: Sentence, val type: String = "S")
 class FlashCardsFragment : Fragment(R.layout.fragment_flash_cards) {
     private val packageViewModel by activityViewModels<PackageViewModel>()
     private var currentIndex = 0
-    private lateinit var sentences : List<WordInfo>
+    private lateinit var sentences: List<WordInfo>
     private var previousButtons = mutableListOf<ImageButton>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -34,21 +34,21 @@ class FlashCardsFragment : Fragment(R.layout.fragment_flash_cards) {
 
         // Merge all into 1 list of sentences
         sentences =
-            selectedPackage.words.flatMap {word ->
-                 word.sentences.map { WordInfo(word.text, it) }
-            } + selectedPackage.words.flatMap {word ->
-                 word.definitions.map { WordInfo(word.text, Sentence(it.text), "D") }
+            selectedPackage.words.flatMap { word ->
+                word.sentences.map { WordInfo(word.text, it) }
+            } + selectedPackage.words.flatMap { word ->
+                word.definitions.map { WordInfo(word.text, Sentence(it.text), "D") }
             }
 
         displaySentence(currentIndex)
-        nextBtn.setOnClickListener { onButtonClicked( it ) }
-        prevBtn.setOnClickListener { onButtonClicked( it ) }
+        nextBtn.setOnClickListener { onButtonClicked(it) }
+        prevBtn.setOnClickListener { onButtonClicked(it) }
     }
 
     private fun onButtonClicked(view: View) {
-        if (webView.isVisible) {
-            webView.isVisible = false
-        }
+        imageView.isVisible = false
+        videoView.isVisible = false
+        webView.isVisible = false
 
         when (view.id) {
             R.id.nextBtn -> ++currentIndex
@@ -60,15 +60,19 @@ class FlashCardsFragment : Fragment(R.layout.fragment_flash_cards) {
         displaySentence(currentIndex)
     }
 
-    private fun displaySentence(index : Int) {
+    private fun displaySentence(index: Int) {
+        currentIndexTv.text = "${currentIndex + 1} of ${sentences.size}"
         wordTv.text = sentences[index].word
-        sentenceTv.text = sentences[index].sentence.text
+        val sentence =
+            if (sentences[index].type == "D") "Definition: ${sentences[index].sentence.text}" else sentences[index].sentence.text
+        sentenceTv.text = sentence
 
         previousButtons.forEach {
             mainLayout.removeView(it)
         }
         previousButtons.clear()
-        sentences[index].sentence.resources.forEach { resource ->
+        sentences[index].sentence.resources.forEachIndexed { index, resource ->
+            println(">> Debug: ${resource.title}")
             val imgBtn = createButton(resource)
             imgBtn.setOnClickListener {
                 Toast.makeText(requireContext(), "${resource.title}", Toast.LENGTH_SHORT).show()
@@ -80,6 +84,7 @@ class FlashCardsFragment : Fragment(R.layout.fragment_flash_cards) {
             }
             mainLayout.addView(imgBtn)
             mediaFlow.addView(imgBtn)
+            if (index == 0) imgBtn.performClick()
             previousButtons.add(imgBtn)
         }
     }
@@ -105,7 +110,8 @@ class FlashCardsFragment : Fragment(R.layout.fragment_flash_cards) {
             videoView.requestFocus()
             videoView.start()
         } catch (e: Exception) {
-            Toast.makeText(requireContext(), "Error loading video ${e.message}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Error loading video ${e.message}", Toast.LENGTH_SHORT)
+                .show()
         }
     }
 
@@ -125,11 +131,12 @@ class FlashCardsFragment : Fragment(R.layout.fragment_flash_cards) {
             }
             webView.loadUrl(resourceUrl)
         } catch (e: Exception) {
-            Toast.makeText(requireContext(), "Error loading page ${e.message}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Error loading page ${e.message}", Toast.LENGTH_SHORT)
+                .show()
         }
     }
 
-    private fun createButton(resource: Resource) : ImageButton {
+    private fun createButton(resource: Resource): ImageButton {
         val imageBtn = ImageButton(requireContext())
 
         val iconId = when (resource.type) {
@@ -143,178 +150,4 @@ class FlashCardsFragment : Fragment(R.layout.fragment_flash_cards) {
         imageBtn.id = View.generateViewId()
         return imageBtn
     }
-/*
-    fun onWordClicked(word: Word) {
-        wordTitleTv.text = word.text.capitalize()
-
-        var position = 0
-        var positionDefinition = 0
-        var positionSentence = 0
-        var positionResource = 0
-        var sentenceResourceCount: Int
-
-        selectFlashcardAlertTv.isVisible = false
-        prevButton.isVisible = false
-        nextButton.isVisible = true
-
-        packageViewModel.selectedWord(word)
-
-        definitionList = packageViewModel.wordDefinitions
-        sentenceList = packageViewModel.wordSentences
-
-        include.isVisible = true
-
-        displayDefintionOnCard(definitionList[positionDefinition])
-
-        nextButton.setOnClickListener {
-            prevButton.isVisible = true
-            position++
-
-            if (position < definitionList.size) {
-                positionDefinition++
-                displayDefintionOnCard(definitionList[positionDefinition])
-            } else {
-                if (position == definitionList.size) positionDefinition++
-
-                if (positionSentence < sentenceList.size) {
-                    sentenceResourceCount = sentenceList[positionSentence].resources.size
-                    if (positionResource < sentenceResourceCount - 1) {
-                        displayItemWithResource(sentenceList[positionSentence], positionResource)
-                        positionResource++
-                    } else if (positionResource == sentenceResourceCount - 1) {
-                        displayItemWithResource(sentenceList[positionSentence], positionResource)
-                        if (positionSentence == sentenceList.size - 1)
-                            nextButton.isVisible = false
-                        else {
-                            positionSentence++
-                            positionResource = 0
-                        }
-                    }
-                }
-
-
-            }
-        }
-
-
-        prevButton.setOnClickListener {
-            position--
-
-            nextButton.isVisible = true
-
-            if (position >= definitionList.size) {
-                sentenceResourceCount = sentenceList[positionSentence].resources.size
-
-                if (positionResource > 0) {
-                    positionResource--
-                    displayItemWithResource(sentenceList[positionSentence], positionResource)
-                } else if (positionResource == 0) {
-                    if (positionSentence == 0) {
-                        displayDefintionOnCard(definitionList[positionDefinition])
-
-                    } else {
-                        positionSentence--
-                        sentenceResourceCount = sentenceList[positionSentence].resources.size
-                        positionResource = sentenceResourceCount - 1
-                        displayItemWithResource(sentenceList[positionSentence], positionResource)
-                    }
-                }
-            } else {
-                positionSentence = 0
-                positionResource = 0
-
-                positionDefinition--
-                displayDefintionOnCard(definitionList[positionDefinition])
-                if (positionDefinition == 0) prevButton.isVisible = false
-
-            }
-        }
-
-    }
-
-    fun displayDefintionOnCard(definition: Definition) {
-        include.apply {
-            sentenceExampleTitleTv.isVisible = false
-            imageTitleTv.isVisible = false
-            videoTitleTv.isVisible = false
-            websiteTitleTv.isVisible = false
-            viewWebsiteButton.isVisible = false
-            viewImageButton.isVisible = false
-            viewVideoButton.isVisible = false
-
-            definitionTitleTv.isVisible = true
-            sourceTitleTv.isVisible = true
-            sourceTv.isVisible = true
-
-            definSentenceTv.text = definition.text
-            sourceTv.text = definition.source
-        }
-
-    }
-
-    fun displayItemWithResource(sentence: Sentence, resourceNum: Int) {
-        include.apply {
-            sentenceExampleTitleTv.isVisible = true
-
-            definitionTitleTv.isVisible = false
-            sourceTitleTv.isVisible = false
-            sourceTv.isVisible = false
-
-
-            definSentenceTv.text = sentence.text
-
-            var resources = sentence.resources
-
-            when (resources[resourceNum].type) {
-                ResourceTypeEnum.Photo -> {
-                    videoTitleTv.isVisible = false
-                    viewVideoButton.isVisible = false
-                    sourceTv.isVisible = false
-                    websiteTitleTv.isVisible = false
-                    viewWebsiteButton.isVisible = false
-
-                    imageTitleTv.isVisible = true
-                    viewImageButton.isVisible = true
-
-                    viewImageButton.setOnClickListener {
-                        packageViewModel.setResource( resources[resourceNum])
-                        findNavController().navigate(R.id.toDisplayMediaDialog)
-                    }
-                }
-
-                ResourceTypeEnum.Video -> {
-                    imageTitleTv.isVisible = false
-                    sourceTv.isVisible = false
-                    websiteTitleTv.isVisible = false
-                    viewImageButton.isVisible = false
-                    viewWebsiteButton.isVisible = false
-
-                    videoTitleTv.isVisible = true
-                    viewVideoButton.isVisible = true
-
-                    viewVideoButton.setOnClickListener {
-                        packageViewModel.setResource(resources[resourceNum])
-                        findNavController().navigate(R.id.toDisplayMediaDialog)
-                    }
-                }
-
-                ResourceTypeEnum.Website -> {
-                    websiteTitleTv.isVisible = true
-                    viewWebsiteButton.isVisible = true
-
-                    imageTitleTv.isVisible = false
-                    viewImageButton.isVisible = false
-                    videoTitleTv.isVisible = false
-                    viewVideoButton.isVisible = false
-                    sourceTv.isVisible = false
-
-                    viewWebsiteButton.setOnClickListener {
-                        packageViewModel.setResource(resources[resourceNum])
-                        findNavController().navigate(R.id.to_webPageDialog)
-                    }
-                }
-            }
-
-        }
-    }*/
 }
