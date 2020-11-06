@@ -5,6 +5,7 @@ import android.view.View
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.ImageButton
+import android.widget.MediaController
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
@@ -24,6 +25,7 @@ class FlashCardsFragment : Fragment(R.layout.fragment_flash_cards) {
     private val packageViewModel by activityViewModels<PackageViewModel>()
     private var currentIndex = 0
     private lateinit var sentences : List<WordInfo>
+    private var previousButtons = mutableListOf<ImageButton>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -44,6 +46,10 @@ class FlashCardsFragment : Fragment(R.layout.fragment_flash_cards) {
     }
 
     private fun onButtonClicked(view: View) {
+        if (webView.isVisible) {
+            webView.isVisible = false
+        }
+
         when (view.id) {
             R.id.nextBtn -> ++currentIndex
             R.id.prevBtn -> --currentIndex
@@ -58,46 +64,68 @@ class FlashCardsFragment : Fragment(R.layout.fragment_flash_cards) {
         wordTv.text = sentences[index].word
         sentenceTv.text = sentences[index].sentence.text
 
-        //mediaFlow.removeAllViews()
+        previousButtons.forEach {
+            mainLayout.removeView(it)
+        }
+        previousButtons.clear()
         sentences[index].sentence.resources.forEach { resource ->
             val imgBtn = createButton(resource)
             imgBtn.setOnClickListener {
-                //Toast.makeText(requireContext(), "url = ${resource.resourceUrl}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "${resource.title}", Toast.LENGTH_SHORT).show()
                 when (resource.type) {
-                    ResourceTypeEnum.Photo -> {
-                        webView.isVisible = false
-                        videoView.isVisible = false
-                        imageView.isVisible = true
-                        imageView.load(resource.resourceUrl)
-                    }
-                    ResourceTypeEnum.Video -> {
-                        webView.isVisible = false
-                        videoView.isVisible = true
-                        imageView.isVisible = false
-                        videoView.apply {
-                            setVideoPath(resource.resourceUrl)
-                            start()
-                        }
-                    }
-                    ResourceTypeEnum.Website -> {
-                        webView.isVisible = true
-                        videoView.isVisible = false
-                        imageView.isVisible = false
-                        webView.webViewClient = object : WebViewClient() {
-                            override fun shouldOverrideUrlLoading(
-                                view: WebView?,
-                                url: String
-                            ): Boolean {
-                                view?.loadUrl(url)
-                                return true
-                            }
-                        }
-                        webView.loadUrl(resource.resourceUrl)
-                    }
+                    ResourceTypeEnum.Photo -> displayPhoto(resource.resourceUrl)
+                    ResourceTypeEnum.Video -> playVideo(resource.resourceUrl)
+                    ResourceTypeEnum.Website -> viewPage(resource.resourceUrl)
                 }
             }
             mainLayout.addView(imgBtn)
             mediaFlow.addView(imgBtn)
+            previousButtons.add(imgBtn)
+        }
+    }
+
+    private fun displayPhoto(resourceUrl: String) {
+        webView.isVisible = false
+        videoView.isVisible = false
+        imageView.isVisible = true
+        imageView.load(resourceUrl)
+    }
+
+    private fun playVideo(resourceUrl: String) {
+        webView.isVisible = false
+        videoView.isVisible = true
+        imageView.isVisible = false
+
+        try {
+            val mediaController = MediaController(requireContext())
+            mediaController.setAnchorView(videoView)
+            videoView.setMediaController(mediaController)
+            videoView.setVideoPath(resourceUrl)
+            //videoView.setVideoURI(videoUri)
+            videoView.requestFocus()
+            videoView.start()
+        } catch (e: Exception) {
+            Toast.makeText(requireContext(), "Error loading video ${e.message}", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun viewPage(resourceUrl: String) {
+        webView.isVisible = true
+        videoView.isVisible = false
+        imageView.isVisible = false
+        try {
+            webView.webViewClient = object : WebViewClient() {
+                override fun shouldOverrideUrlLoading(
+                    view: WebView?,
+                    url: String
+                ): Boolean {
+                    view?.loadUrl(url)
+                    return true
+                }
+            }
+            webView.loadUrl(resourceUrl)
+        } catch (e: Exception) {
+            Toast.makeText(requireContext(), "Error loading page ${e.message}", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -114,18 +142,6 @@ class FlashCardsFragment : Fragment(R.layout.fragment_flash_cards) {
         imageBtn.setPadding(25, 25, 25, 25)
         imageBtn.id = View.generateViewId()
         return imageBtn
-        /*imageButton.apply {
-            this.text = text
-            this.tag = tag
-            textSize = 24F
-            typeface = Typeface.DEFAULT_BOLD
-            setPadding(25, 25, 25, 25)
-            if (tag.isNotEmpty())
-                setBackgroundResource(android.R.color.holo_green_light)
-            else
-                setBackgroundResource(android.R.color.holo_blue_light)
-            id = View.generateViewId()
-        }*/
     }
 /*
     fun onWordClicked(word: Word) {

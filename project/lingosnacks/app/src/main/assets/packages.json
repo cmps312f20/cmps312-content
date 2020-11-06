@@ -60,11 +60,11 @@
         ],
         "sentences": [
           {
-            "text": "My son goes to the Swiss International School in Qatar",
+            "text": "My son goes to Doha British School",
             "resources": [
               {
-                "title": "Swiss International School in Qatar",
-                "resourceUrl": "http://qatareducationaldirectory.qa/Files/Gallery/Swiss-international-school-Qatar-eductional-directory.jpg",
+                "title": "Doha British School",
+                "resourceUrl": "https://www.dohabritishschool.com/dbs-ainkhaled/public/uploads/pages/1568797241.jpg",
                 "type": "Photo"
               },
               {
@@ -73,18 +73,6 @@
                 "type": "Video"
               }
             ]
-          }
-        ],
-        "resources": [
-          {
-            "title": "Swiss International School in Qatar",
-            "resourceUrl": "http://qatareducationaldirectory.qa/Files/Gallery/Swiss-international-school-Qatar-eductional-directory.jpg",
-            "type": "Photo"
-          },
-          {
-            "title": "Learn and have fun",
-            "resourceUrl": "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4",
-            "type": "Video"
           }
         ]
       },
@@ -108,15 +96,13 @@
                 "title": "Aspire Park",
                 "resourceUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Aspire_Park%2C_Doha_-_panoramio_%281%29.jpg/440px-Aspire_Park%2C_Doha_-_panoramio_%281%29.jpg",
                 "type": "Photo"
+              },
+              {
+                "title": "Al Khor Family Park",
+                "resourceUrl": "https://www.iloveqatar.net/public/images/local/_760x500_clip_center-center_none/EQprMssWsAA9FWx.jpg",
+                "type": "Photo"
               }
             ]
-          }
-        ],
-        "resources": [
-          {
-            "title": "Al Khor Family Park",
-            "resourceUrl": "https://www.iloveqatar.net/public/images/local/_760x500_clip_center-center_none/EQprMssWsAA9FWx.jpg",
-            "type": "Photo"
           }
         ]
       },
@@ -140,20 +126,18 @@
                 "title": "Hamad Hospital",
                 "resourceUrl": "https://thepeninsulaqatar.com/uploads/2017/06/20/post_main_cover_fit//9cecf42be0f4dcfa2b6f7e0d78e2ac8cb3b91c7c.jpg",
                 "type": "Photo"
+              },
+              {
+                "title": "Sidra Medical and Research Center",
+                "resourceUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Construction_of_Sidra_Medical_and_Research_Center_in_2014.jpg/440px-Construction_of_Sidra_Medical_and_Research_Center_in_2014.jpg",
+                "type": "Photo"
+              },
+              {
+                "title": "Sidra Medical and Research Center Tour",
+                "resourceUrl": "https://www.dropbox.com/s/5j41q4o1ndz4y4a/Sidra-Medicine.mp4",
+                "type": "Video"
               }
             ]
-          }
-        ],
-        "resources": [
-          {
-            "title": "Sidra Medical and Research Center",
-            "resourceUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Construction_of_Sidra_Medical_and_Research_Center_in_2014.jpg/440px-Construction_of_Sidra_Medical_and_Research_Center_in_2014.jpg",
-            "type": "Photo"
-          },
-          {
-            "title": "Sidra Medical and Research Center Tour",
-            "resourceUrl": "https://www.dropbox.com/s/5j41q4o1ndz4y4a/Sidra-Medicine.mp4",
-            "type": "Video"
           }
         ]
       },
@@ -181,18 +165,6 @@
               }
             ]
           }
-        ],
-        "resources": [
-          {
-            "title": "Starbucks Coffee",
-            "resourceUrl": "https://ezdanmall.qa/al-gharaffa/wp-content/uploads/sites/2/2018/08/STARBUCKS-COFFEE.jpg",
-            "type": "Photo"
-          },
-          {
-            "title": "Delicious Coffee",
-            "resourceUrl": "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4",
-            "type": "Video"
-          }
         ]
       },
       {
@@ -209,17 +181,10 @@
             "resources": [
               {
                 "title": "Dentist",
-                "resourceUrl": "http://www.qu.edu.qa/static_file/qu/colleges/dentistry/showarea/10.jpg",
+                "resourceUrl": "https://www.qu.edu.qa/static_file/qu/colleges/dentistry/showarea/10.jpg",
                 "type": "Photo"
               }
             ]
-          }
-        ],
-        "resources": [
-          {
-            "title": "Dentist",
-            "resourceUrl": "http://www.qu.edu.qa/static_file/qu/colleges/dentistry/showarea/10.jpg",
-            "type": "Photo"
           }
         ]
       },
@@ -237,27 +202,15 @@
             "resources": [
               {
                 "title": "Qatar university",
-                "resourceUrl": "http://www.qu.edu.qa/static_file/qu/research/images/about%208.jpg",
+                "resourceUrl": "https://www.qu.edu.qa/static_file/qu/research/images/about%208.jpg",
                 "type": "Photo"
               },
               {
                 "title": "Qatar University Website",
-                "resourceUrl": "http://www.qu.edu.qa/",
+                "resourceUrl": "https://www.qu.edu.qa/",
                 "type": "Website"
               }
             ]
-          }
-        ],
-        "resources": [
-          {
-            "title": "Qatar university",
-            "resourceUrl": "http://www.qu.edu.qa/static_file/qu/research/images/about%208.jpg",
-            "type": "Photo"
-          },
-          {
-            "title": "Qatar University Website",
-            "resourceUrl": "http://www.qu.edu.qa/",
-            "type": "Website"
           }
         ]
       }
@@ -285,7 +238,7 @@
     "numRatings": 4,
     "words": [
       {
-        "text": "grocery store",
+        "text": "Grocery store",
         "definitions": [
           {
             "text": "Place to buy grocery items",
@@ -297,23 +250,16 @@
             "text": "I will buy vegetables at the grocery store",
             "resources": [
               {
-                "title": "sample",
+                "title": "Grocery store",
                 "resourceUrl": "https://www.expatica.com/app/uploads/sites/2/2014/05/spain-grocery.jpg",
                 "type": "Photo"
               }
             ]
           }
-        ],
-        "resources": [
-          {
-            "title": "sample",
-            "resourceUrl": "https://www.expatica.com/app/uploads/sites/2/2014/05/spain-grocery.jpg",
-            "type": "Photo"
-          }
         ]
       },
       {
-        "text": "garage",
+        "text": "Garage",
         "definitions": [
           {
             "text": "Place to get your car fixed when it is not working properly",
@@ -325,33 +271,20 @@
             "text": "Adam will take the broken car to the garage",
             "resources": [
               {
-                "title": "sample",
+                "title": "Garage",
                 "resourceUrl": "https://www.chrislovesjulia.com/wp-content/uploads/2020/06/061A4057.jpg",
                 "type": "Photo"
               },
               {
-                "title": "lingo_snacks_video",
+                "title": "Garage video",
                 "resourceUrl": "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4",
                 "type": "Video"
               }
             ]
           }
-        ],
-        "resources": [
-          {
-            "title": "sample",
-            "resourceUrl": "https://www.chrislovesjulia.com/wp-content/uploads/2020/06/061A4057.jpg",
-            "type": "Photo"
-          },
-          {
-            "title": "lingo_snacks_video",
-            "resourceUrl": "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4",
-            "type": "Video"
-          }
-        ]
-      },
+        ]},
       {
-        "text": "restaurant",
+        "text": "Restaurant",
         "definitions": [
           {
             "text": "Place to buy a meal and eat it",
@@ -367,23 +300,16 @@
             "text": "We will go to the restaurant for dinner",
             "resources": [
               {
-                "title": "sample",
+                "title": "Restaurant",
                 "resourceUrl": "https://www.ikea.com/images/ikea-restaurant-0745426d2a11d5a15d9c4fdf85ce4de4.jpg?f=xxxl",
                 "type": "Photo"
               }
             ]
           }
-        ],
-        "resources": [
-          {
-            "title": "sample",
-            "resourceUrl": "https://www.ikea.com/images/ikea-restaurant-0745426d2a11d5a15d9c4fdf85ce4de4.jpg?f=xxxl",
-            "type": "Photo"
-          }
         ]
       },
       {
-        "text": "police station",
+        "text": "Police station",
         "definitions": [
           {
             "text": "Place where police men work",
@@ -395,33 +321,21 @@
             "text": "My father works at the police station",
             "resources": [
               {
-                "title": "sample",
+                "title": "Police station",
                 "resourceUrl": "https://media.istockphoto.com/vectors/the-police-car-opposite-the-of-the-police-station-vector-id886490230?b=1&k=6&m=886490230&s=612x612&w=0&h=dAqfQLecS0NH-Px6uQlOnGXXxhThHvW93ri4go--Cac=",
                 "type": "Photo"
               },
               {
-                "title": "lingo_snacks_video",
+                "title": "Police station video",
                 "resourceUrl": "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4",
                 "type": "Video"
               }
             ]
           }
-        ],
-        "resources": [
-          {
-            "title": "sample",
-            "resourceUrl": "https://media.istockphoto.com/vectors/the-police-car-opposite-the-of-the-police-station-vector-id886490230?b=1&k=6&m=886490230&s=612x612&w=0&h=dAqfQLecS0NH-Px6uQlOnGXXxhThHvW93ri4go--Cac=",
-            "type": "Photo"
-          },
-          {
-            "title": "lingo_snacks_video",
-            "resourceUrl": "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4",
-            "type": "Video"
-          }
         ]
       },
       {
-        "text": "post office",
+        "text": "Post office",
         "definitions": [
           {
             "text": "Place that is responsible of delivering items that you want to send to someone",
@@ -433,23 +347,16 @@
             "text": "She took the letter to the post office",
             "resources": [
               {
-                "title": "sample",
+                "title": "Post office",
                 "resourceUrl": "https://en.pimg.jp/008/349/586/1/8349586.jpg",
                 "type": "Photo"
               }
             ]
           }
-        ],
-        "resources": [
-          {
-            "title": "sample",
-            "resourceUrl": "https://en.pimg.jp/008/349/586/1/8349586.jpg",
-            "type": "Photo"
-          }
         ]
       },
       {
-        "text": "library",
+        "text": "Library",
         "definitions": [
           {
             "text": "Place to borrow books",
@@ -465,7 +372,7 @@
             "text": "I will borrow a book from the library",
             "resources": [
               {
-                "title": "sample",
+                "title": "Library",
                 "resourceUrl": "https://www.mathaf.org.qa/images/research/library-620-1.jpg",
                 "type": "Photo"
               },
@@ -475,18 +382,6 @@
                 "type": "Website"
               }
             ]
-          }
-        ],
-        "resources": [
-          {
-            "title": "sample",
-            "resourceUrl": "https://www.mathaf.org.qa/images/research/library-620-1.jpg",
-            "type": "Photo"
-          },
-          {
-            "title": "Library Website",
-            "resourceUrl": "https://www.qnl.qa/en",
-            "type": "Website"
           }
         ]
       }
@@ -543,21 +438,13 @@
                 "resourceUrl": "https://image.shutterstock.com/image-vector/vector-illustration-strawberry-fruit-flat-600w-1653837160.jpg",
                 "title": "Strawberry",
                 "type":"Photo"
+              },
+              {
+                "resourceUrl": "https://cdn.videvo.net/videvo_files/video/premium/video0252/small_watermarked/4000-4_07508_preview.webm",
+                "title": "Fresh strawberries",
+                "type":"Video"
               }
             ]
-          }
-        ],
-        "resources":
-        [
-          {
-            "resourceUrl": "https://image.shutterstock.com/image-vector/strawberry-vector-600w-130840772.jpg",
-            "title": "Strwaberry",
-            "type":"Photo"
-          },
-          {
-            "resourceUrl": "https://cdn.videvo.net/videvo_files/video/premium/video0252/small_watermarked/4000-4_07508_preview.webm",
-            "title": "Fresh strawberries",
-            "type":"Video"
           }
         ]
       },
@@ -595,21 +482,13 @@
                 "resourceUrl": "https://image.shutterstock.com/image-vector/vector-illustration-strawberry-fruit-flat-600w-1653837160.jpg",
                 "title": "Apple",
                 "type":"Photo"
+              },
+              {
+                "resourceUrl": "https://cdn.videvo.net/videvo_files/video/premium/video0252/small_watermarked/4000-4_07508_preview.webm",
+                "title": "Fresh Apples",
+                "type":"Video"
               }
             ]
-          }
-        ],
-        "resources":
-        [
-          {
-            "resourceUrl": "https://image.shutterstock.com/image-vector/strawberry-vector-600w-130840772.jpg",
-            "title": "Apple",
-            "type":"Photo"
-          },
-          {
-            "resourceUrl": "https://cdn.videvo.net/videvo_files/video/premium/video0252/small_watermarked/4000-4_07508_preview.webm",
-            "title": "Fresh Apples",
-            "type":"Video"
           }
         ]
       },
@@ -653,26 +532,23 @@
                 "resourceUrl": "https://ak.picdn.net/shutterstock/videos/1055039492/preview/stock-footage-aerial-view-grape-field-vineyard-rows-vineyard-plantation-grapevines-and-plant-rows.webm",
                 "title": "Grapes Farms",
                 "type":"Video"
+              },
+              {
+                "resourceUrl": "https://image.shutterstock.com/image-photo/fresh-grapes-isolated-on-white-600w-1477567895.jpg",
+                "title": "Grapes",
+                "type":"Photo"
+              },
+              {
+                "resourceUrl": "https://image.shutterstock.com/image-vector/bunch-red-pink-grapes-juice-600w-1795583716.jpg",
+                "title": "Red Grapes",
+                "type":"Photo"
+              },
+              {
+                "resourceUrl": "https://cdn.videvo.net/videvo_files/video/free/2015-08/small_watermarked/redgrapes_preview.webm",
+                "title": "Macro Red Grapes",
+                "type":"Video"
               }
             ]
-          }
-        ],
-        "resources":
-        [
-          {
-            "resourceUrl": "https://image.shutterstock.com/image-photo/fresh-grapes-isolated-on-white-600w-1477567895.jpg",
-            "title": "Grapes",
-            "type":"Photo"
-          },
-          {
-            "resourceUrl": "https://image.shutterstock.com/image-vector/bunch-red-pink-grapes-juice-600w-1795583716.jpg",
-            "title": "Red Grapes",
-            "type":"Photo"
-          },
-          {
-            "resourceUrl": "https://cdn.videvo.net/videvo_files/video/free/2015-08/small_watermarked/redgrapes_preview.webm",
-            "title": "Macro Red Grapes",
-            "type":"Video"
           }
         ]
       }
@@ -722,15 +598,13 @@
                 "resourceUrl": "https://www.flaticon.com/svg/static/icons/svg/2790/2790740.svg",
                 "title": "Covid19 spreading",
                 "type": "Photo"
+              },
+              {
+                "resourceUrl": "https://v.ftcdn.net/03/78/85/13/700_F_378851397_QzZElSE57apQuLLqJrpJvSROX23988IP_ST.mp4",
+                "title": "Pearl Qatar Island",
+                "type": "Video"
               }
             ]
-          }
-        ],
-        "resources": [
-          {
-            "resourceUrl": "https://v.ftcdn.net/03/78/85/13/700_F_378851397_QzZElSE57apQuLLqJrpJvSROX23988IP_ST.mp4",
-            "title": "The Pearl Qatar Island",
-            "type": "Video"
           }
         ]
       }
