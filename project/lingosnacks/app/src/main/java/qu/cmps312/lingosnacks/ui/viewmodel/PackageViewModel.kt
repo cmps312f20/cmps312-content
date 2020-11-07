@@ -74,6 +74,7 @@ class PackageViewModel(application: Application) : AndroidViewModel(application)
     fun addScore(score: Score) = packageRepository.addScore(score)
     fun getLeaderBoard() = packageRepository.getLeaderBoard()
 
-    // ToDo initialize Firestore db with data from packages.json and users.json
-    fun initFirestoreDB() {}
+    fun initFirestoreDB() {
+        packageRepository.initFirestoreDB()
+    }
 }

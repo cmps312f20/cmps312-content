@@ -116,4 +116,7 @@ class PackageRepository(val context: Context) {
                 "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/Bugs_Bunny.svg/360px-Bugs_Bunny.svg.png",
                 "Match Definition", 60, 120)
         )
+
+    // ToDo initialize Firestore db with data from packages.json and users.json
+    fun initFirestoreDB() {}
 }
