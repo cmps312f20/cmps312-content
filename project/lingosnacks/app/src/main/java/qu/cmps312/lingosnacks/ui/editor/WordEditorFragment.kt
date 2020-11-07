@@ -25,7 +25,7 @@ class WordEditorFragment : Fragment(R.layout.word_editor_fragment) {
         super.onViewCreated(view, savedInstanceState)
 
         val words = packageEditorViewModel.learningPackage.words
-        val wordEditorAdapter = WordEditorAdapter(words, ::openDefinitionEditor)
+        val wordEditorAdapter = WordEditorAdapter(words, ::openDefinitionEditor, ::openSentenceEditor)
 
         wordsRv.apply {
             adapter = wordEditorAdapter
@@ -53,8 +53,13 @@ class WordEditorFragment : Fragment(R.layout.word_editor_fragment) {
         }
     }
 
-    private fun openDefinitionEditor(position: Int) {
-        packageEditorViewModel.selectedWordIndex = position
-        findNavController().navigate(R.id.toWordEditorFragment)
+    private fun openDefinitionEditor(selectedWordIndex: Int) {
+        packageEditorViewModel.selectedWordIndex = selectedWordIndex
+        findNavController().navigate(R.id.toDefinitionEditor)
+    }
+
+    private fun openSentenceEditor(selectedWordIndex: Int) {
+        packageEditorViewModel.selectedWordIndex = selectedWordIndex
+        findNavController().navigate(R.id.toSentenceEditor)
     }
 }

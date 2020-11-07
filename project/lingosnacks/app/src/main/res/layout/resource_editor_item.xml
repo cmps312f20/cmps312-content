@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="10dp">
+
+    <EditText
+        android:id="@+id/titleEt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/lightYellow"
+        android:drawableLeft="@drawable/ic_title"
+        android:drawablePadding="10dp"
+        android:hint="@string/title"
+        android:inputType="textPersonName"
+        android:padding="10dp"
+        app:layout_constraintEnd_toStartOf="@id/deleteBtn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/urlEt"
+        android:layout_width="0dp"
+        android:layout_height="146dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/lightYellow"
+        android:drawableLeft="@drawable/ic_link"
+        android:drawablePadding="10dp"
+        android:hint="@string/icon"
+        android:inputType="textMultiLine"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/titleEt"
+        app:layout_constraintStart_toStartOf="@+id/titleEt"
+        app:layout_constraintTop_toBottomOf="@+id/titleEt" />
+
+    <TextView
+        android:id="@+id/typeTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:drawableLeft="@drawable/ic_category"
+        android:drawablePadding="5dp"
+        android:padding="5dp"
+        android:text="Type"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/titleEt"
+        app:layout_constraintTop_toBottomOf="@+id/urlEt" />
+
+    <Spinner
+        android:id="@+id/typeSp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/typeTv"
+        app:layout_constraintEnd_toStartOf="@+id/deleteBtn"
+        app:layout_constraintStart_toEndOf="@+id/typeTv"
+        app:layout_constraintTop_toTopOf="@+id/typeTv" />
+
+    <ImageButton
+        android:id="@+id/deleteBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:background="@color/white"
+        android:padding="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/titleEt"
+        app:srcCompat="@drawable/ic_delete" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

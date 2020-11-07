@@ -27,12 +27,12 @@
             "resources": [
               {
                 "title": "Mall of Qatar",
-                "resourceUrl": "https://gulfbusiness.com/wp-content/uploads/2016/12/Mall-of-Qatar.jpg",
+                "url": "https://gulfbusiness.com/wp-content/uploads/2016/12/Mall-of-Qatar.jpg",
                 "type": "Photo"
               },
               {
                 "title": "Mall of Qatar Tour",
-                "resourceUrl": "https://github.com/erradi/erradi.github.io/blob/master/Mall-of-Qatar-Tour.mp4?raw=true",
+                "url": "https://github.com/erradi/erradi.github.io/blob/master/Mall-of-Qatar-Tour.mp4?raw=true",
                 "type": "Video"
               }
             ]
@@ -57,12 +57,12 @@
             "resources": [
               {
                 "title": "Doha British School",
-                "resourceUrl": "https://www.dohabritishschool.com/dbs-ainkhaled/public/uploads/pages/1568797241.jpg",
+                "url": "https://www.dohabritishschool.com/dbs-ainkhaled/public/uploads/pages/1568797241.jpg",
                 "type": "Photo"
               },
               {
                 "title": "Learn and have fun",
-                "resourceUrl": "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4",
+                "url": "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4",
                 "type": "Video"
               }
             ]
@@ -87,12 +87,12 @@
             "resources": [
               {
                 "title": "Aspire Park",
-                "resourceUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Aspire_Park%2C_Doha_-_panoramio_%281%29.jpg/440px-Aspire_Park%2C_Doha_-_panoramio_%281%29.jpg",
+                "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Aspire_Park%2C_Doha_-_panoramio_%281%29.jpg/440px-Aspire_Park%2C_Doha_-_panoramio_%281%29.jpg",
                 "type": "Photo"
               },
               {
                 "title": "Al Khor Family Park",
-                "resourceUrl": "https://www.iloveqatar.net/public/images/local/_760x500_clip_center-center_none/EQprMssWsAA9FWx.jpg",
+                "url": "https://www.iloveqatar.net/public/images/local/_760x500_clip_center-center_none/EQprMssWsAA9FWx.jpg",
                 "type": "Photo"
               }
             ]
@@ -117,17 +117,17 @@
             "resources": [
               {
                 "title": "Hamad Hospital",
-                "resourceUrl": "https://thepeninsulaqatar.com/uploads/2017/06/20/post_main_cover_fit//9cecf42be0f4dcfa2b6f7e0d78e2ac8cb3b91c7c.jpg",
+                "url": "https://thepeninsulaqatar.com/uploads/2017/06/20/post_main_cover_fit//9cecf42be0f4dcfa2b6f7e0d78e2ac8cb3b91c7c.jpg",
                 "type": "Photo"
               },
               {
                 "title": "Sidra Medical and Research Center",
-                "resourceUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Construction_of_Sidra_Medical_and_Research_Center_in_2014.jpg/440px-Construction_of_Sidra_Medical_and_Research_Center_in_2014.jpg",
+                "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Construction_of_Sidra_Medical_and_Research_Center_in_2014.jpg/440px-Construction_of_Sidra_Medical_and_Research_Center_in_2014.jpg",
                 "type": "Photo"
               },
               {
                 "title": "Sidra Medical and Research Center Tour",
-                "resourceUrl": "https://erradi.github.io/Sidra-Medicine.mp4",
+                "url": "https://erradi.github.io/Sidra-Medicine.mp4",
                 "type": "Video"
               }
             ]
@@ -148,12 +148,12 @@
             "resources": [
               {
                 "title": "Starbucks Coffee",
-                "resourceUrl": "https://ezdanmall.qa/al-gharaffa/wp-content/uploads/sites/2/2018/08/STARBUCKS-COFFEE.jpg",
+                "url": "https://ezdanmall.qa/al-gharaffa/wp-content/uploads/sites/2/2018/08/STARBUCKS-COFFEE.jpg",
                 "type": "Photo"
               },
               {
                 "title": "Delicious Coffee",
-                "resourceUrl": "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4",
+                "url": "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4",
                 "type": "Video"
               }
             ]
@@ -174,7 +174,7 @@
             "resources": [
               {
                 "title": "Dentist",
-                "resourceUrl": "https://www.qu.edu.qa/static_file/qu/colleges/dentistry/showarea/10.jpg",
+                "url": "https://www.qu.edu.qa/static_file/qu/colleges/dentistry/showarea/10.jpg",
                 "type": "Photo"
               }
             ]
@@ -195,12 +195,12 @@
             "resources": [
               {
                 "title": "Qatar university",
-                "resourceUrl": "https://www.qu.edu.qa/static_file/qu/research/images/about%208.jpg",
+                "url": "https://www.qu.edu.qa/static_file/qu/research/images/about%208.jpg",
                 "type": "Photo"
               },
               {
                 "title": "Qatar University Website",
-                "resourceUrl": "https://www.qu.edu.qa/",
+                "url": "https://www.qu.edu.qa/",
                 "type": "Website"
               }
             ]
@@ -238,7 +238,7 @@
             "resources": [
               {
                 "title": "Grocery store",
-                "resourceUrl": "https://www.expatica.com/app/uploads/sites/2/2014/05/spain-grocery.jpg",
+                "url": "https://www.expatica.com/app/uploads/sites/2/2014/05/spain-grocery.jpg",
                 "type": "Photo"
               }
             ]
@@ -259,12 +259,12 @@
             "resources": [
               {
                 "title": "Garage",
-                "resourceUrl": "https://www.chrislovesjulia.com/wp-content/uploads/2020/06/061A4057.jpg",
+                "url": "https://www.chrislovesjulia.com/wp-content/uploads/2020/06/061A4057.jpg",
                 "type": "Photo"
               },
               {
                 "title": "Garage video",
-                "resourceUrl": "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4",
+                "url": "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4",
                 "type": "Video"
               }
             ]
@@ -288,7 +288,7 @@
             "resources": [
               {
                 "title": "Restaurant",
-                "resourceUrl": "https://www.ikea.com/images/ikea-restaurant-0745426d2a11d5a15d9c4fdf85ce4de4.jpg?f=xxxl",
+                "url": "https://www.ikea.com/images/ikea-restaurant-0745426d2a11d5a15d9c4fdf85ce4de4.jpg?f=xxxl",
                 "type": "Photo"
               }
             ]
@@ -309,12 +309,12 @@
             "resources": [
               {
                 "title": "Police station",
-                "resourceUrl": "https://media.istockphoto.com/vectors/the-police-car-opposite-the-of-the-police-station-vector-id886490230?b=1&k=6&m=886490230&s=612x612&w=0&h=dAqfQLecS0NH-Px6uQlOnGXXxhThHvW93ri4go--Cac=",
+                "url": "https://media.istockphoto.com/vectors/the-police-car-opposite-the-of-the-police-station-vector-id886490230?b=1&k=6&m=886490230&s=612x612&w=0&h=dAqfQLecS0NH-Px6uQlOnGXXxhThHvW93ri4go--Cac=",
                 "type": "Photo"
               },
               {
                 "title": "Police station video",
-                "resourceUrl": "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4",
+                "url": "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4",
                 "type": "Video"
               }
             ]
@@ -335,7 +335,7 @@
             "resources": [
               {
                 "title": "Post office",
-                "resourceUrl": "https://en.pimg.jp/008/349/586/1/8349586.jpg",
+                "url": "https://en.pimg.jp/008/349/586/1/8349586.jpg",
                 "type": "Photo"
               }
             ]
@@ -360,12 +360,12 @@
             "resources": [
               {
                 "title": "Library",
-                "resourceUrl": "https://www.mathaf.org.qa/images/research/library-620-1.jpg",
+                "url": "https://www.mathaf.org.qa/images/research/library-620-1.jpg",
                 "type": "Photo"
               },
               {
                 "title": "Library Website",
-                "resourceUrl": "https://www.qnl.qa/en",
+                "url": "https://www.qnl.qa/en",
                 "type": "Website"
               }
             ]
@@ -410,7 +410,7 @@
             "resources":
             [
               {
-                "resourceUrl": "https://ak.picdn.net/shutterstock/videos/4235933/preview/stock-footage-stalks-being-removed-from-strawberries.webm",
+                "url": "https://ak.picdn.net/shutterstock/videos/4235933/preview/stock-footage-stalks-being-removed-from-strawberries.webm",
                 "title": "Hulling Strawberries",
                 "type":"Video"
               }
@@ -421,12 +421,12 @@
             "resources":
             [
               {
-                "resourceUrl": "https://image.shutterstock.com/image-vector/vector-illustration-strawberry-fruit-flat-600w-1653837160.jpg",
+                "url": "https://image.shutterstock.com/image-vector/vector-illustration-strawberry-fruit-flat-600w-1653837160.jpg",
                 "title": "Strawberry",
                 "type":"Photo"
               },
               {
-                "resourceUrl": "https://cdn.videvo.net/videvo_files/video/premium/video0252/small_watermarked/4000-4_07508_preview.webm",
+                "url": "https://cdn.videvo.net/videvo_files/video/premium/video0252/small_watermarked/4000-4_07508_preview.webm",
                 "title": "Fresh strawberries",
                 "type":"Video"
               }
@@ -454,7 +454,7 @@
             "resources":
             [
               {
-                "resourceUrl": "https://ak.picdn.net/shutterstock/videos/4235933/preview/stock-footage-stalks-being-removed-from-strawberries.webm",
+                "url": "https://ak.picdn.net/shutterstock/videos/4235933/preview/stock-footage-stalks-being-removed-from-strawberries.webm",
                 "title": "Hulling Apples",
                 "type":"Video"
               }
@@ -465,12 +465,12 @@
             "resources":
             [
               {
-                "resourceUrl": "https://image.shutterstock.com/image-vector/vector-illustration-strawberry-fruit-flat-600w-1653837160.jpg",
+                "url": "https://image.shutterstock.com/image-vector/vector-illustration-strawberry-fruit-flat-600w-1653837160.jpg",
                 "title": "Apple",
                 "type":"Photo"
               },
               {
-                "resourceUrl": "https://cdn.videvo.net/videvo_files/video/premium/video0252/small_watermarked/4000-4_07508_preview.webm",
+                "url": "https://cdn.videvo.net/videvo_files/video/premium/video0252/small_watermarked/4000-4_07508_preview.webm",
                 "title": "Fresh Apples",
                 "type":"Video"
               }
@@ -499,12 +499,12 @@
             "resources":
             [
               {
-                "resourceUrl": "https://ak.picdn.net/shutterstock/videos/1060460383/preview/stock-footage-child-eat-sweet-grape-little-girl-vegetarian-is-eating-white-grapes-from-plate-sitting-home-at.webm",
+                "url": "https://ak.picdn.net/shutterstock/videos/1060460383/preview/stock-footage-child-eat-sweet-grape-little-girl-vegetarian-is-eating-white-grapes-from-plate-sitting-home-at.webm",
                 "title": "Eating Grapes",
                 "type":"Video"
               },
               {
-                "resourceUrl": "https://ak.picdn.net/shutterstock/videos/1055039492/preview/stock-footage-aerial-view-grape-field-vineyard-rows-vineyard-plantation-grapevines-and-plant-rows.webm",
+                "url": "https://ak.picdn.net/shutterstock/videos/1055039492/preview/stock-footage-aerial-view-grape-field-vineyard-rows-vineyard-plantation-grapevines-and-plant-rows.webm",
                 "title": "Grapes Farms",
                 "type":"Video"
               }
@@ -515,22 +515,22 @@
             "resources":
             [
               {
-                "resourceUrl": "https://ak.picdn.net/shutterstock/videos/1055039492/preview/stock-footage-aerial-view-grape-field-vineyard-rows-vineyard-plantation-grapevines-and-plant-rows.webm",
+                "url": "https://ak.picdn.net/shutterstock/videos/1055039492/preview/stock-footage-aerial-view-grape-field-vineyard-rows-vineyard-plantation-grapevines-and-plant-rows.webm",
                 "title": "Grapes Farms",
                 "type":"Video"
               },
               {
-                "resourceUrl": "https://image.shutterstock.com/image-photo/fresh-grapes-isolated-on-white-600w-1477567895.jpg",
+                "url": "https://image.shutterstock.com/image-photo/fresh-grapes-isolated-on-white-600w-1477567895.jpg",
                 "title": "Grapes",
                 "type":"Photo"
               },
               {
-                "resourceUrl": "https://image.shutterstock.com/image-vector/bunch-red-pink-grapes-juice-600w-1795583716.jpg",
+                "url": "https://image.shutterstock.com/image-vector/bunch-red-pink-grapes-juice-600w-1795583716.jpg",
                 "title": "Red Grapes",
                 "type":"Photo"
               },
               {
-                "resourceUrl": "https://cdn.videvo.net/videvo_files/video/free/2015-08/small_watermarked/redgrapes_preview.webm",
+                "url": "https://cdn.videvo.net/videvo_files/video/free/2015-08/small_watermarked/redgrapes_preview.webm",
                 "title": "Macro Red Grapes",
                 "type":"Video"
               }
@@ -567,7 +567,7 @@
             "text": "Precautionary measures",
             "resources": [
               {
-                "resourceUrl": "https://www.flaticon.com/svg/static/icons/svg/3596/3596032.svg",
+                "url": "https://www.flaticon.com/svg/static/icons/svg/3596/3596032.svg",
                 "title": "COVID19 protection",
                 "type": "Photo"
               }
@@ -577,12 +577,12 @@
             "text": "Coronavirus is continuing its spread across the world",
             "resources": [
               {
-                "resourceUrl": "https://www.flaticon.com/svg/static/icons/svg/2790/2790740.svg",
+                "url": "https://www.flaticon.com/svg/static/icons/svg/2790/2790740.svg",
                 "title": "Covid19 spreading",
                 "type": "Photo"
               },
               {
-                "resourceUrl": "https://v.ftcdn.net/03/78/85/13/700_F_378851397_QzZElSE57apQuLLqJrpJvSROX23988IP_ST.mp4",
+                "url": "https://v.ftcdn.net/03/78/85/13/700_F_378851397_QzZElSE57apQuLLqJrpJvSROX23988IP_ST.mp4",
                 "title": "Pearl Qatar Island",
                 "type": "Video"
               }
@@ -603,7 +603,7 @@
             "text": "Precautionary measures",
             "resources": [
               {
-                "resourceUrl": "https://www.flaticon.com/svg/static/icons/svg/3596/3596032.svg",
+                "url": "https://www.flaticon.com/svg/static/icons/svg/3596/3596032.svg",
                 "title": "COVID19 protection",
                 "type": "Photo"
               }
@@ -613,12 +613,12 @@
             "text": "Coronavirus is continuing its spread across the world",
             "resources": [
               {
-                "resourceUrl": "https://www.flaticon.com/svg/static/icons/svg/2790/2790740.svg",
+                "url": "https://www.flaticon.com/svg/static/icons/svg/2790/2790740.svg",
                 "title": "Covid19 spreading",
                 "type": "Photo"
               },
               {
-                "resourceUrl": "https://v.ftcdn.net/03/78/85/13/700_F_378851397_QzZElSE57apQuLLqJrpJvSROX23988IP_ST.mp4",
+                "url": "https://v.ftcdn.net/03/78/85/13/700_F_378851397_QzZElSE57apQuLLqJrpJvSROX23988IP_ST.mp4",
                 "title": "Pearl Qatar Island",
                 "type": "Video"
               }

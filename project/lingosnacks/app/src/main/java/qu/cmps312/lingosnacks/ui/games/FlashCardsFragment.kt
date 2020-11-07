@@ -76,9 +76,9 @@ class FlashCardsFragment : Fragment(R.layout.fragment_flash_cards) {
             imgBtn.setOnClickListener {
                 Toast.makeText(requireContext(), "${resource.title}", Toast.LENGTH_SHORT).show()
                 when (resource.type) {
-                    ResourceTypeEnum.Photo -> displayPhoto(resource.resourceUrl)
-                    ResourceTypeEnum.Video -> playVideo(resource.resourceUrl)
-                    ResourceTypeEnum.Website -> viewPage(resource.resourceUrl)
+                    ResourceTypeEnum.Photo -> displayPhoto(resource.url)
+                    ResourceTypeEnum.Video -> playVideo(resource.url)
+                    ResourceTypeEnum.Website -> viewPage(resource.url)
                 }
             }
             mainLayout.addView(imgBtn)

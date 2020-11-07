@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.rating_item.view.*
+import kotlinx.android.synthetic.main.package_rating_item.view.*
 import qu.cmps312.lingosnacks.R
 import qu.cmps312.lingosnacks.model.Rating
 
@@ -24,7 +24,7 @@ class RatingAdapter(private val ratings: List<Rating>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = RatingViewHolder(
         LayoutInflater.from(parent.context)
-            .inflate(R.layout.rating_item, parent, false)
+            .inflate(R.layout.package_rating_item, parent, false)
     )
 
     override fun onBindViewHolder(holder: RatingViewHolder, position: Int) =

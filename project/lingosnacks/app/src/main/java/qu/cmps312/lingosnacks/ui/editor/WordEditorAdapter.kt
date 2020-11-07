@@ -1,16 +1,19 @@
 package qu.cmps312.lingosnacks.ui.editor
 
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.content.Context
+import android.view.*
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.widget.doOnTextChanged
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.badge.BadgeDrawable
+import com.google.android.material.badge.BadgeUtils
 import kotlinx.android.synthetic.main.word_editor_item.view.*
 import qu.cmps312.lingosnacks.R
 import qu.cmps312.lingosnacks.model.Word
 
 class WordEditorAdapter(val words: MutableList<Word>,
-    val onDefinitionsClickListener: (selectedWordIndex: Int) -> Unit) :
+    val onDefinitionsClickListener: (selectedWordIndex: Int) -> Unit,
+    val onSentencesClickListener: (selectedWordIndex: Int) -> Unit) :
     RecyclerView.Adapter<WordEditorAdapter.WordViewHolder>() {
 
     inner class WordViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -22,6 +25,7 @@ class WordEditorAdapter(val words: MutableList<Word>,
                 words[adapterPosition].text = text.toString()
             }
 
+
             itemView.deleteBtn.setOnClickListener {
                 val position = adapterPosition
                 words.removeAt(position)
@@ -30,6 +34,10 @@ class WordEditorAdapter(val words: MutableList<Word>,
 
             itemView.definitionsTv.setOnClickListener {
                 onDefinitionsClickListener(adapterPosition)
+            }
+
+            itemView.sentencesTv.setOnClickListener {
+                onSentencesClickListener(adapterPosition)
             }
         }
     }

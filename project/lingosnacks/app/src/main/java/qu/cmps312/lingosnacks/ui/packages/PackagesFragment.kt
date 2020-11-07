@@ -8,9 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import qu.cmps312.lingosnacks.R
 import qu.cmps312.lingosnacks.model.LearningPackage
-import kotlinx.android.synthetic.main.fragment_packages.*
+import kotlinx.android.synthetic.main.packages_fragment.*
 import android.widget.SearchView
-import androidx.activity.viewModels
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
@@ -20,7 +19,7 @@ import qu.cmps312.lingosnacks.ui.viewmodel.AuthViewModel
 import qu.cmps312.lingosnacks.ui.viewmodel.PackageEditorViewModel
 import qu.cmps312.lingosnacks.ui.viewmodel.PackageViewModel
 
-class PackagesFragment : Fragment(R.layout.fragment_packages) {
+class PackagesFragment : Fragment(R.layout.packages_fragment) {
     private val packageViewModel by activityViewModels<PackageViewModel>()
     private val authViewModel by activityViewModels<AuthViewModel>()
     private val packageEditorViewModel by activityViewModels<PackageEditorViewModel>()

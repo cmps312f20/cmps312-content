@@ -6,34 +6,34 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.package_ratings_fragment.definitionsRv
-import kotlinx.android.synthetic.main.definition_editor_fragment.*
-import kotlinx.android.synthetic.main.definition_editor_fragment.addBtn
+import kotlinx.android.synthetic.main.resource_editor_fragment.*
+import kotlinx.android.synthetic.main.resource_editor_fragment.addBtn
 import qu.cmps312.lingosnacks.R
-import qu.cmps312.lingosnacks.model.Definition
+import qu.cmps312.lingosnacks.model.Resource
+import qu.cmps312.lingosnacks.model.ResourceTypeEnum
 import qu.cmps312.lingosnacks.ui.viewmodel.PackageEditorViewModel
 
 
-class DefinitionEditorFragment : Fragment(R.layout.definition_editor_fragment) {
+class ResourceEditorFragment : Fragment(R.layout.resource_editor_fragment) {
     private val packageEditorViewModel by activityViewModels<PackageEditorViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val definitions = packageEditorViewModel.getDefinitions()
-        val definitionEditorAdapter = DefinitionEditorAdapter(definitions)
+        val resources = packageEditorViewModel.getResources()
+        val resourceEditorAdapter = ResourceEditorAdapter(resources)
 
-        definitionsRv.apply {
-            adapter = definitionEditorAdapter
+        resourcesRv.apply {
+            adapter = resourceEditorAdapter
             layoutManager = LinearLayoutManager(context)
         }
 
         addBtn.setOnClickListener {
-            definitions.add(Definition("", ""))
-            definitionEditorAdapter.notifyItemInserted(definitionEditorAdapter.itemCount)
+            resources.add(Resource("", "", ResourceTypeEnum.Photo))
+            resourceEditorAdapter.notifyItemInserted(resourceEditorAdapter.itemCount)
         }
 
-        if (definitions.isEmpty())
+        if (resources.isEmpty())
             addBtn.performClick()
 
         backBtn.setOnClickListener {

@@ -10,9 +10,9 @@ import qu.cmps312.lingosnacks.model.Word
 class PackageEditorViewModel : ViewModel() {
     var learningPackage = LearningPackage()
     var selectedWordIndex = 0
-    fun getWordDefinitions() = learningPackage.words[selectedWordIndex].definitions
-    fun setWordDefinitions(definitions: MutableList<Definition>) {
-        learningPackage.words[selectedWordIndex].definitions = definitions
-    }
-    //var currentSentence = Sentence("")
+    fun getDefinitions() = learningPackage.words[selectedWordIndex].definitions
+    fun getSentences() = learningPackage.words[selectedWordIndex].sentences
+
+    var selectedSentenceIndex = 0
+    fun getResources() = learningPackage.words[selectedWordIndex].sentences[selectedSentenceIndex].resources
 }

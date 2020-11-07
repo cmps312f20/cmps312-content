@@ -39,12 +39,12 @@
         android:id="@+id/ratingsFragment"
         android:name="qu.cmps312.lingosnacks.ui.packages.RatingsFragment"
         android:label="Package Reviews"
-        tools:layout="@layout/fragment_ratings" />
+        tools:layout="@layout/package_ratings_fragment" />
     <dialog
         android:id="@+id/ratePackageFragment"
         android:name="qu.cmps312.lingosnacks.ui.packages.RatePackageFragment"
         android:label="Rate Package"
-        tools:layout="@layout/fragment_rate_package" />
+        tools:layout="@layout/package_rate_fragment" />
     <fragment
         android:id="@+id/flashCardsFragment"
         android:name="qu.cmps312.lingosnacks.ui.games.FlashCardsFragment"
@@ -59,7 +59,7 @@
         android:id="@+id/leaderBoardFragment"
         android:name="qu.cmps312.lingosnacks.ui.games.LeaderBoardFragment"
         android:label="Leader Board"
-        tools:layout="@layout/fragment_leader_board" />
+        tools:layout="@layout/leader_board_fragment" />
     <fragment
         android:id="@+id/matchDefinitionFragment"
         android:name="qu.cmps312.lingosnacks.ui.games.MatchDefinitionFragment"
@@ -69,7 +69,7 @@
         android:id="@+id/packageEditorFragment"
         android:name="qu.cmps312.lingosnacks.ui.editor.PackageEditorFragment"
         android:label="Package Editor"
-        tools:layout="@layout/fragment_package_editor" >
+        tools:layout="@layout/package_editor_fragment" >
         <action
             android:id="@+id/toWordEditor"
             app:destination="@id/wordEditorFragment" />
@@ -80,16 +80,33 @@
         android:label="Word Editor"
         tools:layout="@layout/word_editor_fragment" >
         <action
-            android:id="@+id/toWordEditorFragment"
+            android:id="@+id/toDefinitionEditor"
             app:destination="@id/definitionEditorFragment" />
         <action
             android:id="@+id/toHomeFragment"
             app:destination="@id/packagesFragment"
             app:popUpTo="@id/packagesFragment" />
+        <action
+            android:id="@+id/toSentenceEditor"
+            app:destination="@id/sentenceEditorFragment" />
     </fragment>
     <fragment
         android:id="@+id/definitionEditorFragment"
         android:name="qu.cmps312.lingosnacks.ui.editor.DefinitionEditorFragment"
         android:label="Definition Editor"
         tools:layout="@layout/definition_editor_fragment" />
+    <fragment
+        android:id="@+id/sentenceEditorFragment"
+        android:name="qu.cmps312.lingosnacks.ui.editor.SentenceEditorFragment"
+        android:label="Sentence Editor"
+        tools:layout="@layout/sentence_editor_fragment" >
+        <action
+            android:id="@+id/toResourceEditor"
+            app:destination="@id/resourceEditorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/resourceEditorFragment"
+        android:name="qu.cmps312.lingosnacks.ui.editor.ResourceEditorFragment"
+        android:label="Resource Editor"
+        tools:layout="@layout/resource_editor_fragment" />
 </navigation>

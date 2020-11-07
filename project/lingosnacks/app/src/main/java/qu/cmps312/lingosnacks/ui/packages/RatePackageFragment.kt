@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
-import kotlinx.android.synthetic.main.fragment_rate_package.*
+import kotlinx.android.synthetic.main.package_rate_fragment.*
 import qu.cmps312.lingosnacks.R
 import qu.cmps312.lingosnacks.model.Rating
 import qu.cmps312.lingosnacks.ui.viewmodel.AuthViewModel
@@ -19,7 +19,7 @@ class RatePackageFragment : DialogFragment() {
     private val authViewModel by activityViewModels<AuthViewModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_rate_package, container, false)
+        return inflater.inflate(R.layout.package_rate_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -7,7 +7,7 @@ import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import kotlinx.android.synthetic.main.fragment_package_editor.*
+import kotlinx.android.synthetic.main.package_editor_fragment.*
 import qu.cmps312.lingosnacks.R
 import qu.cmps312.lingosnacks.ui.viewmodel.PackageEditorViewModel
 
@@ -18,7 +18,7 @@ fun Spinner.setValue (value: String) {
         this.setSelection(position)
 }
 
-class PackageEditorFragment : Fragment(R.layout.fragment_package_editor) {
+class PackageEditorFragment : Fragment(R.layout.package_editor_fragment) {
     //private val packageViewModel by activityViewModels<PackageViewModel>()
     private val packageEditorViewModel by activityViewModels<PackageEditorViewModel>()
     

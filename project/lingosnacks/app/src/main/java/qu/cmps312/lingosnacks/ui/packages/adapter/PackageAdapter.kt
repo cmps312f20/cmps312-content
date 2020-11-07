@@ -4,9 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.package_item.view.*
+import kotlinx.android.synthetic.main.package_list_item.view.*
 import qu.cmps312.lingosnacks.R
-import qu.cmps312.lingosnacks.databinding.PackageItemBinding
+import qu.cmps312.lingosnacks.databinding.PackageListItemBinding
 import qu.cmps312.lingosnacks.model.LearningPackage
 import qu.cmps312.lingosnacks.ui.viewmodel.UserInfo
 
@@ -30,7 +30,7 @@ class PackageAdapter(
             notifyDataSetChanged()
         }
 
-    inner class PackageViewHolder(private val viewBinding: PackageItemBinding) : RecyclerView.ViewHolder(viewBinding.root) {
+    inner class PackageViewHolder(private val viewBinding: PackageListItemBinding) : RecyclerView.ViewHolder(viewBinding.root) {
 
         fun bind(learningPackage: LearningPackage) {
             viewBinding.learningPackage = learningPackage
@@ -83,8 +83,8 @@ class PackageAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PackageViewHolder {
-        val viewBinding: PackageItemBinding = DataBindingUtil.inflate(
-                LayoutInflater.from(parent.context), R.layout.package_item, parent, false)
+        val viewBinding: PackageListItemBinding = DataBindingUtil.inflate(
+                LayoutInflater.from(parent.context), R.layout.package_list_item, parent, false)
 
         return PackageViewHolder(viewBinding)
     }

@@ -22,6 +22,19 @@
         app:layout_constraintStart_toStartOf="@+id/guideLeft"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/categoryTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:drawableLeft="@drawable/ic_category"
+        android:drawablePadding="5dp"
+        android:padding="5dp"
+        android:text="Category"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/guideLeft"
+        app:layout_constraintTop_toBottomOf="@+id/languageTv" />
+
     <Spinner
         android:id="@+id/categorySp"
         android:layout_width="0dp"
@@ -38,12 +51,12 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:drawableLeft="@drawable/ic_icon"
+        android:drawableLeft="@drawable/ic_link"
         android:drawablePadding="10dp"
         android:background="@color/lightYellow"
         android:padding="10dp"
         android:hint="@string/icon"
-        android:inputType="textPersonName"
+        android:inputType="textUri"
         app:layout_constraintEnd_toStartOf="@+id/guideRight"
         app:layout_constraintStart_toStartOf="@+id/guideLeft"
         app:layout_constraintTop_toBottomOf="@+id/categorySp" />
@@ -72,7 +85,7 @@
 
     <EditText
         android:id="@+id/descriptionEt"
-        android:layout_width="368dp"
+        android:layout_width="0dp"
         android:layout_height="146dp"
         android:layout_marginTop="16dp"
         android:background="@color/lightYellow"
@@ -111,18 +124,6 @@
         app:layout_constraintStart_toStartOf="@+id/guideLeft"
         app:layout_constraintTop_toBottomOf="@+id/levelTv" />
 
-    <TextView
-        android:id="@+id/categoryTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:drawableLeft="@drawable/ic_category"
-        android:drawablePadding="5dp"
-        android:padding="5dp"
-        android:text="Category"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/guideLeft"
-        app:layout_constraintTop_toBottomOf="@+id/languageTv" />
 
     <Button
         android:id="@+id/nextBtn"
