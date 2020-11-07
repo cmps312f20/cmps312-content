@@ -10,18 +10,21 @@ import qu.cmps312.lingosnacks.R
 import qu.cmps312.lingosnacks.model.LearningPackage
 import kotlinx.android.synthetic.main.fragment_packages.*
 import android.widget.SearchView
+import androidx.activity.viewModels
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import qu.cmps312.lingosnacks.ui.packages.adapter.PackageAction
 import qu.cmps312.lingosnacks.ui.packages.adapter.PackageAdapter
 import qu.cmps312.lingosnacks.ui.viewmodel.AuthViewModel
+import qu.cmps312.lingosnacks.ui.viewmodel.PackageEditorViewModel
 import qu.cmps312.lingosnacks.ui.viewmodel.PackageViewModel
 
 class PackagesFragment : Fragment(R.layout.fragment_packages) {
     private val packageViewModel by activityViewModels<PackageViewModel>()
     private val authViewModel by activityViewModels<AuthViewModel>()
-    var currentUserEmail = ""
+    private val packageEditorViewModel by activityViewModels<PackageEditorViewModel>()
+
     private lateinit var packageAdapter: PackageAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -33,9 +36,6 @@ class PackagesFragment : Fragment(R.layout.fragment_packages) {
             adapter = packageAdapter
             layoutManager = LinearLayoutManager(context)
         }
-
-        // Init packages
-        packageViewModel.getPackages()
 
         swipeToRefresh.setOnRefreshListener {
             packageViewModel.getPackages()
@@ -49,7 +49,6 @@ class PackagesFragment : Fragment(R.layout.fragment_packages) {
 
         authViewModel.currentUser.observe(viewLifecycleOwner) {
             println(">> Debug: authViewModel.currentUser.observe: $it")
-            currentUserEmail = it?.email ?: ""
             packageAdapter.userInfo = authViewModel.getCurrentUserInfo()
         }
 
@@ -60,15 +59,18 @@ class PackagesFragment : Fragment(R.layout.fragment_packages) {
                 }.show()
                 return@setOnClickListener
             }
-            packageViewModel.selectedPackage = null
-            //findNavController().navigate(R.id.toPackageEditor)
+            packageEditorViewModel.learningPackage = LearningPackage()
+            findNavController().navigate(R.id.toPackageEditor)
         }
     }
 
     private fun onPackageAction(learningPackage: LearningPackage, packageAction: PackageAction) {
         packageViewModel.selectedPackage = learningPackage
         val navAction = when (packageAction) {
-            PackageAction.Update -> R.id.toPackageEditor
+            PackageAction.Update -> {
+                packageEditorViewModel.learningPackage = packageViewModel.selectedPackage!!
+                R.id.toPackageEditor
+            }
             PackageAction.Rate -> R.id.ratePackageFragment
             PackageAction.Ratings -> R.id.toPackageRatings
             PackageAction.View -> R.id.toFlashCards

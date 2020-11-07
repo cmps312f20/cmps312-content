@@ -35,6 +35,8 @@ class MatchDefinitionFragment : Fragment(R.layout.fragment_match_definition) {
             word.definitions.map { WordDefinition(word.text, it.text) }
         }
 
+        if (definitions.isEmpty()) return
+
         displayDefinition(currentIndex)
         nextBtn.setOnClickListener { onMoveNext(it, 1) }
         prevBtn.setOnClickListener { onMoveNext(it, -1) }

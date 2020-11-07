@@ -24,7 +24,11 @@ class PackageRepository(val context: Context) {
     fun getPackages() : List<LearningPackage> {
         val data = context.assets.open("packages.json")
             .bufferedReader().use { it.readText() }
-        return Json{ ignoreUnknownKeys = true }.decodeFromString<List<LearningPackage>>(data)
+        val packages = Json{ ignoreUnknownKeys = true }.decodeFromString<List<LearningPackage>>(data)
+        packages.forEach {
+            it.keywords = it.words.joinToString(", ") { it.text }
+        }
+        return packages
     }
 
     fun getPackages(searchText: String) : List<LearningPackage> {
@@ -34,7 +38,7 @@ class PackageRepository(val context: Context) {
             return packages
 
         packages = packages.filter {
-            it.keywords.any { kw -> kw.contains(searchText, true) } ||
+            it.keywords.contains(searchText, true) ||
             it.description.contains(searchText, true)
         }
         return packages

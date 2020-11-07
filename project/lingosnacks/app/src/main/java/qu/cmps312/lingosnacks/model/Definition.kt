@@ -4,6 +4,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Definition(
-    val text: String,
-    val source: String
+    var text: String,
+    var source: String
 )

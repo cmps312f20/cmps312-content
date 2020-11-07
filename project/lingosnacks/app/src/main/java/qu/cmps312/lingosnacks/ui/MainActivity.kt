@@ -27,10 +27,10 @@ import qu.cmps312.lingosnacks.model.User
 import qu.cmps312.lingosnacks.ui.viewmodel.AuthViewModel
 import qu.cmps312.lingosnacks.ui.viewmodel.PackageViewModel
 
-
 class MainActivity : AppCompatActivity() {
     private val authViewModel by viewModels<AuthViewModel>()
     private val packageViewModel by viewModels<PackageViewModel>()
+
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var navController: NavController
 
@@ -50,8 +50,6 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(navController.graph, drawerlayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
-        //navController.addOnDestinationChangedListener(::onDestinationChanged)
-
         // Configure image loader to support SVG images
         val imageLoader = ImageLoader.Builder(this)
             .componentRegistry {
@@ -70,28 +68,6 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
-
-    /*override fun onResume() {
-        super.onResume()
-        navController.addOnDestinationChangedListener(::onDestinationChanged)
-    }
-
-    override fun onPause() {
-        super.onPause()
-        navController.removeOnDestinationChangedListener(::onDestinationChanged)
-    }
-
-
-    private fun onDestinationChanged(
-        controller: NavController,
-        destination: NavDestination,
-        arguments: Bundle?
-    ) {
-        /*when(destination.id){
-            R.id.transferConfirmationFragment or  R.id.transactionListFragment
-            -> Toast.makeText(this, destination.label, Toast.LENGTH_SHORT).show()
-        }*/
-    }*/
 
     private fun customizeMenu(user: User?) {
         val isSignedIn = (user != null)

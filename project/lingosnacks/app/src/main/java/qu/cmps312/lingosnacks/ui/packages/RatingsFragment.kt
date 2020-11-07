@@ -17,7 +17,7 @@ class RatingsFragment : Fragment(R.layout.fragment_ratings) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        wordsRv.apply {
+        definitionsRv.apply {
             adapter= RatingAdapter(packageViewModel.getRatings())
             layoutManager = LinearLayoutManager(context)
         }

@@ -22,7 +22,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <ImageView
                 android:id="@+id/backgroundIv"
@@ -99,34 +99,35 @@
                 android:id="@+id/packageAuthorTv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:hint="Author"
                 android:text="@{learningPackage.author}"
                 android:textColor="@color/dark_blue"
                 app:layout_constraintBaseline_toBaselineOf="@+id/textView2"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textView2" />
+                app:layout_constraintStart_toStartOf="@+id/keywordsTv" />
 
             <TextView
                 android:id="@+id/keywordsTv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:hint="Keywords"
                 android:text="@{String.valueOf(learningPackage.keywords)}"
-                app:layout_constraintBaseline_toBaselineOf="@+id/keywordsLabel"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/keywordsLabel" />
+                app:layout_constraintStart_toEndOf="@+id/keywordsLabel"
+                app:layout_constraintTop_toBottomOf="@+id/packageAuthorTv"
+                tools:text="Keywords" />
 
             <ImageButton
                 android:id="@+id/rateBtn"
-                app:hideIfFalse="@{learningPackage.isTeacher(userInfo)}"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_marginStart="16dp"
                 android:background="#FFFFFF"
+                app:hideIfFalse="@{learningPackage.isTeacher(userInfo)}"
                 app:layout_constraintStart_toEndOf="@+id/ratingsBtn"
                 app:layout_constraintTop_toTopOf="@+id/ratingsBtn"
                 app:srcCompat="@drawable/ic_rate" />
@@ -143,11 +144,11 @@
 
             <ImageButton
                 android:id="@+id/updateBtn"
-                app:hideIfFalse="@{learningPackage.isOwner(userInfo)}"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_marginEnd="16dp"
                 android:background="#FCFAED"
+                app:hideIfFalse="@{learningPackage.isOwner(userInfo)}"
                 app:layout_constraintEnd_toStartOf="@+id/deleteOnlinePackageBtn"
                 app:layout_constraintTop_toTopOf="@+id/deleteOnlinePackageBtn"
                 app:srcCompat="@drawable/ic_update" />
@@ -187,11 +188,11 @@
                 android:id="@+id/keywordsLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:text="Keywords: "
                 android:textColor="@color/dark_blue"
+                app:layout_constraintBottom_toBottomOf="@+id/keywordsTv"
                 app:layout_constraintStart_toStartOf="@+id/textView2"
-                app:layout_constraintTop_toBottomOf="@+id/textView2" />
+                app:layout_constraintTop_toTopOf="@+id/keywordsTv" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/verticalGuideline"
@@ -216,12 +217,12 @@
                 style="?android:attr/ratingBarStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:isIndicator="true"
                 android:numStars="5"
                 android:rating="@{(float)learningPackage.avgRating}"
                 app:layout_constraintStart_toStartOf="@+id/keywordsLabel"
-                app:layout_constraintTop_toBottomOf="@+id/keywordsLabel" />
+                app:layout_constraintTop_toBottomOf="@+id/keywordsTv" />
 
             <ImageButton
                 android:id="@+id/ratingsBtn"

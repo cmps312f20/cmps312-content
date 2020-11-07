@@ -11,10 +11,13 @@ class PackageViewModel(application: Application) : AndroidViewModel(application)
     private val packageRepository = PackageRepository(application)
     private var _packages = MutableLiveData<MutableList<LearningPackage>>()
     var selectedPackage: LearningPackage? = null
-    var selectedWord: Word? = null
-    var selectedSentence: Sentence? = null
 
     val packages = _packages as LiveData<List<LearningPackage>>
+
+    init {
+        // Init packages
+        getPackages()
+    }
 
     fun getPackages() {
         _packages.value = packageRepository.getPackages().toMutableList()
@@ -42,7 +45,8 @@ class PackageViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
-    fun addPackage(learningPackage: LearningPackage) {
+    // Add package if exists otherwise add it
+    fun upsertPackage(learningPackage: LearningPackage) {
         _packages.value?.let {
             // If item exists just increase the quantity
             var foundAt = it.indexOfFirst { pack -> pack.packageId == learningPackage.packageId }
@@ -56,6 +60,7 @@ class PackageViewModel(application: Application) : AndroidViewModel(application)
                 // This is needed to notify the observers
                 it.add(learningPackage)
                 _packages.value = it
+                println(">> Debug: upsertPackage: ${it.size}")
             }
         }
     }

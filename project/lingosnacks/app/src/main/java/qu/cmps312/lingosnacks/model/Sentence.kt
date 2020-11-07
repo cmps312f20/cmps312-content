@@ -4,6 +4,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Sentence(
-    val text: String,
-    val resources: MutableList<Resource> = mutableListOf()
+    var text: String,
+    var resources: MutableList<Resource> = mutableListOf()
 )

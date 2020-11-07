@@ -9,30 +9,40 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_package_editor.*
 import qu.cmps312.lingosnacks.R
-import qu.cmps312.lingosnacks.ui.viewmodel.PackageViewModel
+import qu.cmps312.lingosnacks.ui.viewmodel.PackageEditorViewModel
 
 fun Spinner.setValue (value: String) {
     var spinnerAdapter = this.adapter as ArrayAdapter<String>
-    this.setSelection(spinnerAdapter.getPosition(value))
+    val position = spinnerAdapter.getPosition(value)
+    if (position >=0)
+        this.setSelection(position)
 }
 
 class PackageEditorFragment : Fragment(R.layout.fragment_package_editor) {
-    private val packageViewModel by activityViewModels<PackageViewModel>()
-
+    //private val packageViewModel by activityViewModels<PackageViewModel>()
+    private val packageEditorViewModel by activityViewModels<PackageEditorViewModel>()
+    
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        packageViewModel.selectedPackage?.let {
-            titleEt.setText(it.title)
-            descriptionEt.setText(it.description)
-            categorySp.setValue(it.category)
-            languageSp.setValue(it.language)
-            levelSp.setValue(it.level)
-
-            iconUrlEt.setText(it.iconUrl)
-            //= it.keywords: MutableList<String>,
+        packageEditorViewModel.learningPackage.apply {
+            titleEt.setText(this.title)
+            descriptionEt.setText(this.description)
+            categorySp.setValue(this.category)
+            languageSp.setValue(this.language)
+            levelSp.setValue(this.level)
+            iconUrlEt.setText(this.iconUrl)
         }
 
         nextBtn.setOnClickListener {
+            packageEditorViewModel.learningPackage.apply {
+                this.title = titleEt.text.toString()
+                this.description = descriptionEt.text.toString()
+                this.category = categorySp.selectedItem.toString()
+                this.language = languageSp.selectedItem.toString()
+                this.level = levelSp.selectedItem.toString()
+                this.iconUrl = iconUrlEt.text.toString()
+            }
+            println(">> Debug: new/updated learningPackage: ${packageEditorViewModel.learningPackage}")
             findNavController().navigate(R.id.toWordEditor)
         }
     }

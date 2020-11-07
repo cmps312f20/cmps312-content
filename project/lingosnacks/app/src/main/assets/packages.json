@@ -5,11 +5,6 @@
     "category": "Places",
     "description": "A list of 6 places that we can find in town",
     "iconUrl": "https://www.flaticon.com/svg/static/icons/svg/2538/2538872.svg",
-    "keywords": [
-      "places",
-      "location",
-      "town"
-    ],
     "language": "English",
     "lastUpdatedDate": "2020/09/17",
     "level": "Beginner",
@@ -221,12 +216,6 @@
     "category": "Places",
     "description": "Continuing on the previous package, here is a list of 6 more places that we can find in town",
     "iconUrl": "https://www.flaticon.com/svg/static/icons/svg/1838/1838458.svg",
-    "keywords": [
-      "place",
-      "places",
-      "location",
-      "town"
-    ],
     "language": "English",
     "lastUpdatedDate": "2019/02/09",
     "level": "Beginner",
@@ -392,7 +381,6 @@
     "category": "Food",
     "description": "Fruit Vocabulary Word List",
     "iconUrl": "https://cdn.icon-icons.com/icons2/1832/PNG/512/iconfinderfoodandrestaurantorganicveganhealthyfooddietvegetarianbananafoodapplefruit4394827-115907_115874.png",
-    "keywords": ["fruits", "fruit", "apple","banana"],
     "language": "English",
     "lastUpdatedDate": "2020-27-9",
     "level": "Easy",
@@ -558,10 +546,6 @@
     "author": "t2@test.com",
     "category": "Health",
     "description": "Health domain terminology",
-    "keywords": [
-      "corona",
-      "health"
-    ],
     "language": "English",
     "lastUpdatedDate": "2020-10-9",
     "level": "Average",
@@ -571,7 +555,43 @@
     "numRatings": 4,
     "words": [
       {
-        "text": "CoronaVirus",
+        "text": "Corona Virus",
+        "definitions": [
+          {
+            "text": "A group of RNA viruses that cause diseases in mammals and birds",
+            "source": "Wikipedia"
+          }
+        ],
+        "sentences": [
+          {
+            "text": "Precautionary measures",
+            "resources": [
+              {
+                "resourceUrl": "https://www.flaticon.com/svg/static/icons/svg/3596/3596032.svg",
+                "title": "COVID19 protection",
+                "type": "Photo"
+              }
+            ]
+          },
+          {
+            "text": "Coronavirus is continuing its spread across the world",
+            "resources": [
+              {
+                "resourceUrl": "https://www.flaticon.com/svg/static/icons/svg/2790/2790740.svg",
+                "title": "Covid19 spreading",
+                "type": "Photo"
+              },
+              {
+                "resourceUrl": "https://v.ftcdn.net/03/78/85/13/700_F_378851397_QzZElSE57apQuLLqJrpJvSROX23988IP_ST.mp4",
+                "title": "Pearl Qatar Island",
+                "type": "Video"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "text": "COVID-19",
         "definitions": [
           {
             "text": "A group of RNA viruses that cause diseases in mammals and birds",

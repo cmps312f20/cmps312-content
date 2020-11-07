@@ -37,6 +37,8 @@ class UnscrambleSentenceFragment : Fragment(R.layout.fragment_unscramble_sentenc
             word.sentences.map { it.text }
         }
 
+        if (sentences.isEmpty()) return
+
         displaySentence(currentIndex)
         nextBtn.setOnClickListener { onMoveNext(it, 1) }
         prevBtn.setOnClickListener { onMoveNext(it, -1) }

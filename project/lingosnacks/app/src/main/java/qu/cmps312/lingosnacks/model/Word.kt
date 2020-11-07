@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Word(
-    val text: String,
-    val definitions: List<Definition>,
-    val sentences: List<Sentence>
+    var text: String,
+    var definitions: MutableList<Definition> = mutableListOf(),
+    var sentences: MutableList<Sentence> = mutableListOf()
 )

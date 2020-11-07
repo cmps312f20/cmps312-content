@@ -78,5 +78,18 @@
         android:id="@+id/wordEditorFragment"
         android:name="qu.cmps312.lingosnacks.ui.editor.WordEditorFragment"
         android:label="Word Editor"
-        tools:layout="@layout/fragment_word_editor" />
+        tools:layout="@layout/word_editor_fragment" >
+        <action
+            android:id="@+id/toWordEditorFragment"
+            app:destination="@id/definitionEditorFragment" />
+        <action
+            android:id="@+id/toHomeFragment"
+            app:destination="@id/packagesFragment"
+            app:popUpTo="@id/packagesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/definitionEditorFragment"
+        android:name="qu.cmps312.lingosnacks.ui.editor.DefinitionEditorFragment"
+        android:label="Definition Editor"
+        tools:layout="@layout/definition_editor_fragment" />
 </navigation>

@@ -12,22 +12,22 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="4dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:background="@color/lightYellow"
         android:hint="Word"
         android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/deleteWordBtn"
+        app:layout_constraintEnd_toStartOf="@+id/sentencesTv"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/deleteWordBtn"
+        android:id="@+id/deleteBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="5dp"
         android:background="@color/white"
         android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="@+id/wordEt"
@@ -35,15 +35,30 @@
         app:layout_constraintTop_toTopOf="@+id/wordEt"
         app:srcCompat="@drawable/ic_delete" />
 
-<!--    <ImageButton
-        android:id="@+id/editWordBtn"
+    <TextView
+        android:id="@+id/definitionsTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:background="@color/white"
-        android:padding="5dp"
-        app:layout_constraintEnd_toStartOf="@+id/deleteWordBtn"
-        app:layout_constraintTop_toTopOf="@+id/deleteWordBtn"
-        app:srcCompat="@drawable/ic_update" />-->
+        android:background="@android:color/holo_orange_light"
+        android:text="D(1)"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/deleteBtn"
+        app:layout_constraintEnd_toStartOf="@+id/deleteBtn"
+        app:layout_constraintTop_toTopOf="@+id/deleteBtn" />
+
+    <TextView
+        android:id="@+id/sentencesTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:background="@android:color/holo_orange_light"
+        android:text="S(1)"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/deleteBtn"
+        app:layout_constraintEnd_toStartOf="@+id/definitionsTv"
+        app:layout_constraintTop_toTopOf="@+id/deleteBtn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

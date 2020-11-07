@@ -25,7 +25,7 @@ class RatePackageFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        submitBtn.setOnClickListener {
+        nextBtn.setOnClickListener {
             if (!validateInput()) return@setOnClickListener
             val packageId = packageViewModel.selectedPackage?.packageId.toString()
             val doneBy = authViewModel.currentUser.value?.email.toString()
