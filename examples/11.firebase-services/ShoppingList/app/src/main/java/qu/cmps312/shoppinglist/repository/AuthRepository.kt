@@ -44,7 +44,7 @@ class AuthRepository {
     }
 
     private suspend fun addUser(user: User) {
-        userCollectionRef.document(user.email).set(user).await()
+        userCollectionRef.document(user.uid).set(user).await()
     }
 
     suspend fun signIn(email: String, password: String) : User? = withContext(Dispatchers.IO) {

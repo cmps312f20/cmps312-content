@@ -21,10 +21,10 @@ class WordEditorAdapter(val words: MutableList<Word>,
             itemView.wordEt.setText(word.text)
             itemView.definitionsTv.text = "D(${word.definitions.size})"
             itemView.sentencesTv.text = "S(${word.sentences.size})"
+
             itemView.wordEt.doOnTextChanged { text, start, before, count ->
                 words[adapterPosition].text = text.toString()
             }
-
 
             itemView.deleteBtn.setOnClickListener {
                 val position = adapterPosition
