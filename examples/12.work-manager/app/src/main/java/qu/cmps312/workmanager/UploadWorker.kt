@@ -2,31 +2,28 @@ package qu.cmps312.workmanager
 
 import android.content.Context
 import android.util.Log
-import androidx.work.Data
 import androidx.work.Worker
 import androidx.work.WorkerParameters
+import androidx.work.workDataOf
 import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 
-class UploadWorker(context: Context, params:WorkerParameters) : Worker(context,params) {
+class UploadWorker(context: Context, params:WorkerParameters) : Worker(context, params) {
     override fun doWork(): Result {
-        try {
-            val count = inputData.getInt(AppKeys.COUNT_VALUE,0)
+        return try {
+            val count = inputData.getInt(AppKeys.COUNT_VALUE, 0)
             for (i in 0 until count) {
                 Log.i("UploadWorker", "Uploading $i")
             }
 
-            val time = SimpleDateFormat("dd/M/yyyy hh:mm:ss aa")
-            val currentDate = time.format(Date())
+            val dateFormat = SimpleDateFormat("dd/M/yyyy hh:mm:ss aa")
+            val currentDate = dateFormat.format(Date())
 
-            val outPutData = Data.Builder()
-                                 .putString(AppKeys.CURRENT_DATE, currentDate)
-                                 .build()
-
-            return Result.success(outPutData)
-        } catch (e:Exception){
-            return Result.failure()
+            val outputData = workDataOf(AppKeys.CURRENT_DATE to currentDate)
+            Result.success(outputData)
+        } catch (e: Exception) {
+            Result.failure()
         }
     }
 }
