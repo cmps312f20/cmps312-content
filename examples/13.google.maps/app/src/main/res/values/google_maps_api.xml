@@ -1,0 +1,24 @@
+<resources>
+    <!--
+    TODO: Before you run your application, you need a Google Maps API key.
+
+    To get one, follow this link, follow the directions and press "Create" at the end:
+
+    https://console.developers.google.com/flows/enableapi?apiid=maps_android_backend&keyType=CLIENT_SIDE_ANDROID&r=75:30:86:99:3E:61:3A:6C:48:10:DE:52:2C:15:CE:81:1B:95:1A:00%3Bqu.cmps312.maps
+
+    You can also add your credentials to an existing key, using these values:
+
+    Package name:
+    qu.cmps312.maps
+
+    SHA-1 certificate fingerprint:
+    75:30:86:99:3E:61:3A:6C:48:10:DE:52:2C:15:CE:81:1B:95:1A:00
+
+    Alternatively, follow the directions here:
+    https://developers.google.com/maps/documentation/android/start#get-key
+
+    Once you have your key (it starts with "AIza"), replace the "google_maps_key"
+    string in this file.
+    -->
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">Get-key-from-MS-Teams-or-create-yours</string>
+</resources>

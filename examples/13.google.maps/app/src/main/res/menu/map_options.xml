@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<!--    <item
+        android:id="@+id/mi_search_place"
+        android:icon="@drawable/ic_search"
+        android:title="Search"
+        app:actionViewClass="android.widget.SearchView"
+        app:showAsAction="always"/>-->
+
+    <item
+        android:id="@+id/mi_normal_map"
+        android:title="@string/normal_map"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/mi_hybrid_map"
+        android:title="@string/hybrid_map"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/mi_satellite_map"
+        android:title="@string/satellite_map"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/mi_terrain_map"
+        android:title="@string/terrain_map"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/mi_reverse_geocode"
+        android:title="Reverse Geocoding"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/mi_geocode"
+        android:title="Geocoding"
+        app:showAsAction="never" />
+</menu>
