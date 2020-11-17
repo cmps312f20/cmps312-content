@@ -1,6 +1,5 @@
 package qu.cmps312.workmanager
 
-import android.app.Application
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -23,7 +22,7 @@ class MainActivity : AppCompatActivity() {
     private fun setOneTimeWorkRequest() {
         val workManager = WorkManager.getInstance(applicationContext)
 
-        val inputData = workDataOf(AppKeys.COUNT_VALUE to 125)
+        val inputData = workDataOf(Constants.COUNT_VALUE to 125)
 
         val constraints = Constraints.Builder()
                                      //.setRequiresDeviceIdle(true)
@@ -31,13 +30,15 @@ class MainActivity : AppCompatActivity() {
                                      .setRequiredNetworkType(NetworkType.CONNECTED)
                                      .build()
 
+        //1000, 2000, 3000
         val uploadRequest = OneTimeWorkRequestBuilder<UploadWorker>()
+                .addTag(Constants.UPLOAD_TAG)
                             .setConstraints(constraints)
                             .setInputData(inputData)
                             .setBackoffCriteria(
                                 BackoffPolicy.LINEAR,
-                                OneTimeWorkRequest.MIN_BACKOFF_MILLIS,
-                                TimeUnit.MILLISECONDS)
+                                1000,
+                                TimeUnit.SECONDS)
                             .build()
 
         val filterRequest = OneTimeWorkRequestBuilder<FilterWorker>().build()
@@ -54,12 +55,15 @@ class MainActivity : AppCompatActivity() {
                    .enqueue()*/
 
         workManager.enqueue(uploadRequest)
+        val workInfo = workManager.getWorkInfosByTag(Constants.UPLOAD_TAG)
+        workInfo.get()[0].state.isFinished
+        println(">> Debug: ${workInfo.get()[0].state}")
         workManager.getWorkInfoByIdLiveData(uploadRequest.id)
                    .observe(this, Observer {
                         textView.text = it.state.name
                         if(it.state.isFinished) {
                             val data = it.outputData
-                            val message = data.getString(AppKeys.CURRENT_DATE)
+                            val message = data.getString(Constants.CURRENT_DATE)
                             Toast.makeText(applicationContext, message, Toast.LENGTH_LONG).show()
                         }
                    })
@@ -72,7 +76,7 @@ class MainActivity : AppCompatActivity() {
                 .observe(this, Observer { workInfo: WorkInfo? ->
                     if (workInfo != null) {
                         val progress = workInfo.progress
-                        val value = progress.getInt(AppKeys.PROGRESS, 0)
+                        val value = progress.getInt(Constants.PROGRESS, 0)
                             // Do something with progress information
                     }
                 })
@@ -101,9 +105,9 @@ class MainActivity : AppCompatActivity() {
 class ProgressWorker(context: Context, parameters: WorkerParameters) :
         CoroutineWorker(context, parameters) {
     override suspend fun doWork(): Result {
-        setProgress(workDataOf(AppKeys.PROGRESS to 25))
+        setProgress(workDataOf(Constants.PROGRESS to 25))
         //...
-        setProgress(workDataOf(AppKeys.PROGRESS to 50))
+        setProgress(workDataOf(Constants.PROGRESS to 50))
         //...
         return Result.success()
     }

@@ -12,7 +12,7 @@ import java.util.*
 class UploadWorker(context: Context, params:WorkerParameters) : Worker(context, params) {
     override fun doWork(): Result {
         return try {
-            val count = inputData.getInt(AppKeys.COUNT_VALUE, 0)
+            val count = inputData.getInt(Constants.COUNT_VALUE, 0)
             for (i in 0 until count) {
                 Log.i("UploadWorker", "Uploading $i")
             }
@@ -20,10 +20,10 @@ class UploadWorker(context: Context, params:WorkerParameters) : Worker(context, 
             val dateFormat = SimpleDateFormat("dd/M/yyyy hh:mm:ss aa")
             val currentDate = dateFormat.format(Date())
 
-            val outputData = workDataOf(AppKeys.CURRENT_DATE to currentDate)
+            val outputData = workDataOf(Constants.CURRENT_DATE to currentDate)
             Result.success(outputData)
         } catch (e: Exception) {
-            Result.failure()
+            Result.retry()
         }
     }
 }

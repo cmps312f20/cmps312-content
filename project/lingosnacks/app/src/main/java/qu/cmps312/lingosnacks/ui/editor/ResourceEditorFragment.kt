@@ -68,6 +68,10 @@ class ResourceEditorFragment : Fragment(R.layout.resource_editor_fragment) {
         }
 
         selectMediaBtn.setOnClickListener {
+            val mediaPicker =
+                registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+                    println("Debug: Uri of selected media: $uri")
+                }
             mediaPicker.launch("*/*")
         }
 
