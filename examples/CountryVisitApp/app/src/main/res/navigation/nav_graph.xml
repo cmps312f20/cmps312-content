@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/visitsFragment">
+
+    <fragment
+        android:id="@+id/visitsFragment"
+        android:name="qu.cmps312.countryvisit.ui.VisitsFragment"
+        android:label="Country Visits"
+        tools:layout="@layout/fragment_visits">
+        <action
+            android:id="@+id/toVisitEditorFragment"
+            app:destination="@id/visitEditorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/visitEditorFragment"
+        android:name="qu.cmps312.countryvisit.ui.VisitEditorFragment"
+        android:label="Visit Editor"
+        tools:layout="@layout/fragment_visit_editor" />
+</navigation>

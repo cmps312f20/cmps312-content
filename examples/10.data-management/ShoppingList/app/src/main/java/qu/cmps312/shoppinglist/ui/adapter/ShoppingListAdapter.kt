@@ -8,8 +8,9 @@ import kotlinx.android.synthetic.main.list_item.view.*
 import qu.cmps312.shoppinglist.R
 import qu.cmps312.shoppinglist.entity.ShoppingItem
 
-class ShoppingListAdapter(private val deleteListener: (ShoppingItem) -> Unit,
-                          private val quantityChangedListener: (ShoppingItem) -> Unit)
+class
+ShoppingListAdapter(private val deleteListener: (ShoppingItem) -> Unit,
+                    private val quantityChangedListener: (ShoppingItem) -> Unit)
     : RecyclerView.Adapter<ShoppingListAdapter.ItemViewHolder>(){
 
     var items = listOf<ShoppingItem>()

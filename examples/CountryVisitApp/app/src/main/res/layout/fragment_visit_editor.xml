@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.VisitEditorFragment">
+
+    <TextView
+        android:id="@+id/formTitleTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Country Visit"
+        android:textSize="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/continentSp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/formTitleTv" />
+
+    <Spinner
+        android:id="@+id/countrySp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/continentSp" />
+
+    <EditText
+        android:id="@+id/amountEdt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:drawablePadding="10dp"
+        android:hint="Amount"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="@+id/countrySp"
+        app:layout_constraintStart_toStartOf="@+id/countrySp"
+        app:layout_constraintTop_toBottomOf="@+id/countrySp" />
+
+    <RatingBar
+        android:id="@+id/visitRatingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="@+id/amountEdt"
+        app:layout_constraintStart_toStartOf="@+id/amountEdt"
+        app:layout_constraintTop_toBottomOf="@+id/amountEdt" />
+
+    <Button
+        android:id="@+id/saveBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Save"
+        app:layout_constraintEnd_toEndOf="@+id/visitRatingBar"
+        app:layout_constraintStart_toStartOf="@+id/visitRatingBar"
+        app:layout_constraintTop_toBottomOf="@+id/visitRatingBar" />
+</androidx.constraintlayout.widget.ConstraintLayout>

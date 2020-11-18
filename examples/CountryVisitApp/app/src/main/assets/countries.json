@@ -1,0 +1,87 @@
+[
+  {
+    "code": "BE",
+    "name": "Belgium",
+    "continent": "Europe"
+  },
+  {
+    "code": "DK",
+    "name": "Denmark",
+    "continent": "Europe"
+  },
+  {
+    "code": "FR",
+    "name": "France",
+    "continent": "Europe"
+  },
+  {
+    "code": "DE",
+    "name": "Germany",
+    "continent": "Europe"
+  },
+  {
+    "code": "GR",
+    "name": "Greece",
+    "continent": "Europe"
+  },
+  {
+    "code": "IT",
+    "name": "Italy",
+    "continent": "Europe"
+  },
+  {
+    "code": "PT",
+    "name": "Portugal",
+    "continent": "Europe"
+  },
+  {
+    "code": "ES",
+    "name": "Spain",
+    "continent": "Europe"
+  },
+  {
+    "code": "SE",
+    "name": "Sweden",
+    "continent": "Europe"
+  },
+  {
+    "code": "QA",
+    "name": "Qatar",
+    "continent": "Asia"
+  },
+  {
+    "code": "SA",
+    "name": "Saudi Arabia",
+    "continent": "Asia"
+  },
+  {
+    "code": "AE",
+    "name": "United Arab Emirates",
+    "continent": "Asia"
+  },
+  {
+    "code": "VN",
+    "name": "Vietnam",
+    "continent": "Asia"
+  },
+  {
+    "code": "MA",
+    "name": "Morocco",
+    "continent": "Africa"
+  },
+  {
+    "code": "EG",
+    "name": "Egypt",
+    "continent": "Africa"
+  },
+  {
+    "code": "TN",
+    "name": "Tunisia",
+    "continent": "Africa"
+  },
+  {
+    "code": "DZ",
+    "name": "Algeria",
+    "continent": "Africa"
+  }
+]
