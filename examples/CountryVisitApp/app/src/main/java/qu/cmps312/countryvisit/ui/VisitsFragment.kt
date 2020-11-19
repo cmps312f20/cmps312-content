@@ -19,10 +19,12 @@ class VisitsFragment : Fragment(R.layout.fragment_visits) {
 
     }
 
+    // ToDo: implement onVisitDeleted
     private fun onVisitDeleted(visit: Visit) {
 
     }
 
+    // ToDo: implement onVisitUpdated
     private fun onVisitUpdated(visit: Visit) {
         findNavController().navigate(R.id.toVisitEditorFragment)
     }

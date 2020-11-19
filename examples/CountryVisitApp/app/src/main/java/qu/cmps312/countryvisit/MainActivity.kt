@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
+    //ToDo: Implement init database to fill country and continent tables from json files if the tables are empty
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.mi_init_db -> {
